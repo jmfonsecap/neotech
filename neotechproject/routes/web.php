@@ -20,6 +20,8 @@ Route::get('/parts/create', 'App\Http\Controllers\PartController@create')->name(
 Route::post('/parts/save', 'App\Http\Controllers\PartController@save')->name('part.save');
 Route::get('/parts/{id}', 'App\Http\Controllers\PartController@show')->name('part.show');
 Route::delete('/part/{id}', 'App\Http\Controllers\PartController@delete')->name('part.delete');
+Route::get('/computers/{id}/review', 'App\Http\Controllers\ReviewController@create')->name('review.create');
+Route::post('/computers/{id}/save', 'App\Http\Controllers\ReviewController@save')->name('review.save');
 
 Auth::routes();
 

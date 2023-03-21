@@ -4,6 +4,9 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Review;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -29,6 +32,7 @@ class User extends Authenticatable
      * $this->attributes['postalCode'] - string - contains the user postal code
      * $this->attributes['country'] - string - contains the user country
      * $this->attributes['points'] - int - contains the user points
+     * $this->reviews - Review[] - contains the associated reviews
      * $this->attributes['created_at'] - timestamp - contains the user creation date 
      * $this->attributes['updated_at'] - timestamp - contains the user update date
      *
@@ -162,5 +166,17 @@ class User extends Authenticatable
     public function setPoints($points)
     {
         $this->attributes['points'] = $points;
+    }
+    public function reviews(): HasMany
+    {
+    return $this->hasMany(Review::class);
+    }
+    public function getReviews(): Collection
+    {
+    return $this->reviews;
+    }
+    public function setReviews(Collection $reviews): void
+    {
+    $this->reviews = $reviews;
     }
 }

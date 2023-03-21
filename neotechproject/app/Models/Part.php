@@ -19,14 +19,7 @@ class Part extends Model
      * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
      * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
      *
-     $request->validate([
-            'name' => 'required',
-            'stock' => 'required',
-            'brand' => 'required',
-            'part_type' => 'required',
-            'price' => 'required',
-            'details' => 'required',
-        ]);
+     
      */
     protected $fillable = ['stock', 'name', 'brand', 'type', 'price', 'details'];
 
