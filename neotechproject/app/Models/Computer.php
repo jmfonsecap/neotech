@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Monolog\Handler\PushoverHandler;
 
 class Computer extends Model
 {
@@ -42,6 +43,19 @@ class Computer extends Model
         'parts',
         'reviews',
     ];
+
+    public function getLabels()
+    {
+        $colums = [
+            'name',
+            'stock',
+            'brand',
+            'category',
+            'price',
+            'actions',
+        ];
+        return $colums;
+    }
 
     public function getId(): int
     {
@@ -110,7 +124,7 @@ class Computer extends Model
 
     public function setKeywords($keywords)
     {
-        $this->attributes['keywords'] = $keywords;
+        $this->attributes["keywords"] = $keywords;
     }
 
     public function getCurrentPrice(): int
