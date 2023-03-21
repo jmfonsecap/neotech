@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
 
 Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.home.index');
-Route::get('/admin/users', 'App\Http\Controllers\Admin\AdminUserController@index')->name("admin.users.index");
+Route::get('/admin/users', 'App\Http\Controllers\Admin\AdminUserController@index')->name('admin.users.index');
 
 Route::get('/computers/create', 'App\Http\Controllers\ComputerController@create')->name('computer.create');
 Route::post('/computers/save', 'App\Http\Controllers\ComputerController@save')->name('computer.save');
