@@ -63,6 +63,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getLabels()
+    {
+        $colums = [
+            'name',
+            'email',
+            'role',
+            'phone',
+            'country',
+            'actions',
+        ];
+        return $colums;
+    }
+
     public function getId()
     {
         return $this->attributes['id'];
