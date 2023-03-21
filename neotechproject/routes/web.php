@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\HomeController@index')->name("home.index");
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
 Route::get('/parts/list', 'App\Http\Controllers\PartController@index')->name('part.index');
 Route::get('/parts/create', 'App\Http\Controllers\PartController@create')->name('part.create');
 Route::post('/parts/save', 'App\Http\Controllers\PartController@save')->name('part.save');
@@ -23,4 +23,4 @@ Route::delete('/part/{id}', 'App\Http\Controllers\PartController@delete')->name(
 
 Auth::routes();
 
-# Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

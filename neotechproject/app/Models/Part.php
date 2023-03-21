@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Part extends Model
 {
-
     /**
      * PART ATTRIBUTES
 
@@ -20,7 +18,7 @@ class Part extends Model
      * $this->attributes['details'] - string - contains a description and details of the part
      * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
      * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
-     * 
+     *
      $request->validate([
             'name' => 'required',
             'stock' => 'required',
@@ -29,8 +27,6 @@ class Part extends Model
             'price' => 'required',
             'details' => 'required',
         ]);
-
-     
      */
     protected $fillable = ['stock', 'name', 'brand', 'type', 'price', 'details'];
 
@@ -56,7 +52,6 @@ class Part extends Model
 
     public function setStock(int $stock): void
     {
-
         $this->attributes['stock'] = $stock;
     }
 
@@ -100,7 +95,7 @@ class Part extends Model
         $this->attributes['details'] = $desc;
     }
 
-    //It was necessary to use the underscore because serCreatedAt is an Eloquent 
+    //It was necessary to use the underscore because serCreatedAt is an Eloquent
     //method
     public function getCreated_at(): string
     {
@@ -124,13 +119,13 @@ class Part extends Model
 
     public static function validate($request)
     {
-    $request->validate([
-    "name" => "required|max:255",
-    "stock" => "required|numeric|gte:0",
-    "brand" => "required",
-    "type" => "required",
-    "price" => "required|numeric|gt:0",
-    "details" => "required",
-    ]);
+        $request->validate([
+            'name' => 'required|max:255',
+            'stock' => 'required|numeric|gte:0',
+            'brand' => 'required',
+            'type' => 'required',
+            'price' => 'required|numeric|gt:0',
+            'details' => 'required',
+        ]);
     }
 }

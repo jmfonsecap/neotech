@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Part;
-use \Illuminate\Http\RedirectResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class PartController extends Controller
 {
-  
     public static $types = [
 
         ['id' => '1', 'name' => 'RAM'],
@@ -27,21 +26,20 @@ class PartController extends Controller
         $viewData['subtitle'] = 'List of parts';
         $viewData['parts'] = Part::all();
 
-        return view('part.index')->with('viewData', $viewData);;
+        return view('part.index')->with('viewData', $viewData);
     }
 
     public function show(string $id): View
-{
-    $part = Part::findOrFail($id);
-    $viewData = [
-        'title' => $part->getName($id).' - Online Store',
-        'subtitle' => $part->getName($id).' - Product information',
-        'part' => $part,
-    ];
+    {
+        $part = Part::findOrFail($id);
+        $viewData = [
+            'title' => $part->getName($id).' - Online Store',
+            'subtitle' => $part->getName($id).' - Product information',
+            'part' => $part,
+        ];
 
-    return view('part.show', $viewData);
-}
-
+        return view('part.show', $viewData);
+    }
 
     public function mainMenu(): View
     {
@@ -50,7 +48,7 @@ class PartController extends Controller
 
     public function create(): View
     {
-        $viewData = []; 
+        $viewData = [];
 
         $viewData['types'] = PartController::$types;
         $viewData['title'] = 'Create part';
@@ -64,12 +62,12 @@ class PartController extends Controller
 
         $part = new Part();
 
-        $part ->setName($request->input('name'));
-        $part ->setStock($request->input('stock'));
-        $part ->setBrand($request->input('brand'));
-        $part ->setType($request->input('type'));
-        $part ->setPrice($request->input('price'));
-        $part ->setDetails($request->input('details'));
+        $part->setName($request->input('name'));
+        $part->setStock($request->input('stock'));
+        $part->setBrand($request->input('brand'));
+        $part->setType($request->input('type'));
+        $part->setPrice($request->input('price'));
+        $part->setDetails($request->input('details'));
 
         $part->save();
 
@@ -78,7 +76,6 @@ class PartController extends Controller
 
     public function delete($id): RedirectResponse
     {
-        
         $part = Part::find($id);
         $part->delete();
 
