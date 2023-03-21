@@ -60,13 +60,14 @@ class PartController extends Controller
 
     public function save(Request $request): View
     {
+        Part::validate($request);
+
         $part = new Part();
 
         $part ->setName($request->input('name'));
         $part ->setStock($request->input('stock'));
-        $part ->setStock($request->input('stock'));
         $part ->setBrand($request->input('brand'));
-        $part ->setType($request->input('part_type'));
+        $part ->setType($request->input('type'));
         $part ->setPrice($request->input('price'));
         $part ->setDetails($request->input('details'));
 
