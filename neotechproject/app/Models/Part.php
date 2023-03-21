@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Part extends Model
 {
@@ -18,6 +20,7 @@ class Part extends Model
      * $this->attributes['details'] - string - contains a description and details of the part
      * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
      * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
+     * $this->computers - Computer[] - contains the associated computers
      *
      $request->validate([
             'name' => 'required',
@@ -115,6 +118,21 @@ class Part extends Model
     public function setUpdated_at(string $desc): void
     {
         $this->attributes['updated_at'] = $desc;
+    }
+
+    public function computers(): HasMany
+    {
+        return $this->hasMany(Computer::class);
+    }
+
+    public function getComputers(): Collection
+    {
+        return $this->computers;
+    }
+
+    public function setParts(Collection $computers): void
+    {
+        $this->computers = $computers;
     }
 
     public static function validate($request)

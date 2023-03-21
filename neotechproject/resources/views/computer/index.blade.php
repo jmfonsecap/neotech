@@ -10,7 +10,7 @@
       <div class="card-body text-center">
         <a href="{{ route('computer.show', ['id'=> $computer->getId()]) }}"
           class="btn bg-primary text-white">{{ $computer->getName() }}</a>
-          <form action="{{ route('computer.create', $viewData["computer"]->getId()) }}" method="POST"> @csrf @method('DELETE') <button type="submit" class="btn btn-danger">Delete</button>
+          <form action="{{ route('computer.create', $computer->getId()) }}" method="POST"> @csrf @method('DELETE') <button type="submit" class="btn btn-danger">Delete</button>
       </div>
     </div>
   </div>

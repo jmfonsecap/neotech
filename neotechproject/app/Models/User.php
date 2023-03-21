@@ -73,6 +73,7 @@ class User extends Authenticatable
             'country',
             'actions',
         ];
+
         return $colums;
     }
 
