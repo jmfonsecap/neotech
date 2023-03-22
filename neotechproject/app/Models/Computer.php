@@ -183,6 +183,7 @@ class Computer extends Model
         $this->parts = $parts;
     }
 
+
     public static function validate($request)
     {
         $request->validate([
