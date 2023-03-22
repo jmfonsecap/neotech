@@ -10,6 +10,7 @@
         <ul>
           @foreach($viewData["computer"]->getParts() as $part)
             <li>{{ $part->getName() }}</li>
+            <li>sze</li>
           @endforeach
         </ul>
       <h2>Details</h2>
@@ -22,7 +23,7 @@
         @if($viewData["computer"]->getDiscount()==0)
         <p class="card-text"> Price: {{ $viewData["computer"]->getCurrentPrice() }}</p>
         @endif
-        <form action="{{ route('admin.computer.delete', $viewData["computer"]->getId()) }}" method="POST"> @csrf @method('DELETE') <button type="submit" class="btn btn-danger">Delete</button>
+        <form action="{{ route('admin.computer.update', $viewData["computer"]->getId()) }}" method="POST"> @csrf @method('UPDATE') <button type="submit" class="btn btn-danger">Update</button>
         </form>
 		</div>
 	</div>
