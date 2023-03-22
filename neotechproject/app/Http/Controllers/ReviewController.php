@@ -19,19 +19,22 @@ class ReviewController extends Controller
     }
 
     public function save(Request $request): View
-    {
-        Review::validate($request);
+{
+    Review::validate($request);
 
-        $rev = new Review();
+    $rev = new Review();
 
-        $computer = Computer::findOrFail($request->computer_id);
-        $rev->computer()->associate($computer);
+    $computer = Computer::findOrFail($request->input('computer_id'));
+    $rev->computer()->associate($computer);
 
-        $rev->setRating($request->input('rating'));
-        $rev->setDescription($request->input('description'));
+    $rev->setRating($request->input('rating'));
+    $rev->setDescription($request->input('description'));
 
-        $rev->save();
+    $rev->save();
 
-        return view('review.save');
-    }
+    return view('review.save');
+}
+
+
+
 }

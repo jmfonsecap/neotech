@@ -26,8 +26,7 @@ Route::get('/computers/{id}', 'App\Http\Controllers\ComputerController@show')->n
 Route::delete('/computers/{id}', 'App\Http\Controllers\ComputerController@delete')->name('computer.delete');
 
 Route::get('/computers/{id}/review', 'App\Http\Controllers\ReviewController@create')->name('review.create');
-Route::post('/computers/{id}/review', 'App\Http\Controllers\ReviewController@save')->name('review.save');
-Route::post('/computers/{id}/save', [ReviewController::class, 'save'])->name('review.save');
+Route::post('/computers/{id}/save', 'App\Http\Controllers\ReviewController@save')->name('review.save');
 
 
 Route::get('/parts/list', 'App\Http\Controllers\PartController@index')->name('part.index');
