@@ -22,6 +22,9 @@ Route::get('/admin/users', 'App\Http\Controllers\Admin\AdminUserController@index
 Route::get('/admin/computers', 'App\Http\Controllers\Admin\AdminComputerController@index')->name("admin.computer.index");
 Route::get('/admin/computers/create', 'App\Http\Controllers\Admin\AdminComputerController@create')->name("admin.computer.create");
 Route::post('/admin/computers/save', 'App\Http\Controllers\Admin\AdminComputerController@save')->name("admin.computer.save");
+Route::get('/admin/computers/{id}', 'App\Http\Controllers\Admin\AdminComputerController@show')->name("admin.computer.show");
+Route::post('/admin/computers/{id}', 'App\Http\Controllers\Admin\AdminComputerController@update')->name("admin.computer.update");
+Route::delete('/admin/computers/{id}', 'App\Http\Controllers\Admin\AdminComputerController@delete')->name('admin.computer.delete');
 
 
 // Client routes

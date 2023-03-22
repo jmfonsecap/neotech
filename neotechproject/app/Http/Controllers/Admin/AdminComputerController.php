@@ -17,6 +17,17 @@ class AdminComputerController extends Controller
         return view('admin.computer.index')->with("viewData", $viewData);
     }
 
+    public function show(string $id): View
+    {
+        $viewData = [];
+        $computer = Computer::findOrFail($id);
+        $viewData['title'] = $computer['name'].' - Neotech';
+        $viewData['subtitle'] = $computer['name'].' - Computer information';
+        $viewData['computer'] = $computer;
+
+        return view('admin.computer.show')->with('viewData', $viewData);
+    }
+
     public function create(): View
     {
         $viewData = [];
@@ -45,5 +56,24 @@ class AdminComputerController extends Controller
         $computer->save();
 
         return view('admin.computer.create')->with('status', 'created');
+    }
+
+    public function update(string $id, Request $request): View
+    {
+
+        $computer = Computer::findOrFail($id);
+        $computer->validate($request);
+        //update
+        Computer::where('id', $id)->update($request->only(['name', 'photo', 'stock', 'brand', 'category',
+        'currentPrice', 'discount', 'lastPrice', 'details', 'keywords']));
+        
+        return view('admin.computer.show')->with('status', 'updated');
+    }
+
+    public function delete(string $id): View
+    {   
+        Computer::findOrFail($id);
+        Computer::where('id', $id)->delete();
+        return view('admin.computer.index')->with('status', 'deleted');
     }
 }   
