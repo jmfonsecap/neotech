@@ -22,7 +22,10 @@
         @if($viewData["computer"]->getDiscount()==0)
         <p class="card-text"> Price: {{ $viewData["computer"]->getCurrentPrice() }}</p>
         @endif
-        <form action="{{ route('admin.computer.delete', $viewData["computer"]->getId()) }}" method="POST"> @csrf @method('DELETE') <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{{ route('admin.computer.delete', ['id' => $viewData["computer"]->getId()]) }}">
+            {{__('messages.admin.delete') }}
+        </a>
+        <form action="{{ route('admin.computer.update', $viewData["computer"]->getId()) }}" method="POST"> @csrf @method('POST') <button type="submit" class="btn btn-danger">Update</button>
         </form>
 		</div>
 	</div>

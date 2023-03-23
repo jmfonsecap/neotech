@@ -3,6 +3,7 @@
 return [
     'app.title' => 'Neotech',
     'admin.user.table.title' => 'Manage Users',
+    'admin.computer.table.title' => 'Manage Computers',
     'admin.dash.home' => 'Home',
     'admin.users' => 'Users',
     'admin.users.list' => 'List Users',
@@ -30,5 +31,18 @@ return [
     'admin.banner.parts' => 'Manage Parts',
     'admin.parts.text' => 'Create, update, delete and review the information of the parts that your company provides.',
     'admin.banner.sales' => 'Manage Sales',
-    'admin.sales.text' => 'Manage the sales of Neotech, the state of stock, etc.'
+    'admin.sales.text' => 'Manage the sales of Neotech, the state of stock, etc.',
+    'admin.create.name' => 'Create Computer',
+    'admin.create.entername' => 'Enter the name',
+    'admin.create.enterstock' => 'Enter the stock',
+    'admin.create.enterphoto' => 'Enter the photo',
+    'admin.create.enterbrand' => 'Enter the brand',
+    'admin.create.entercategory' => 'Enter the category',
+    'admin.create.keywords' => 'Keywords: ',
+    'admin.create.enterkey' => 'Enther keyword',
+    'admin.create.entercurrprice' => 'Enter the current price',
+    'admin.create.enterlastprice' => 'Enter the last price',
+    'admin.create. enterdetails' => 'Enter the details',
+    'admin.create.isdiscount' => 'Is in discount?',
+    'admin.send' => 'Send'
 ];
