@@ -18,14 +18,14 @@ class ReviewController extends Controller
         return view('review.create')->with('viewData', $viewData);
     }
 
-    public function save(Request $request): View
+    public function save(Request $request, string $computerId): View
 {
+
     Review::validate($request);
 
     $rev = new Review();
 
-    $computer = Computer::findOrFail($request->input('computer_id'));
-    $rev->computer()->associate($computer);
+    $rev->setComputerId($computerId);
 
     $rev->setRating($request->input('rating'));
     $rev->setDescription($request->input('description'));
@@ -33,6 +33,9 @@ class ReviewController extends Controller
     $rev->save();
 
     return view('review.save');
+    
+
+
 }
 
 

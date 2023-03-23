@@ -22,12 +22,13 @@ Route::get('/admin/users', 'App\Http\Controllers\Admin\AdminUserController@index
 Route::get('/computers/create', 'App\Http\Controllers\ComputerController@create')->name('computer.create');
 Route::post('/computers/save', 'App\Http\Controllers\ComputerController@save')->name('computer.save');
 Route::get('/computers', 'App\Http\Controllers\ComputerController@index')->name('computer.index');
+Route::get('/computers/{id}/review', 'App\Http\Controllers\ReviewController@create')->name('review.create');
+Route::post('/computers/{id}/save', 'App\Http\Controllers\ReviewController@save')->name('review.save');
 Route::get('/computers/{id}', 'App\Http\Controllers\ComputerController@show')->name('computer.show');
 Route::delete('/computers/{id}', 'App\Http\Controllers\ComputerController@delete')->name('computer.delete');
 
-Route::get('/computers/{id}/review', 'App\Http\Controllers\ReviewController@create')->name('review.create');
-Route::post('/computers/{id}/save', 'App\Http\Controllers\ReviewController@save')->name('review.save');
 
+//Route::post('/computers/1/save', 'App\Http\Controllers\ReviewController@save')->name('review.save');
 
 Route::get('/parts/list', 'App\Http\Controllers\PartController@index')->name('part.index');
 Route::get('/parts/create', 'App\Http\Controllers\PartController@create')->name('part.create');
