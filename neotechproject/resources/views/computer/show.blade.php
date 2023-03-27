@@ -2,30 +2,44 @@
 @section('title', $viewData["title"])
 @section('subtitle', $viewData["subtitle"])
 @section('content')
-<div class="card mb-3">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src= "{{ $viewData["computer"]->getPhoto()}}" class="img-fluid rounded-start" width="500" height="500">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">
-        {{ $viewData["computer"]->getBrand() }} {{ $viewData["computer"]->getName() }}
-        </h5>
-        <p class="card-text">{{ $viewData["computer"]->getCategory() }}</p>
-        @if ($viewData["computer"]->getDiscount()==1)
-        <p class="card-text"> Antes: {{ $viewData["computer"]->getLastPrice() }}</p>
-        <p class="card-text"> Ahora: {{ $viewData["computer"]->getCurrentPrice() }}</p>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Computer Description</title>
+	<style>
+		
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="computer-image">
+			<img src="{{ $viewData["computer"]->getPhoto()}}" class="img-fluid rounded-start" width="210" height="210" alt="Computer Image">
+		</div>
+		<div class="computer-details">
+			<h1>{{ $viewData["computer"]->getBrand() }} {{ $viewData["computer"]->getName() }}</h1>
+			<h2>Specifications</h2>
+        <ul>
+          @foreach($viewData["computer"]->getParts() as $part)
+          <li>{{ $part->getName() }}</li>
+          @endforeach
+        </ul>
+      <h2>Details</h2>
+			<p class="card-text"> {{ $viewData["computer"]->getDetails() }}</p>
+      @if ($viewData["computer"]->getDiscount()==1)
+        <p>Price:</p>
+        <p class="card-text"> Before: {{ $viewData["computer"]->getLastPrice() }}</p>
+        <p class="card-text"> Now: {{ $viewData["computer"]->getCurrentPrice() }}</p>
         @endif
         @if($viewData["computer"]->getDiscount()==0)
-        <p class="card-text"> Precio: {{ $viewData["computer"]->getCurrentPrice() }}</p>
+        <p class="card-text"> Price: {{ $viewData["computer"]->getCurrentPrice() }}</p>
         @endif
         <p class="card-text"> Details: {{ $viewData["computer"]->getDetails() }}</p>
         <a href="{{ route('review.create', ['id' => $viewData['computer_id']]) }}">Add a review</a>
         <form action="{{ route('computer.delete', $viewData["computer"]->getId()) }}" method="POST"> @csrf @method('DELETE') <button type="submit" class="btn btn-danger">Delete</button>
         </form>
-      </div>
-    </div>
-  </div>
-</div>
+		</div>
+	</div>
+</body>
+</html>
+
 @endsection
