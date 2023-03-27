@@ -196,4 +196,9 @@ class User extends Authenticatable
     {
         $this->attributes['points'] = $points;
     }
+
+    /*public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    } */
 }

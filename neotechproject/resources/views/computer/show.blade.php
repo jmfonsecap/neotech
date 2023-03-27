@@ -33,6 +33,8 @@
         @if($viewData["computer"]->getDiscount()==0)
         <p class="card-text"> Price: {{ $viewData["computer"]->getCurrentPrice() }}</p>
         @endif
+        <p class="card-text"> Details: {{ $viewData["computer"]->getDetails() }}</p>
+        <a href="{{ route('review.create', ['id' => $viewData['computer_id']]) }}">Add a review</a>
         <form action="{{ route('computer.delete', $viewData["computer"]->getId()) }}" method="POST"> @csrf @method('DELETE') <button type="submit" class="btn btn-danger">Delete</button>
         </form>
 		</div>
