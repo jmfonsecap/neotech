@@ -20,6 +20,7 @@ class AdminUserController extends Controller
     public function show(string $id): View
     {
         $user = User::findOrFail($id);
+
         return view('admin.users.show')->with('user', $user);
     }
 }

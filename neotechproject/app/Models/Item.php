@@ -2,9 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Computer;
-use App\Models\Part;
-use App\Models\Order;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -20,10 +17,9 @@ class Item extends Model
      * $this->part - Part - contains the associated part
      * $this->computer - Computer - contains the associated computer
      * $this->order - Order- contains the associated order
-    */
-
+     */
     protected $fillable = ['quantity', 'part_id', 'computer_id',
-    'order_id'];
+        'order_id'];
 
     public function getId(): int
     {
@@ -54,7 +50,7 @@ class Item extends Model
     {
         $this->attributes['part_id'] = $pId;
     }
-    
+
     public function getComputerId(): int
     {
         return $this->attributes['computer_id'];
@@ -120,5 +116,4 @@ class Item extends Model
     {
         $this->order = $order;
     }
-
 }

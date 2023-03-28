@@ -18,17 +18,16 @@ Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index')
 
 // Admin routes
 Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.home.index');
-Route::get('/admin/users', 'App\Http\Controllers\Admin\AdminUserController@index')->name("admin.users.index");
-Route::get('/admin/users/{id}', 'App\Http\Controllers\Admin\AdminUserController@show')->name("admin.users.show");
-Route::get('/admin/computers', 'App\Http\Controllers\Admin\AdminComputerController@index')->name("admin.computer.index");
-Route::get('/admin/computers/create', 'App\Http\Controllers\Admin\AdminComputerController@create')->name("admin.computer.create");
-Route::get('/admin/computers/{id}', 'App\Http\Controllers\Admin\AdminComputerController@show')->name("admin.computer.show");
-Route::post('/admin/computers/save', 'App\Http\Controllers\Admin\AdminComputerController@save')->name("admin.computer.save");
+Route::get('/admin/users', 'App\Http\Controllers\Admin\AdminUserController@index')->name('admin.users.index');
+Route::get('/admin/users/{id}', 'App\Http\Controllers\Admin\AdminUserController@show')->name('admin.users.show');
+Route::get('/admin/computers', 'App\Http\Controllers\Admin\AdminComputerController@index')->name('admin.computer.index');
+Route::get('/admin/computers/create', 'App\Http\Controllers\Admin\AdminComputerController@create')->name('admin.computer.create');
+Route::get('/admin/computers/{id}', 'App\Http\Controllers\Admin\AdminComputerController@show')->name('admin.computer.show');
+Route::post('/admin/computers/save', 'App\Http\Controllers\Admin\AdminComputerController@save')->name('admin.computer.save');
 
-Route::get('/admin/computers/update/{id}', 'App\Http\Controllers\Admin\AdminComputerController@edit')->name("admin.computer.edit");
-Route::post('/admin/computers/{id}', 'App\Http\Controllers\Admin\AdminComputerController@update')->name("admin.computer.update");
+Route::get('/admin/computers/update/{id}', 'App\Http\Controllers\Admin\AdminComputerController@edit')->name('admin.computer.edit');
+Route::post('/admin/computers/{id}', 'App\Http\Controllers\Admin\AdminComputerController@update')->name('admin.computer.update');
 Route::get('/admin/computers/del/{id}', 'App\Http\Controllers\Admin\AdminComputerController@delete')->name('admin.computer.delete');
-
 
 // Client routes
 Route::get('/computers/create', 'App\Http\Controllers\ComputerController@create')->name('computer.create');

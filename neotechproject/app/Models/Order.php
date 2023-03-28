@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Item;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,8 +17,7 @@ class Order extends Model
      * $this->attributes['totalToPay'] - int - contains the total to pay for the order
      * $this->attributes['paid'] - bool - says if the order'd been paid or not
      * $this->attributes['delivered'] - bool - says if the order'd been delivered or not
-    */
-
+     */
     protected $fillable = ['totalToPay', 'paid', 'delivered'];
 
     public function getId(): int

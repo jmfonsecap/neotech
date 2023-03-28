@@ -3,8 +3,6 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Item;
-use App\Models\Review;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -55,6 +53,7 @@ class Computer extends Model
             'price',
             'actions',
         ];
+
         return $colums;
     }
 
@@ -125,7 +124,7 @@ class Computer extends Model
 
     public function setKeywords($keywords)
     {
-        $this->attributes["keywords"] = $keywords;
+        $this->attributes['keywords'] = $keywords;
     }
 
     public function getCurrentPrice(): int

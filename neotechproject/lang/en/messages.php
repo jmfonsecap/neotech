@@ -8,7 +8,7 @@ return [
     'admin.users' => 'Users',
     'admin.users.list' => 'List Users',
     'admin.users.profile' => 'User profile',
-    'admin.users.phoneconst' => '+57 ', 
+    'admin.users.phoneconst' => '+57 ',
     'admin.users.country' => 'Country: ',
     'admin.users.postalcode' => 'Postal Code: ',
     'admin.users.role' => 'Role: ',
@@ -59,5 +59,5 @@ return [
     'admin.create.enterlastprice' => 'Enter the last price',
     'admin.create. enterdetails' => 'Enter the details',
     'admin.create.isdiscount' => 'Is in discount?',
-    'admin.send' => 'Send'
+    'admin.send' => 'Send',
 ];
