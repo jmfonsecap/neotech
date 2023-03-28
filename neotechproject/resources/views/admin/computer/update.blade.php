@@ -1,16 +1,5 @@
-@extends('layouts.app')
-@section('title', $viewData["title"])
-@section('subtitle', $viewData["subtitle"])
+@extends('layouts.admin')
 @section('content')
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Computer Description</title>
-	<style>
-		
-	</style>
-</head>
-<body>
 	<div class="container">
 		<div class="computer-image">
 			<img src="{{ $viewData["computer"]->getPhoto()}}" class="img-fluid rounded-start" width="210" height="210" alt="Computer Image">
@@ -20,7 +9,8 @@
 			<h2>Specifications</h2>
         <ul>
           @foreach($viewData["computer"]->getParts() as $part)
-          <li>{{ $part->getName() }}</li>
+            <li>{{ $part->getName() }}</li>
+            <li>sze</li>
           @endforeach
         </ul>
       <h2>Details</h2>
@@ -33,21 +23,9 @@
         @if($viewData["computer"]->getDiscount()==0)
         <p class="card-text"> Price: {{ $viewData["computer"]->getCurrentPrice() }}</p>
         @endif
-        <p class="card-text"> Details: {{ $viewData["computer"]->getDetails() }}</p>
-        @foreach ($viewData['reviews'] as $review)
-        <div class="col-md-4 col-lg-3 mb-2">
-        <div class="card">
-        <p class="card-text">Rating: {{ $review->getRating() }}/5</p>
-        <p class="card-text">Details: {{ $review->getDescription() }}</p>
-        </div>
-        </div>
-        @endforeach
-        <a href="{{ route('review.create', ['id' => $viewData['computer_id']]) }}">Add a review</a>
-        <form action="{{ route('computer.delete', $viewData["computer"]->getId()) }}" method="POST"> @csrf @method('DELETE') <button type="submit" class="btn btn-danger">Delete</button>
+        <form action="{{ route('admin.computer.update', $viewData["computer"]->getId()) }}" method="POST"> @csrf @method('UPDATE') <button type="submit" class="btn btn-danger">Update</button>
         </form>
 		</div>
 	</div>
-</body>
-</html>
 
 @endsection

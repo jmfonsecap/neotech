@@ -73,4 +73,6 @@ return [
     'admin.create. enterdetails' => 'Enter the details',
     'admin.create.isdiscount' => 'Is in discount?',
     'admin.send' => 'Send',
+    'admin.sales.text' => 'Manage the sales of Neotech, the state of stock, etc.',
 ];
+    

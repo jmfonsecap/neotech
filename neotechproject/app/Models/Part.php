@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Type;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Part extends Model
 {
-    /**
+        /**
      * PART ATTRIBUTES
-
+     *
      * $this->attributes['id'] - int - contains the PART primary key (id)
      * $this->attributes['name'] - string - contains the part name
      * $this->attributes['stock'] - int - contains the quantity of this reference in stock
@@ -20,9 +20,9 @@ class Part extends Model
      * $this->attributes['details'] - string - contains a description and details of the part
      * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
      * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
-     *
-     
+     * $this->computers - Computer[] - contains the associated computers
      */
+
     protected $fillable = ['stock', 'name', 'brand', 'type', 'price', 'details'];
 
     public function getId(): int

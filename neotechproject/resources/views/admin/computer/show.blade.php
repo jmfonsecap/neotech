@@ -1,73 +1,30 @@
-@extends('layouts.admin') 
+@extends('layouts.admin')
 @section('content')
-    
-<div class="relative overflow-x-auto pt-4">
-  <h2 class="text-center text-gray-500 dark:text-gray-400">Table Title</h2>
-  <hr class="border-1 border-gray-500 my-5">
-
-
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Product name
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Color
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Category
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Price
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple MacBook Pro 17"
-                </th>
-                <td class="px-6 py-4">
-                    Silver
-                </td>
-                <td class="px-6 py-4">
-                    Laptop
-                </td>
-                <td class="px-6 py-4">
-                    $2999
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Microsoft Surface Pro
-                </th>
-                <td class="px-6 py-4">
-                    White
-                </td>
-                <td class="px-6 py-4">
-                    Laptop PC
-                </td>
-                <td class="px-6 py-4">
-                    $1999
-                </td>
-            </tr>
-            <tr class="bg-white dark:bg-gray-800">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Magic Mouse 2
-                </th>
-                <td class="px-6 py-4">
-                    Black
-                </td>
-                <td class="px-6 py-4">
-                    Accessories
-                </td>
-                <td class="px-6 py-4">
-                    $99
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+	<div class="container">
+		<div class="computer-image">
+			<img src="{{ $viewData["computer"]->getPhoto()}}" class="img-fluid rounded-start" width="210" height="210" alt="Computer Image">
+		</div>
+		<div class="computer-details">
+			<h1>{{ $viewData["computer"]->getBrand() }} {{ $viewData["computer"]->getName() }}</h1>
+			<h2>Specifications</h2>
+        <ul>
+          @foreach($viewData["computer"]->getParts() as $part)
+            <li>{{ $part->getName() }}</li>
+          @endforeach
+        </ul>
+      <h2>Details</h2>
+			<p class="card-text"> {{ $viewData["computer"]->getDetails() }}</p>
+      @if ($viewData["computer"]->getDiscount()==1)
+        <p>Price:</p>
+        <p class="card-text"> Before: {{ $viewData["computer"]->getLastPrice() }}</p>
+        <p class="card-text"> Now: {{ $viewData["computer"]->getCurrentPrice() }}</p>
+        @endif
+        @if($viewData["computer"]->getDiscount()==0)
+        <p class="card-text"> Price: {{ $viewData["computer"]->getCurrentPrice() }}</p>
+        @endif
+        <form action="{{ route('admin.computer.delete', $viewData["computer"]->getId()) }}" method="POST"> @csrf @method('DELETE') <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+		</div>
+	</div>
 
 @endsection
