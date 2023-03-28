@@ -23,12 +23,12 @@ class ComputerController extends Controller
     {
         $viewData = [];
         $computer = Computer::findOrFail($id);
+        $reviews = $computer->reviews;
         $viewData['title'] = $computer['name'].' - Neotech';
         $viewData['subtitle'] = $computer['name'].' - Computer information';
         $viewData['computer'] = $computer;
-        //$viewData['computer_id'] = $computer->getId();
         $viewData['computer_id'] = $id;
-
+        $viewData['reviews']=$reviews;
 
         return view('computer.show')->with('viewData', $viewData);
     }
