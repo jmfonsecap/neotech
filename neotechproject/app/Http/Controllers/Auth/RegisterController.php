@@ -62,15 +62,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-
-            'address' => $data['address'],
-            'postalCode' => $data['postalCode'],
-            'country' => $data['country'],
-            'points' => $data['points'],
-        ]);
+        $user = new User();
+        User::validate($request);
+        $user->setName($request->input('name'));
+        $user->setEmail($request->input('email'));
+        $user->setPassword($Hash::make($request->input('password')));
+        $user->setPostalCode($request->input('postalCode'));
+        $user->setCountry($request->input('country'));
+        $user->setPoints($request->input('points'));
+        $user->save();
+        if ($request->hasFile('photo')) {
+            $imageName = $user->getId().".".$request->file('photo')->extension();
+            Storage::disk('public')->put(
+            $imageName,
+            file_get_contents($request->file('photo')->getRealPath())
+            );
+            $user->setPhoto($imageName);
+            $user->save();
+        }
+        
+        }
     }
 }

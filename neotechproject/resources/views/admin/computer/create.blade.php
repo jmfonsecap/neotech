@@ -21,11 +21,10 @@
                     </div>
                     @endif
 
-                    <form method="POST" action="{{ route('admin.computer.save') }}">
+                    <form method="POST" action="{{ route('admin.computer.save') }}" enctype="multipart/form-data">
                         @csrf
                         <input type="text" class="form-control mb-2" placeholder="Enter name" name="name" value="{{ old('name') }}" />
                         <input type="number" class="form-control mb-2" placeholder="Enter stock" name="stock" value="{{ old('stock') }}" />
-                        <input type="text" class="form-control mb-2" placeholder="Enter photo url" name="photo" value="{{ old('photo') }}" />
                         <input type="text" class="form-control mb-2" placeholder="Enter brand" name="brand" value="{{ old('brand') }}" />
                         <input type="text" class="form-control mb-2" placeholder="Enter category" name="category" value="{{ old('category') }}" />
 
@@ -43,6 +42,19 @@
                         Is in discount?
                         <input type="checkbox" name="discount" placeholder="Is in discount?" class="switch-input" value="1" {{ old('discount') ? 'checked="checked"' : '' }} />
                         <input type="submit" class="btn btn-primary" value="Send" />
+                        <div class="row">
+                        <div class="col">
+                        <div class="mb-3 row">
+                            <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Image:</label>
+                            <div class="col-lg-10 col-md-6 col-sm-12">
+                            <input class="form-control" type="file" name="photo">
+                        </div>
+                        </div>
+                        </div>
+                        <div class="col">
+                        &nbsp;
+                        </div>
+                        </div> 
                     </form>
                 </div>
             </div>

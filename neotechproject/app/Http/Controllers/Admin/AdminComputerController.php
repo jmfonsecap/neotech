@@ -6,6 +6,7 @@ use App\Models\Computer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Storage; 
 
 class AdminComputerController extends Controller
 {
@@ -40,7 +41,6 @@ class AdminComputerController extends Controller
         $computer = new Computer();
         Computer::validate($request);
         $computer->setName($request->input('name'));
-        $computer->setPhoto($request->input('photo'));
         $computer->setStock($request->input('stock'));
         $computer->setBrand($request->input('brand'));
         $computer->setCategory($request->input('category'));
@@ -54,7 +54,15 @@ class AdminComputerController extends Controller
         $computer->setKeywords($keywords);
 
         $computer->save();
-
+        if ($request->hasFile('photo')) {
+            $imageName = $computer->getId().".".$request->file('photo')->extension();
+            Storage::disk('public')->put(
+            $imageName,
+            file_get_contents($request->file('photo')->getRealPath())
+            );
+            $computer->setPhoto($imageName);
+            $computer->save();
+        }
         return view('admin.computer.create')->with('status', 'created');
     }
 
