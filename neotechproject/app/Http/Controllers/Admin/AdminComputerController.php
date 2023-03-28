@@ -22,9 +22,10 @@ class AdminComputerController extends Controller
     {
         $viewData = [];
         $computer = Computer::findOrFail($id);
-        $viewData['title'] = $computer['name'].' - Neotech';
-        $viewData['subtitle'] = $computer['name'].' - Computer information';
+        $viewData['title'] = $computer->getName().' - Neotech';
+        $viewData['subtitle'] = $computer->getName().' - Computer information';
         $viewData['computer'] = $computer;
+        $viewData['keywords'] = explode(',', $computer->getKeywords());
 
         return view('admin.computer.show')->with('viewData', $viewData);
     }
