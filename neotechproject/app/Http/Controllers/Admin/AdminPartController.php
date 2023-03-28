@@ -55,6 +55,16 @@ class AdminPartController extends Controller
         return view('admin.part.create')->with('status', 'created');
     }
 
+    public function edit(string $id): View
+    {
+        $viewData = [];
+        $type = Type::findOrFail($id);
+        $viewData['title'] = $type['name'].' - Neotech';
+        $viewData['type'] = $type;
+
+        return view('admin.type.edit')->with('viewData', $viewData);
+    }
+
     public function update(string $id, Request $request): View
     {
 
