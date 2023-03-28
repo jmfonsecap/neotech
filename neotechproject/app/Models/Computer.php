@@ -199,6 +199,7 @@ class Computer extends Model
         $this->items = $items;
     }
 
+
     public static function validate($request)
     {
         $request->validate([
