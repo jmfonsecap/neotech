@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Type;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Part extends Model
 {
@@ -19,14 +21,7 @@ class Part extends Model
      * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
      * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
      *
-     $request->validate([
-            'name' => 'required',
-            'stock' => 'required',
-            'brand' => 'required',
-            'part_type' => 'required',
-            'price' => 'required',
-            'details' => 'required',
-        ]);
+     
      */
     protected $fillable = ['stock', 'name', 'brand', 'type', 'price', 'details'];
 
@@ -65,16 +60,6 @@ class Part extends Model
         $this->attributes['brand'] = $desc;
     }
 
-    public function getType(): string
-    {
-        return $this->attributes['type'];
-    }
-
-    public function setType(string $desc): void
-    {
-        $this->attributes['type'] = $desc;
-    }
-
     public function getPrice(): int
     {
         return $this->attributes['price'];
@@ -95,7 +80,7 @@ class Part extends Model
         $this->attributes['details'] = $desc;
     }
 
-    //It was necessary to use the underscore because serCreatedAt is an Eloquent
+    //It was necessary to use the underscore because setCreatedAt is an Eloquent
     //method
     public function getCreated_at(): string
     {
@@ -116,6 +101,31 @@ class Part extends Model
     {
         $this->attributes['updated_at'] = $desc;
     }
+
+    public function getTypeId(): int
+{
+return $this->attributes['part_id'];
+}
+ 
+public function setTypeId(int $type_id): void
+{
+    $this->attributes['type_id'] = $type_id;
+}
+
+public function type(): BelongsTo
+{
+return $this->belongsTo(Type::class, 'id');
+}
+
+public function getType(): Type
+{
+return $this->type;
+}
+
+public function setType($type): void
+{
+$this->type = $type;
+}
 
     public static function validate($request)
     {

@@ -18,12 +18,26 @@ Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index')
 
 Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.home.index');
 Route::get('/admin/users', 'App\Http\Controllers\Admin\AdminUserController@index')->name("admin.users.index");
+Route::get('/admin/types', 'App\Http\Controllers\Admin\AdminTypeController@index')->name('admin.type.index');
+Route::get('/admin/types/create', 'App\Http\Controllers\Admin\AdminTypeController@create')->name('admin.type.create');
+Route::get('/admin/types/{id}', 'App\Http\Controllers\Admin\AdminTypeController@show')->name('admin.type.show');
+Route::post('/admin/types/save', 'App\Http\Controllers\Admin\AdminTypeController@save')->name('admin.type.save');
+Route::get('/admin/types/update/{id}', 'App\Http\Controllers\Admin\AdminTypeController@edit')->name('admin.type.edit');
+Route::post('/admin/types/{id}', 'App\Http\Controllers\Admin\AdminTypeController@update')->name('admin.type.update');
+Route::get('/admin/types/del/{id}', 'App\Http\Controllers\Admin\AdminTypeController@delete')->name('admin.type.delete');
+Route::get('/admin/parts', 'App\Http\Controllers\Admin\AdminPartController@index')->name('admin.part.index');
+Route::get('/admin/parts/create', 'App\Http\Controllers\Admin\AdminPartController@create')->name('admin.part.create');
+Route::get('/admin/parts/{id}', 'App\Http\Controllers\Admin\AdminPartController@show')->name('admin.part.show');
+Route::post('/admin/parts/save', 'App\Http\Controllers\Admin\AdminPartController@save')->name('admin.part.save');
+Route::get('/admin/parts/update/{id}', 'App\Http\Controllers\Admin\AdminPartController@edit')->name('admin.part.edit');
+Route::post('/admin/parts/{id}', 'App\Http\Controllers\Admin\AdminPartController@update')->name('admin.part.update');
+Route::get('/admin/parts/del/{id}', 'App\Http\Controllers\Admin\AdminPartController@delete')->name('admin.part.delete');
 
 Route::get('/computers/create', 'App\Http\Controllers\ComputerController@create')->name('computer.create');
 Route::post('/computers/save', 'App\Http\Controllers\ComputerController@save')->name('computer.save');
 Route::get('/computers', 'App\Http\Controllers\ComputerController@index')->name('computer.index');
 Route::get('/computers/{id}/review', 'App\Http\Controllers\ReviewController@create')->name('review.create');
-Route::post('/computers/{id}/save', 'App\Http\Controllers\ReviewController@save')->name('review.save');
+Route::post('/computers/save', 'App\Http\Controllers\ReviewController@save')->name('review.save');
 Route::get('/computers/{id}', 'App\Http\Controllers\ComputerController@show')->name('computer.show');
 Route::delete('/computers/{id}', 'App\Http\Controllers\ComputerController@delete')->name('computer.delete');
 

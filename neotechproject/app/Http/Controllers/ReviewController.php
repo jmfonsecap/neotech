@@ -6,6 +6,7 @@ use App\Models\Computer;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class ReviewController extends Controller
 {
@@ -33,11 +34,14 @@ class ReviewController extends Controller
     $rev->save();
 
     return view('review.save');
-    
-
-
 }
 
+public function delete($id): RedirectResponse
+    {
+        $review = Review::find($id);
+        $review->delete();
 
+        return redirect()->route('computer.show')->with('success', 'Review deleted successfully');
+    }
 
 }
