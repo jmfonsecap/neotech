@@ -3,22 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Part;
+use App\Models\Type;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class PartController extends Controller
 {
-    public static $types = [
-
-        ['id' => '1', 'name' => 'RAM'],
-        ['id' => '2', 'name' => 'CPU'],
-        ['id' => '3', 'name' => 'GPU'],
-        ['id' => '4', 'name' => 'Peripheric'],
-        ['id' => '5', 'name' => 'Battery'],
-        ['id' => '6', 'name' => 'Other'],
-    ];
-
+    
     public function index(): View
     {
         $viewData = [];
@@ -32,28 +24,25 @@ class PartController extends Controller
     public function show(string $id): View
     {
         $part = Part::findOrFail($id);
-        $viewData = [
-            'title' => $part->getName($id).' - Online Store',
-            'subtitle' => $part->getName($id).' - Product information',
-            'part' => $part,
-        ];
+        $type = $part->type;
+        $viewData = [];
+        $viewData['title'] = $part->getName($id).' - Online Store';
+        $viewData['subtitle'] = $part->getName($id).' - Product information';
+        $viewData['part'] = $part;
+        $viewData['type'] = $type;
 
         return view('part.show', $viewData);
     }
 
-    public function mainMenu(): View
-    {
-        return view('part.mainMenu');
-    }
 
     public function create(): View
     {
         $viewData = [];
 
-        $viewData['types'] = PartController::$types;
+        $viewData['types'] = Type::all();
         $viewData['title'] = 'Create part';
 
-        return view('part.create')->with('viewData', $viewData)->with('types', PartController::$types);
+        return view('part.create')->with('viewData', $viewData)->with('types', Type::all());
     }
 
     public function save(Request $request): View
@@ -61,7 +50,6 @@ class PartController extends Controller
         Part::validate($request);
 
         $part = new Part();
-
         $part->setName($request->input('name'));
         $part->setStock($request->input('stock'));
         $part->setBrand($request->input('brand'));

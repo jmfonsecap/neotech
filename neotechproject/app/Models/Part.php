@@ -2,35 +2,28 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
+use App\Models\Type;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Part extends Model
 {
-    /**
+        /**
      * PART ATTRIBUTES
-
+     *
      * $this->attributes['id'] - int - contains the PART primary key (id)
      * $this->attributes['name'] - string - contains the part name
+     * $this->attributes['photo'] - string - contains the part photo
      * $this->attributes['stock'] - int - contains the quantity of this reference in stock
      * $this->attributes['brand'] - string - contains the part's brand
-     * $this->attributes['type'] - string - contains the type of part
+     * $this->attributes['type'] - Type - contains the type of part
      * $this->attributes['price'] - int - contains the price of the part
      * $this->attributes['details'] - string - contains a description and details of the part
      * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
      * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
      * $this->computers - Computer[] - contains the associated computers
-     *
-     $request->validate([
-            'name' => 'required',
-            'stock' => 'required',
-            'brand' => 'required',
-            'part_type' => 'required',
-            'price' => 'required',
-            'details' => 'required',
-        ]);
      */
+
     protected $fillable = ['stock', 'name', 'brand', 'type', 'price', 'details'];
 
     public function getId(): int
@@ -57,6 +50,16 @@ class Part extends Model
     {
         $this->attributes['stock'] = $stock;
     }
+    
+    public function getPhoto(): string
+    {
+        return $this->attributes['photo'];
+    }
+
+    public function setPhoto(string $photo)
+    {
+        $this->attributes['photo'] = $photo;
+    }
 
     public function getBrand(): string
     {
@@ -66,16 +69,6 @@ class Part extends Model
     public function setBrand(string $desc): void
     {
         $this->attributes['brand'] = $desc;
-    }
-
-    public function getType(): string
-    {
-        return $this->attributes['type'];
-    }
-
-    public function setType(string $desc): void
-    {
-        $this->attributes['type'] = $desc;
     }
 
     public function getPrice(): int
@@ -120,6 +113,30 @@ class Part extends Model
         $this->attributes['updated_at'] = $desc;
     }
 
+    public function getTypeId(): int
+{
+return $this->attributes['part_id'];
+}
+ 
+public function setTypeId(int $type_id): void
+{
+    $this->attributes['type_id'] = $type_id;
+}
+
+public function type(): BelongsTo
+{
+return $this->belongsTo(Type::class, 'id');
+}
+
+public function getType(): string
+{
+return $this->type;
+}
+
+public function setType($type): void
+{
+$this->type = $type;
+}
     //Relations
     public function items(): HasMany
     {
@@ -141,6 +158,7 @@ class Part extends Model
         $request->validate([
             'name' => 'required|max:255',
             'stock' => 'required|numeric|gte:0',
+            'photo' => 'required',
             'brand' => 'required',
             'type' => 'required',
             'price' => 'required|numeric|gt:0',

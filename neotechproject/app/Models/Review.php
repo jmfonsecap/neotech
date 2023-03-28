@@ -96,9 +96,6 @@ public function setComputer($computer): void
 $this->computer_id = $computer;
 }
 
-
-
-
  public static function validate($request)
     {
         $request->validate([
