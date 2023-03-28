@@ -5,6 +5,17 @@
 <div id="default-carousel" class="relative w-full py-5" data-carousel="slide">
     <!-- Carousel wrapper -->
     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+        @if ($viewData["computersAreInDiscount"])
+            @foreach($viewData["computersInDiscount"] as $computer)
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img src="{{ asset('/storage/'.$computer->getPhoto())}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                </div>
+            @endforeach
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <img src="https://wowslider.com/sliders/demo-93/data1/images/lake.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+        </div>
+        @endif
+        @if (!$viewData["computersAreInDiscount"])
          <!-- Item 1 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <img src="https://wowslider.com/sliders/demo-93/data1/images/lake.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
@@ -25,14 +36,22 @@
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <img src="https://wowslider.com/sliders/demo-93/data1/images/lake.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </div>
+        @endif
     </div>
     <!-- Slider indicators -->
     <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-8 left-1/2">
+        @if($viewData["computersAreInDiscount"])
+            @for($i = 0; $i <= $viewData['sizeOfComputerArray']; $i++)
+            <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide {{$i}}" data-carousel-slide-to=$i></button>
+            @endfor
+        @endif
+        @if(!$viewData["computersAreInDiscount"])
         <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
         <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
         <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
         <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
         <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
+        @endif
     </div>
     <!-- Slider controls -->
     <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>

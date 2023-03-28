@@ -25,7 +25,6 @@
                         @csrf
                         <input type="text" class="form-control mb-2" placeholder="{{ __('messages.admin.create.entername') }}" name="name" value="{{ old('name') }}" />
                         <input type="number" class="form-control mb-2" placeholder="{{ __('messages.admin.create.enterstock') }}" name="stock" value="{{ old('stock') }}" />
-                        <input type="text" class="form-control mb-2" placeholder="{{ __('messages.admin.create.enterphoto') }}" name="photo" value="{{ old('photo') }}" />
                         <input type="text" class="form-control mb-2" placeholder="{{ __('messages.admin.create.enterbrand') }}" name="brand" value="{{ old('brand') }}" />
                         <input type="text" class="form-control mb-2" placeholder="{{ __('messages.admin.create.entercategory') }}" name="category" value="{{ old('category') }}" />
 
@@ -41,10 +40,11 @@
                         <input type="number" class="form-control mb-2" placeholder="{{ __('messages.admin.create.enterlastprice') }}" name="lastPrice" value="{{ old('lastPrice') }}" />
                         <input type="text" class="form-control mb-2" placeholder="{{ __('messages.admin.create.enterdetails') }}" name="details" value="{{ old('details') }}" />
                         Is in discount?
+                        <input type="checkbox" name="discount" placeholder="{{ __('messages.admin.create.isdiscount') }}" class="switch-input" value="1" {{ old('discount') ? 'checked="checked"' : '' }} />
                         <div class="row">
                         <div class="col">
                         <div class="mb-3 row">
-                            <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Image:</label>
+                            <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">{{ __('messages.admin.create.enterphoto') }}</label>
                             <div class="col-lg-10 col-md-6 col-sm-12">
                             <input class="form-control" type="file" name="photo">
                         </div>
@@ -54,7 +54,6 @@
                         &nbsp;
                         </div>
                         </div> 
-                        <input type="checkbox" name="discount" placeholder="{{ __('messages.admin.create.isdiscount') }}" class="switch-input" value="1" {{ old('discount') ? 'checked="checked"' : '' }} />
                         <input type="submit" class="btn btn-primary" value="{{ __('messages.admin.send') }}" />
 
                     </form>
