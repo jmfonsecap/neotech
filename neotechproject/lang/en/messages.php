@@ -1,6 +1,15 @@
 <?php
 
 return [
+    'auth.create.acount' => 'Create your account',
+    'auth.create.email' => 'Your email',
+    'auth.create.name' => 'Username',
+    'auth.create.phone' => 'Phone',
+    'auth.create.address' => 'Address',
+    'auth.create.postalcode' => 'Postal Code',
+    'auth.create.country' => 'Country',
+    'auth.create.password' => 'Password',
+    'auth.create.confirm' => 'Confirm password',
     'app.title' => 'Neotech',
     'admin.user.table.title' => 'Manage Users',
     'admin.computer.table.title' => 'Manage Computers',

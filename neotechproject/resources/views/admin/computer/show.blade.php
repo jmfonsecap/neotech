@@ -41,7 +41,7 @@
           @if($viewData['computer']->getDiscount()==1)
             {{ __('messages.admin.yes') }}
           @else
-          {{ __('messages.admin.no') }}  
+            {{ __('messages.admin.no') }}  
           @endif
         </dd>
       </div>

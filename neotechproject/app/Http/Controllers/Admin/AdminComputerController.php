@@ -87,10 +87,10 @@ class AdminComputerController extends Controller
     {
         $viewData = [];
         $viewData['title'] = 'Computers dashboard';
-        $viewData['computers'] = Computer::all();
         Computer::findOrFail($id);
         Computer::where('id', $id)->delete();
-
-        return back()->with('status', 'deleted')->with('viewData', $viewData);
+        $viewData['computers'] = Computer::all();
+        session()->flash('status', 'Computer successfully deleted.');
+        return view('admin.computer.index')->with('viewData', $viewData);
     }
 }
