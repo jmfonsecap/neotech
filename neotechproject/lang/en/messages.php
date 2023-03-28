@@ -2,10 +2,16 @@
 
 return [
     'auth.create.acount' => 'Create your account',
+    'auth.sign' => 'Sign in to your account',
     'auth.create.email' => 'Your email',
     'auth.create.name' => 'Username',
     'auth.create.phone' => 'Phone',
+    'auth.signin' => 'Sign in',
+    'auth.signup' => 'Sign up',
+    'auth.noaccount' => 'Dont have an account yet?',
     'auth.create.address' => 'Address',
+    'auth.remember' => 'Remember me',
+    'auth.forgot' => 'Forgot Password?',
     'auth.create.postalcode' => 'Postal Code',
     'auth.create.country' => 'Country',
     'auth.create.password' => 'Password',
