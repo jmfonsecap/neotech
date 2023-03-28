@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Add Computer</div>
+                <div class="card-header"> {{ __('messages.admin.create.name') }} </div>
                 <div class="card-body">
                     @if($errors->any())
                     <ul id="errors" class="alert alert-danger list-unstyled">
@@ -23,25 +23,24 @@
 
                     <form method="POST" action="{{ route('admin.computer.save') }}" enctype="multipart/form-data">
                         @csrf
-                        <input type="text" class="form-control mb-2" placeholder="Enter name" name="name" value="{{ old('name') }}" />
-                        <input type="number" class="form-control mb-2" placeholder="Enter stock" name="stock" value="{{ old('stock') }}" />
-                        <input type="text" class="form-control mb-2" placeholder="Enter brand" name="brand" value="{{ old('brand') }}" />
-                        <input type="text" class="form-control mb-2" placeholder="Enter category" name="category" value="{{ old('category') }}" />
+                        <input type="text" class="form-control mb-2" placeholder="{{ __('messages.admin.create.entername') }}" name="name" value="{{ old('name') }}" />
+                        <input type="number" class="form-control mb-2" placeholder="{{ __('messages.admin.create.enterstock') }}" name="stock" value="{{ old('stock') }}" />
+                        <input type="text" class="form-control mb-2" placeholder="{{ __('messages.admin.create.enterphoto') }}" name="photo" value="{{ old('photo') }}" />
+                        <input type="text" class="form-control mb-2" placeholder="{{ __('messages.admin.create.enterbrand') }}" name="brand" value="{{ old('brand') }}" />
+                        <input type="text" class="form-control mb-2" placeholder="{{ __('messages.admin.create.entercategory') }}" name="category" value="{{ old('category') }}" />
 
                         <div class="form-group">
-                            <label for="keywords">Keywords:</label>
-                            <input type="text" name="keywords[]" id="keywords" class="form-control" placeholder="Enter a keyword">
+                            <label for="keywords"> {{ __('messages.admin.create.keywords') }} </label>
+                            <input type="text" name="keywords[]" id="keywords" class="form-control" placeholder=" {{ __('messages.admin.create.enterkey') }} ">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="keywords[]" class="form-control" placeholder="Enter a keyword">
+                            <input type="text" name="keywords[]" class="form-control" placeholder=" {{ __('messages.admin.create.enterkey') }} ">
                         </div>
 
-                        <input type="number" class="form-control mb-2" placeholder="Enter current price" name="currentPrice" value="{{ old('currentPrice') }}" />
-                        <input type="number" class="form-control mb-2" placeholder="Enter last price" name="lastPrice" value="{{ old('lastPrice') }}" />
-                        <input type="text" class="form-control mb-2" placeholder="Enter details" name="details" value="{{ old('details') }}" />
+                        <input type="number" class="form-control mb-2" placeholder="{{ __('messages.admin.create.entercurrprice') }}" name="currentPrice" value="{{ old('currentPrice') }}" />
+                        <input type="number" class="form-control mb-2" placeholder="{{ __('messages.admin.create.enterlastprice') }}" name="lastPrice" value="{{ old('lastPrice') }}" />
+                        <input type="text" class="form-control mb-2" placeholder="{{ __('messages.admin.create.enterdetails') }}" name="details" value="{{ old('details') }}" />
                         Is in discount?
-                        <input type="checkbox" name="discount" placeholder="Is in discount?" class="switch-input" value="1" {{ old('discount') ? 'checked="checked"' : '' }} />
-                        <input type="submit" class="btn btn-primary" value="Send" />
                         <div class="row">
                         <div class="col">
                         <div class="mb-3 row">
@@ -55,6 +54,9 @@
                         &nbsp;
                         </div>
                         </div> 
+                        <input type="checkbox" name="discount" placeholder="{{ __('messages.admin.create.isdiscount') }}" class="switch-input" value="1" {{ old('discount') ? 'checked="checked"' : '' }} />
+                        <input type="submit" class="btn btn-primary" value="{{ __('messages.admin.send') }}" />
+
                     </form>
                 </div>
             </div>

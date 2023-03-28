@@ -109,7 +109,7 @@ class Part extends Model
         $this->attributes['details'] = $desc;
     }
 
-    //It was necessary to use the underscore because serCreatedAt is an Eloquent
+    //It was necessary to use the underscore because setCreatedAt is an Eloquent
     //method
     public function getCreated_at(): string
     {
@@ -131,19 +131,20 @@ class Part extends Model
         $this->attributes['updated_at'] = $desc;
     }
 
-    public function computers(): HasMany
+    //Relations
+    public function items(): HasMany
     {
-        return $this->hasMany(Computer::class);
+        return $this->hasMany(Item::class);
     }
 
-    public function getComputers(): Collection
+    public function getItems(): Collection
     {
-        return $this->computers;
+        return $this->items;
     }
 
-    public function setParts(Collection $computers): void
+    public function setItems(Collection $items): void
     {
-        $this->computers = $computers;
+        $this->items = $items;
     }
 
     public static function validate($request)

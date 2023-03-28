@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Computer;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Computer;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Storage; 
+use Illuminate\Http\Request;
+
 
 class AdminComputerController extends Controller
 {
     public function index(): View
     {
         $viewData = [];
-        $viewData["title"] = "Computers dashboard";
-        $viewData["computers"] = Computer::all();
-        return view('admin.computer.index')->with("viewData", $viewData);
+        $viewData['title'] = 'Computers dashboard';
+        $viewData['computers'] = Computer::all();
+
+        return view('admin.computer.index')->with('viewData', $viewData);
     }
 
     public function show(string $id): View
@@ -33,6 +35,7 @@ class AdminComputerController extends Controller
     {
         $viewData = [];
         $viewData['title'] = 'Create part';
+
         return view('admin.computer.create')->with('viewData', $viewData);
     }
 
@@ -66,22 +69,36 @@ class AdminComputerController extends Controller
         return view('admin.computer.create')->with('status', 'created');
     }
 
+    public function edit(string $id): View
+    {
+        $viewData = [];
+        $computer = Computer::findOrFail($id);
+        $viewData['title'] = $computer['name'].' - Neotech';
+        $viewData['subtitle'] = $computer['name'].' - Computer information';
+        $viewData['computer'] = $computer;
+
+        return view('admin.computer.edit')->with('viewData', $viewData);
+    }
+
     public function update(string $id, Request $request): View
     {
-
         $computer = Computer::findOrFail($id);
         $computer->validate($request);
         //update
         Computer::where('id', $id)->update($request->only(['name', 'photo', 'stock', 'brand', 'category',
-        'currentPrice', 'discount', 'lastPrice', 'details', 'keywords']));
-        
+            'currentPrice', 'discount', 'lastPrice', 'details', 'keywords']));
+
         return view('admin.computer.show')->with('status', 'updated');
     }
 
-    public function delete(string $id): View
-    {   
+    public function delete(string $id)
+    {
+        $viewData = [];
+        $viewData['title'] = 'Computers dashboard';
+        $viewData['computers'] = Computer::all();
         Computer::findOrFail($id);
         Computer::where('id', $id)->delete();
-        return view('admin.computer.index')->with('status', 'deleted');
+
+        return back()->with('status', 'deleted')->with('viewData', $viewData);
     }
-}   
+}
