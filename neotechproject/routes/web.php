@@ -19,13 +19,16 @@ Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index')
 // Admin routes
 Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.home.index');
 Route::get('/admin/users', 'App\Http\Controllers\Admin\AdminUserController@index')->name("admin.users.index");
+
 Route::get('/admin/types', 'App\Http\Controllers\Admin\AdminTypeController@index')->name('admin.type.index');
 Route::get('/admin/types/create', 'App\Http\Controllers\Admin\AdminTypeController@create')->name('admin.type.create');
 Route::get('/admin/types/{id}', 'App\Http\Controllers\Admin\AdminTypeController@show')->name('admin.type.show');
 Route::post('/admin/types/save', 'App\Http\Controllers\Admin\AdminTypeController@save')->name('admin.type.save');
-Route::get('/admin/types/update/{id}', 'App\Http\Controllers\Admin\AdminTypeController@edit')->name('admin.type.edit');
-Route::post('/admin/types/{id}', 'App\Http\Controllers\Admin\AdminTypeController@update')->name('admin.type.update');
+Route::post('/admin/types/update/{id}', 'App\Http\Controllers\Admin\AdminTypeController@update')->name('admin.type.update');
+Route::post('/admin/types/{id}', 'App\Http\Controllers\Admin\AdminTypeController@edit')->name('admin.type.edit');
 Route::get('/admin/types/del/{id}', 'App\Http\Controllers\Admin\AdminTypeController@delete')->name('admin.type.delete');
+
+
 Route::get('/admin/parts', 'App\Http\Controllers\Admin\AdminPartController@index')->name('admin.part.index');
 Route::get('/admin/parts/create', 'App\Http\Controllers\Admin\AdminPartController@create')->name('admin.part.create');
 Route::get('/admin/parts/{id}', 'App\Http\Controllers\Admin\AdminPartController@show')->name('admin.part.show');
@@ -33,6 +36,7 @@ Route::post('/admin/parts/save', 'App\Http\Controllers\Admin\AdminPartController
 Route::get('/admin/parts/update/{id}', 'App\Http\Controllers\Admin\AdminPartController@edit')->name('admin.part.edit');
 Route::post('/admin/parts/{id}', 'App\Http\Controllers\Admin\AdminPartController@update')->name('admin.part.update');
 Route::get('/admin/parts/del/{id}', 'App\Http\Controllers\Admin\AdminPartController@delete')->name('admin.part.delete');
+
 Route::get('/admin/computers', 'App\Http\Controllers\Admin\AdminComputerController@index')->name("admin.computer.index");
 Route::get('/admin/computers/create', 'App\Http\Controllers\Admin\AdminComputerController@create')->name("admin.computer.create");
 Route::post('/admin/computers/save', 'App\Http\Controllers\Admin\AdminComputerController@save')->name("admin.computer.save");

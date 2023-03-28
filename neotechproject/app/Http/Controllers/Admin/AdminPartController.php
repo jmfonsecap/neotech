@@ -14,7 +14,7 @@ class AdminPartController extends Controller
     {
         $viewData = [];
         $viewData["title"] = "Parts dashboard";
-        $viewData["Parts"] = Part::all();
+        $viewData["parts"] = Part::all();
         return view('admin.part.index')->with("viewData", $viewData);
     }
 
@@ -35,11 +35,12 @@ class AdminPartController extends Controller
     {
         $viewData = [];
         $viewData['title'] = 'Create part';
-        return view('admin.part.create')->with('viewData', $viewData)->with('types', Type::all());
+        $viewData['types'] = Type::all();
+        return view('admin.part.create')->with(['viewData' => $viewData, 'status' => 'created']);
     }
 
     public function save(Request $request): View
-    {
+    {   
         $part = new Part();
         Part::validate($request);
         $part->setName($request->input('name'));

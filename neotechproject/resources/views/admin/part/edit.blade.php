@@ -17,16 +17,17 @@
                         @endforeach
                     </ul>
                     @endif
-                    <form method="POST" action="{{ route('admin.part.edit', ['id'=> $viewData["part"]->getId()]) }}" enctype="multipart/form-data">
+                    <form method="PUT" action="{{ route('admin.part.edit', ['id'=> $viewData["part"]->getId()]) }}" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="mb-3 text-center">
                             <img src="{{ asset($viewData["part"]->getPhoto()) }}" id="image-edit-part">
                         </div>
                         <input type="text" class="form-control mb-3" placeholder="{{__('messages.admin.create.entername')}}" name="name" value="{{ $viewData["part"]->getName() }}" />
                         <input type="number" class="form-control mb-3" placeholder="{{__('messages.admin.create.enterstock')}}" name="stock" value="{{ $viewData["part"]->getStock() }}" />
                         <input type="text" class="form-control mb-3" placeholder="{{__('messages.admin.create.enterbrand')}}" name="brand" value="{{ $viewData["part"]->getBrand() }}" />
-                        <input type="text" class="form-control mb-3" placeholder="{{__('messages.admin.create.entercategory')}}" name="type" value="{{ $viewData["part"]->getType() }}" />
-                        <input type="number" class="form-control mb-3" placeholder="{{__('messages.admin.create.enterprice')}}" name="price" value="{{ $viewData["part"]->getPrice() }}" />
+                        <input type="text" class="form-control mb-3" placeholder="{{__('messages.admin.create.entertype')}}" name="type" value="{{ $viewData["part"]->getType() }}" />
+                        <input type="number" class="form-control mb-3" placeholder="{{__('messages.admin.create.entercurrprice')}}" name="price" value="{{ $viewData["part"]->getPrice() }}" />
                         <div class="mb-3">
                             <label for="file" class="form-label"> File </label>
                             <input class="form-control" type="file" name="file" id="file">

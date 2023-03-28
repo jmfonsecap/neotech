@@ -15,7 +15,7 @@ class Part extends Model
      * $this->attributes['name'] - string - contains the part name
      * $this->attributes['stock'] - int - contains the quantity of this reference in stock
      * $this->attributes['brand'] - string - contains the part's brand
-     * $this->attributes['type'] - string - contains the type of part
+     * $this->attributes['type'] - Type - contains the type of part
      * $this->attributes['price'] - int - contains the price of the part
      * $this->attributes['details'] - string - contains a description and details of the part
      * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
@@ -117,7 +117,7 @@ public function type(): BelongsTo
 return $this->belongsTo(Type::class, 'id');
 }
 
-public function getType(): Type
+public function getType(): string
 {
 return $this->type;
 }

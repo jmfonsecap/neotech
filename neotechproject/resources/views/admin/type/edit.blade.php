@@ -18,7 +18,8 @@
                     </ul>
                     @endif
                     <form method="POST" action="{{ route('admin.type.edit', ['id'=> $viewData["type"]->getId()]) }}" enctype="multipart/form-data">
-                        @csrf
+                    
+                    @csrf
                         <input type="text" class="form-control mb-3" placeholder="{{__('messages.admin.create.entername')}}" name="name" value="{{ $viewData["type"]->getName() }}" />
                         
                         <input type="submit" class="btn btn-primary mt-2" value="Update" />

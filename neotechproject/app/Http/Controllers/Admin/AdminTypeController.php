@@ -13,7 +13,7 @@ class AdminTypeController extends Controller
     {
         $viewData = [];
         $viewData['title'] = 'Computers dashboard';
-        $viewData['computers'] = Type::all();
+        $viewData['types'] = Type::all();
 
         return view('admin.type.index')->with('viewData', $viewData);
     }
