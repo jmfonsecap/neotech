@@ -19,9 +19,6 @@
 			<h1>{{ $viewData["computer"]->getBrand() }} {{ $viewData["computer"]->getName() }}</h1>
 			<h2>Specifications</h2>
         <ul>
-          @foreach($viewData["computer"]->getParts() as $part)
-          <li>{{ $part->getName() }}</li>
-          @endforeach
         </ul>
       <h2>Details</h2>
 			<p class="card-text"> {{ $viewData["computer"]->getDetails() }}</p>
