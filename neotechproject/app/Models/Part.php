@@ -13,6 +13,7 @@ class Part extends Model
      *
      * $this->attributes['id'] - int - contains the PART primary key (id)
      * $this->attributes['name'] - string - contains the part name
+     * $this->attributes['photo'] - string - contains the part photo
      * $this->attributes['stock'] - int - contains the quantity of this reference in stock
      * $this->attributes['brand'] - string - contains the part's brand
      * $this->attributes['type'] - Type - contains the type of part
@@ -48,6 +49,16 @@ class Part extends Model
     public function setStock(int $stock): void
     {
         $this->attributes['stock'] = $stock;
+    }
+    
+    public function getPhoto(): string
+    {
+        return $this->attributes['photo'];
+    }
+
+    public function setPhoto(string $photo)
+    {
+        $this->attributes['photo'] = $photo;
     }
 
     public function getBrand(): string
@@ -126,12 +137,28 @@ public function setType($type): void
 {
 $this->type = $type;
 }
+    //Relations
+    public function items(): HasMany
+    {
+        return $this->hasMany(Item::class);
+    }
+
+    public function getItems(): Collection
+    {
+        return $this->items;
+    }
+
+    public function setItems(Collection $items): void
+    {
+        $this->items = $items;
+    }
 
     public static function validate($request)
     {
         $request->validate([
             'name' => 'required|max:255',
             'stock' => 'required|numeric|gte:0',
+            'photo' => 'required',
             'brand' => 'required',
             'type' => 'required',
             'price' => 'required|numeric|gt:0',

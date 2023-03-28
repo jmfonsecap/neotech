@@ -19,6 +19,7 @@ Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index')
 // Admin routes
 Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.home.index');
 Route::get('/admin/users', 'App\Http\Controllers\Admin\AdminUserController@index')->name("admin.users.index");
+Route::get('/admin/users/{id}', 'App\Http\Controllers\Admin\AdminUserController@show')->name('admin.users.show');
 
 Route::get('/admin/types', 'App\Http\Controllers\Admin\AdminTypeController@index')->name('admin.type.index');
 Route::get('/admin/types/create', 'App\Http\Controllers\Admin\AdminTypeController@create')->name('admin.type.create');
@@ -42,7 +43,9 @@ Route::get('/admin/computers/create', 'App\Http\Controllers\Admin\AdminComputerC
 Route::post('/admin/computers/save', 'App\Http\Controllers\Admin\AdminComputerController@save')->name("admin.computer.save");
 Route::get('/admin/computers/{id}', 'App\Http\Controllers\Admin\AdminComputerController@show')->name("admin.computer.show");
 Route::post('/admin/computers/{id}', 'App\Http\Controllers\Admin\AdminComputerController@update')->name("admin.computer.update");
-Route::delete('/admin/computers/{id}', 'App\Http\Controllers\Admin\AdminComputerController@delete')->name('admin.computer.delete');
+//Route::delete('/admin/computers/{id}', 'App\Http\Controllers\Admin\AdminComputerController@delete')->name('admin.computer.delete');
+Route::get('/admin/computers/update/{id}', 'App\Http\Controllers\Admin\AdminComputerController@edit')->name('admin.computer.edit');
+Route::get('/admin/computers/del/{id}', 'App\Http\Controllers\Admin\AdminComputerController@delete')->name('admin.computer.delete');
 
 
 // Client routes

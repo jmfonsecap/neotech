@@ -6,7 +6,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Monolog\Handler\PushoverHandler;
 
 class Computer extends Model
 {
@@ -24,7 +23,7 @@ class Computer extends Model
      * $this->attributes['lastPrice'] - int - contains the computer previous price in case of a discount
      * $this->attributes['details'] - string - contains the computer details
      * $this->attributes['discount'] - bool - defines if the computer is on discount or not
-     * $this->attributes['parts'] - Part[] - contains the computer parts
+     * $this->attributes['items'] - Items[] - contains the computer items
      * $this->attributes['reviews'] - Review[] - contains the computer reviews
      *
      * @var array<int, string>
@@ -54,6 +53,7 @@ class Computer extends Model
             'price',
             'actions',
         ];
+
         return $colums;
     }
 
@@ -116,7 +116,6 @@ class Computer extends Model
     {
         $this->attributes['category'] = $category;
     }
-
     public function getKeywords()
     {
         return $this->attributes['keywords'];
@@ -124,7 +123,7 @@ class Computer extends Model
 
     public function setKeywords($keywords)
     {
-        $this->attributes["keywords"] = $keywords;
+        $this->attributes['keywords'] = $keywords;
     }
 
     public function getCurrentPrice(): int
@@ -167,6 +166,8 @@ class Computer extends Model
         $this->attributes['discount'] = $discount;
     }
 
+    //Relations
+
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
@@ -182,19 +183,19 @@ class Computer extends Model
         $this->reviews = $reviews;
     }
 
-    public function parts(): HasMany
+    public function items(): HasMany
     {
-        return $this->hasMany(Part::class);
+        return $this->hasMany(Item::class);
     }
 
-    public function getParts(): Collection
+    public function getItems(): Collection
     {
-        return $this->parts;
+        return $this->items;
     }
 
-    public function setParts(Collection $parts): void
+    public function setItems(Collection $items): void
     {
-        $this->parts = $parts;
+        $this->items = $items;
     }
 
 

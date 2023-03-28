@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('computers', function (Blueprint $table) {
-            $table->enum('keywords', ['tech'])->change();
+        Schema::table('parts', function (Blueprint $table) {
+            $table->string('photo')->nullable();
         });
     }
 
@@ -21,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('parts', function (Blueprint $table) {
+            //
+        });
     }
 };
