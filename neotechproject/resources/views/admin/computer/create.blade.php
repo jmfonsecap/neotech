@@ -21,7 +21,7 @@
                     </div>
                     @endif
 
-                    <form method="POST" action="{{ route('admin.computer.save') }}">
+                    <form method="POST" action="{{ route('admin.computer.save') }}" enctype="multipart/form-data">
                         @csrf
                         <input type="text" class="form-control mb-2" placeholder="{{ __('messages.admin.create.entername') }}" name="name" value="{{ old('name') }}" />
                         <input type="number" class="form-control mb-2" placeholder="{{ __('messages.admin.create.enterstock') }}" name="stock" value="{{ old('stock') }}" />
@@ -41,8 +41,22 @@
                         <input type="number" class="form-control mb-2" placeholder="{{ __('messages.admin.create.enterlastprice') }}" name="lastPrice" value="{{ old('lastPrice') }}" />
                         <input type="text" class="form-control mb-2" placeholder="{{ __('messages.admin.create.enterdetails') }}" name="details" value="{{ old('details') }}" />
                         Is in discount?
+                        <div class="row">
+                        <div class="col">
+                        <div class="mb-3 row">
+                            <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">Image:</label>
+                            <div class="col-lg-10 col-md-6 col-sm-12">
+                            <input class="form-control" type="file" name="photo">
+                        </div>
+                        </div>
+                        </div>
+                        <div class="col">
+                        &nbsp;
+                        </div>
+                        </div> 
                         <input type="checkbox" name="discount" placeholder="{{ __('messages.admin.create.isdiscount') }}" class="switch-input" value="1" {{ old('discount') ? 'checked="checked"' : '' }} />
                         <input type="submit" class="btn btn-primary" value="{{ __('messages.admin.send') }}" />
+
                     </form>
                 </div>
             </div>
