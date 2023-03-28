@@ -116,6 +116,7 @@ class Computer extends Model
     {
         $this->attributes['category'] = $category;
     }
+
     public function getKeywords()
     {
         return $this->attributes['keywords'];
@@ -197,7 +198,6 @@ class Computer extends Model
     {
         $this->items = $items;
     }
-
 
     public static function validate($request)
     {

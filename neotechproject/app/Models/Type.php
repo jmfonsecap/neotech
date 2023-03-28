@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Type extends Model
@@ -15,10 +15,8 @@ class Type extends Model
      * $this->attributes['name'] - string - contains the type name
      * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
      * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
-     *
-     
      */
-    protected $fillable = [ 'name'];
+    protected $fillable = ['name'];
 
     public function getId(): int
     {
@@ -35,7 +33,6 @@ class Type extends Model
         $this->attributes['name'] = $desc;
     }
 
-    
     //It was necessary to use the underscore because setCreatedAt is an Eloquent
     //method
     public function getCreated_at(): string
@@ -76,9 +73,7 @@ class Type extends Model
     public static function validate($request)
     {
         $request->validate([
-            'name' => 'required|max:255'
+            'name' => 'required|max:255',
         ]);
     }
 }
-
-

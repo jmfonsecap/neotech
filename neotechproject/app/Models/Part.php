@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use App\Models\Type;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Part extends Model
 {
-        /**
+    /**
      * PART ATTRIBUTES
      *
      * $this->attributes['id'] - int - contains the PART primary key (id)
@@ -23,7 +24,6 @@ class Part extends Model
      * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
      * $this->computers - Computer[] - contains the associated computers
      */
-
     protected $fillable = ['stock', 'name', 'brand', 'type', 'price', 'details'];
 
     public function getId(): int
@@ -50,7 +50,7 @@ class Part extends Model
     {
         $this->attributes['stock'] = $stock;
     }
-    
+
     public function getPhoto(): string
     {
         return $this->attributes['photo'];
@@ -114,29 +114,30 @@ class Part extends Model
     }
 
     public function getTypeId(): int
-{
-return $this->attributes['part_id'];
-}
- 
-public function setTypeId(int $type_id): void
-{
-    $this->attributes['type_id'] = $type_id;
-}
+    {
+        return $this->attributes['part_id'];
+    }
 
-public function type(): BelongsTo
-{
-return $this->belongsTo(Type::class, 'id');
-}
+    public function setTypeId(int $type_id): void
+    {
+        $this->attributes['type_id'] = $type_id;
+    }
 
-public function getType(): string
-{
-return $this->type;
-}
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo(Type::class, 'id');
+    }
 
-public function setType($type): void
-{
-$this->type = $type;
-}
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function setType($type): void
+    {
+        $this->type = $type;
+    }
+
     //Relations
     public function items(): HasMany
     {
