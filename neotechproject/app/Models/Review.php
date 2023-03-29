@@ -10,13 +10,14 @@ class Review extends Model
 {
 
   
-/* PRODUCT ATTRIBUTES
+/* REVIEW ATTRIBUTES
 
 * $this->attributes['id'] - int - contains the review's primary key (id)
 * $this->attributes['rating'] - int - computer's calification from 1 to 5.
 * $this->attributes['description'] - string - contains the review's description
-* $this->user - User - contains the User who wrote the review
-* $this->computer - Computer - contains the Computer that was reviewed
+* $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
+* $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
+*  $this->computer - Computer - contains the Computer that was reviewed
 */
 
 protected $fillable = ['rating', 'description', 'computer_id'];
