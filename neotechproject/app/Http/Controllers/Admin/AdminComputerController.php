@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Computer;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Storage; 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 
 class AdminComputerController extends Controller
 {
@@ -58,14 +57,15 @@ class AdminComputerController extends Controller
 
         $computer->save();
         if ($request->hasFile('photo')) {
-            $imageName = $computer->getId().".".$request->file('photo')->extension();
+            $imageName = $computer->getId().'.'.$request->file('photo')->extension();
             Storage::disk('public')->put(
-            $imageName,
-            file_get_contents($request->file('photo')->getRealPath())
+                $imageName,
+                file_get_contents($request->file('photo')->getRealPath())
             );
             $computer->setPhoto($imageName);
             $computer->save();
         }
+
         return view('admin.computer.create')->with('status', 'created');
     }
 

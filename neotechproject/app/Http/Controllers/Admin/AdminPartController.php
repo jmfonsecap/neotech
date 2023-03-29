@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Part;
 use App\Models\Type;
-use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Contracts\View\View;
 
 class AdminPartController extends Controller
 {
     public function index(): View
     {
         $viewData = [];
-        $viewData["title"] = "Parts dashboard";
-        $viewData["parts"] = Part::all();
-        return view('admin.part.index')->with("viewData", $viewData);
+        $viewData['title'] = 'Parts dashboard';
+        $viewData['parts'] = Part::all();
+
+        return view('admin.part.index')->with('viewData', $viewData);
     }
 
     public function show(string $id): View
@@ -37,11 +38,12 @@ class AdminPartController extends Controller
         $viewData = [];
         $viewData['title'] = 'Create part';
         $viewData['types'] = Type::all();
+
         return view('admin.part.create')->with(['viewData' => $viewData, 'status' => 'created']);
     }
 
     public function save(Request $request): View
-    {   
+    {
         $part = new Part();
         Part::validate($request);
         $part->setName($request->input('name'));
@@ -52,17 +54,18 @@ class AdminPartController extends Controller
         $part->setDetails($request->input('details'));
         $part->save();
         if ($request->hasFile('photo')) {
-            $imageName = $part->getId().".".$request->file('photo')->extension();
+            $imageName = $part->getId().'.'.$request->file('photo')->extension();
             Storage::disk('public')->put(
-            $imageName,
-            file_get_contents($request->file('photo')->getRealPath())
+                $imageName,
+                file_get_contents($request->file('photo')->getRealPath())
             );
             $part->setPhoto($imageName);
             $part->save();
         }
         $viewData = [];
         $viewData['types'] = Type::all();
-        return view('admin.part.create')->with(['viewData' => $viewData, 'status'=> 'created']);
+
+        return view('admin.part.create')->with(['viewData' => $viewData, 'status' => 'created']);
     }
 
     public function edit(string $id): View
@@ -77,20 +80,20 @@ class AdminPartController extends Controller
 
     public function update(string $id, Request $request): View
     {
-
         $part = Part::findOrFail($id);
         $part->validate($request);
         //update
         Part::where('id', $id)->update($request->only(['name', 'stock', 'brand', 'type',
-        'price','details']));
-        
+            'price', 'details']));
+
         return view('admin.part.show')->with('status', 'updated');
     }
 
     public function delete(string $id): View
-    {   
+    {
         Part::findOrFail($id);
         Part::where('id', $id)->delete();
+
         return view('admin.part.index')->with('status', 'deleted');
     }
-}   
+}

@@ -76,4 +76,3 @@ return [
     'admin.send' => 'Send',
     'admin.sales.text' => 'Manage the sales of Neotech, the state of stock, etc.',
 ];
-    

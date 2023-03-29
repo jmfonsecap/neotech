@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('parts', function (Blueprint $table) {
             $table->unsignedBigInteger('computer_id')->nullable()->change();
-         });    
+        });
     }
 
     /**
