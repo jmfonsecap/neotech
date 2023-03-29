@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Type extends Model
 {
     /**
-     * PART ATTRIBUTES
+     * TYPE ATTRIBUTES
 
      * $this->attributes['id'] - int - contains the type primary key (id)
      * $this->attributes['name'] - string - contains the type name
