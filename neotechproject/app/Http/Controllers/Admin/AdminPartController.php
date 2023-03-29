@@ -99,6 +99,7 @@ class AdminPartController extends Controller
         $viewData['parts'] = Part::all();
 
         return view('admin.part.index')->with('viewData', $viewData);
+
         return view('admin.part.index')->with('status', 'deleted');
     }
 }
