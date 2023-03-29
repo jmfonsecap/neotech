@@ -41,8 +41,8 @@ Route::get('/admin/reviews', 'App\Http\Controllers\Admin\AdminReviewController@i
 Route::get('/admin/review/{id}', 'App\Http\Controllers\Admin\AdminReviewController@show')->name('admin.review.show');
 Route::post('/admin/review/save', 'App\Http\Controllers\Admin\AdminReviewController@save')->name('admin.review.save');
 Route::get('/admin/review/update/{id}', 'App\Http\Controllers\Admin\AdminReviewController@edit')->name('admin.review.edit');
-Route::post('/admin/review/{id}', 'App\Http\Controllers\Admin\AdminReviewController@update')->name('admin.review.update');
-Route::get('/admin/review/del/{id}', 'App\Http\Controllers\Admin\AdminReviewController@delete')->name('admin.review.delete');
+Route::post('/admin/reviews/{id}', 'App\Http\Controllers\Admin\AdminReviewController@update')->name('admin.review.update');
+Route::get('/admin/reviews/del/{id}', 'App\Http\Controllers\Admin\AdminReviewController@delete')->name('admin.review.delete');
 
 Route::get('/admin/computers', 'App\Http\Controllers\Admin\AdminComputerController@index')->name('admin.computer.index');
 Route::get('/admin/computers/create', 'App\Http\Controllers\Admin\AdminComputerController@create')->name('admin.computer.create');
