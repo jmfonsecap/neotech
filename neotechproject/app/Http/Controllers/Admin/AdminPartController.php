@@ -92,9 +92,13 @@ class AdminPartController extends Controller
 
     public function delete(string $id): View
     {
+        $viewData = [];
+        $viewData['title'] = 'Parts dashboard';
         Part::findOrFail($id);
         Part::where('id', $id)->delete();
+        $viewData['parts'] = Part::all();
 
+        return view('admin.part.index')->with('viewData', $viewData);
         return view('admin.part.index')->with('status', 'deleted');
     }
 }
