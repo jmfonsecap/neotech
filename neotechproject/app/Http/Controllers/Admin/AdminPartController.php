@@ -71,9 +71,10 @@ class AdminPartController extends Controller
     public function edit(string $id): View
     {
         $viewData = [];
-        $type = Type::findOrFail($id);
-        $viewData['title'] = $type['name'].' - Neotech';
-        $viewData['type'] = $type;
+        $part = Part::findOrFail($id);
+        $viewData['title'] = $part['name'].' - Neotech';
+        $viewData['subtitle'] = $part['name'].' - Part information';
+        $viewData['part'] = $part;
 
         return view('admin.part.edit')->with('viewData', $viewData);
     }
@@ -83,7 +84,7 @@ class AdminPartController extends Controller
         $part = Part::findOrFail($id);
         $part->validate($request);
         //update
-        Part::where('id', $id)->update($request->only(['name', 'stock', 'brand', 'type',
+        Part::where('id', $id)->update($request->only(['name', 'photo', 'stock', 'brand', 'type',
             'price', 'details']));
 
         return view('admin.part.show')->with('status', 'updated');
@@ -91,9 +92,13 @@ class AdminPartController extends Controller
 
     public function delete(string $id): View
     {
+        $viewData = [];
+        $viewData['title'] = 'Parts dashboard';
         Part::findOrFail($id);
         Part::where('id', $id)->delete();
+        $viewData['parts'] = Part::all();
 
+        return view('admin.part.index')->with('viewData', $viewData);
         return view('admin.part.index')->with('status', 'deleted');
     }
 }

@@ -226,10 +226,11 @@ class User extends Authenticatable
     {
         $this->orders = $orders;
     }
+
     public function reviews()
     {
         return $this->hasMany(Review::class);
-    } 
+    }
 
     public function getReviews(): Collection
     {
