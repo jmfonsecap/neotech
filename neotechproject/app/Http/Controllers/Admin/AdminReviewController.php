@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Review;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Review;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 
 class AdminReviewController extends Controller
 {
     public function index(): View
     {
         $viewData = [];
-        $viewData["title"] = "Reviews dashboard";
-        $viewData["reviews"] = Review::all();
-        return view('admin.review.index')->with("viewData", $viewData);
+        $viewData['title'] = 'Reviews dashboard';
+        $viewData['reviews'] = Review::all();
+
+        return view('admin.review.index')->with('viewData', $viewData);
     }
 
     public function show(string $id): View
@@ -37,11 +38,12 @@ class AdminReviewController extends Controller
     {
         $viewData = [];
         $viewData['title'] = 'Create review';
+
         return view('admin.review.create')->with(['viewData' => $viewData, 'status' => 'created']);
     }
 
     public function save(Request $request): View
-    {   
+    {
         $review = new Review();
         Review::validate($request);
         $review->setRating($request->input('rating'));
@@ -63,19 +65,19 @@ class AdminReviewController extends Controller
 
     public function update(string $id, Request $request): View
     {
-
         $review = Review::findOrFail($id);
         $review->validate($request);
         //update
         Review::where('id', $id)->update($request->only(['rating', 'description']));
-        
+
         return view('admin.review.show')->with('status', 'updated');
     }
 
     public function delete(string $id): View
-    {   
+    {
         Review::findOrFail($id);
         Review::where('id', $id)->delete();
+
         return view('admin.review.index')->with('status', 'deleted');
     }
-}   
+}

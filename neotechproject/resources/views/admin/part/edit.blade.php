@@ -21,7 +21,7 @@
                         @csrf
                         @method('PUT')
                         <div class="mb-3 text-center">
-                            <img src="{{ asset($viewData["part"]->getPhoto()) }}" id="image-edit-part">
+                            <img src="{{ asset('/storage/'.$viewData["part"]->getPhoto()) }}" id="image-edit-part">
                         </div>
                         <input type="text" class="form-control mb-3" placeholder="{{__('messages.admin.create.entername')}}" name="name" value="{{ $viewData["part"]->getName() }}" />
                         <input type="number" class="form-control mb-3" placeholder="{{__('messages.admin.create.enterstock')}}" name="stock" value="{{ $viewData["part"]->getStock() }}" />
