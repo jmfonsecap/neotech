@@ -90,6 +90,19 @@ public function setComputer($computer): void
 $this->computer_id = $computer;
 }
 
+public function getLabels()
+    {
+        $colums = [
+            'ID',
+            'Computer reviewed (ID)',
+            'Rating',
+            'Description',
+            'Actions',
+        ];
+
+        return $colums;
+    }
+
 
      public static function validate($request)
      {
