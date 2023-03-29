@@ -24,7 +24,7 @@
                         </div>
                         <input type="text" class="form-control mb-3" placeholder="{{__('messages.admin.create.entername')}}" name="name" value="{{ $viewData["computer"]->getName() }}" />
                         <input type="number" class="form-control mb-3" placeholder="{{__('messages.admin.create.enterstock')}}" name="stock" value="{{ $viewData["computer"]->getStock() }}" />
-                        <input type="number" class="form-control mb-3" placeholder="{{__('messages.admin.create.enterbrand')}}" name="brand" value="{{ $viewData["computer"]->getBrand() }}" />
+                        <input type="text" class="form-control mb-3" placeholder="{{__('messages.admin.create.enterbrand')}}" name="brand" value="{{ $viewData["computer"]->getBrand() }}" />
                         <input type="text" class="form-control mb-3" placeholder="{{__('messages.admin.create.entercategory')}}" name="category" value="{{ $viewData["computer"]->getCategory() }}" />
                         <div class="mb-3">
                             <label for="file" class="form-label"> File </label>
