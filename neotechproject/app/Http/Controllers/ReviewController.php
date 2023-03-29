@@ -34,11 +34,5 @@ class ReviewController extends Controller
         return view('review.save');
     }
 
-public function delete($id): RedirectResponse
-{
-    $review = Review::find($id);
-    $review->delete();
 
-    return redirect()->route('computer.show')->with('success', 'Review deleted successfully');
-}
 }
