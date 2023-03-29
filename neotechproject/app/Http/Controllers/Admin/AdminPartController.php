@@ -75,7 +75,7 @@ class AdminPartController extends Controller
         $viewData['title'] = $type['name'].' - Neotech';
         $viewData['type'] = $type;
 
-        return view('admin.type.edit')->with('viewData', $viewData);
+        return view('admin.part.edit')->with('viewData', $viewData);
     }
 
     public function update(string $id, Request $request): View
