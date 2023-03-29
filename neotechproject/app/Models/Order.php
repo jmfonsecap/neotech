@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
-
     /**
      * ORDER ATTRIBUTES
      * $this->attributes['id'] - int - contains the order primary key (id)

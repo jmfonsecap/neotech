@@ -85,11 +85,23 @@ class AdminComputerController extends Controller
     {
         $computer = Computer::findOrFail($id);
         $computer->validate($request);
+        $viewData = [];
         //update
-        Computer::where('id', $id)->update($request->only(['name', 'photo', 'stock', 'brand', 'category',
-            'currentPrice', 'discount', 'lastPrice', 'details', 'keywords']));
+        Computer::where('id', $id)->update($request->only(['name', 'stock', 'brand', 'category',
+            'currentPrice', 'lastPrice', 'details']));
+        if ($request->hasFile('photo')) {
+            $imageName = $computer->getId().'.'.$request->file('photo')->extension();
+            Storage::disk('public')->put(
+                $imageName,
+                file_get_contents($request->file('photo')->getRealPath())
+            );
+            $computer->setPhoto($imageName);
+            $computer->save();
+        }
+        $viewData['computer'] = $computer;
+        $viewData['keywords'] = explode(',', $computer->getKeywords());
 
-        return view('admin.computer.show')->with('status', 'updated');
+        return view('admin.computer.show')->with('viewData', $viewData)->with('status', 'updated')->with('id', $id);
     }
 
     public function delete(string $id)
