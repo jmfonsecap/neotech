@@ -33,16 +33,22 @@ Route::get('/admin/parts', 'App\Http\Controllers\Admin\AdminPartController@index
 Route::get('/admin/parts/create', 'App\Http\Controllers\Admin\AdminPartController@create')->name('admin.part.create');
 Route::get('/admin/parts/{id}', 'App\Http\Controllers\Admin\AdminPartController@show')->name('admin.part.show');
 Route::post('/admin/parts/save', 'App\Http\Controllers\Admin\AdminPartController@save')->name('admin.part.save');
-Route::get('/admin/parts/update/{id}', 'App\Http\Controllers\Admin\AdminPartController@edit')->name('admin.part.edit');
 Route::post('/admin/parts/{id}', 'App\Http\Controllers\Admin\AdminPartController@update')->name('admin.part.update');
+Route::get('/admin/parts/update/{id}', 'App\Http\Controllers\Admin\AdminPartController@edit')->name('admin.part.edit');
 Route::get('/admin/parts/del/{id}', 'App\Http\Controllers\Admin\AdminPartController@delete')->name('admin.part.delete');
+
+Route::get('/admin/reviews', 'App\Http\Controllers\Admin\AdminReviewController@index')->name('admin.review.index');
+Route::get('/admin/review/{id}', 'App\Http\Controllers\Admin\AdminReviewController@show')->name('admin.review.show');
+Route::post('/admin/review/save', 'App\Http\Controllers\Admin\AdminReviewController@save')->name('admin.review.save');
+Route::get('/admin/review/update/{id}', 'App\Http\Controllers\Admin\AdminReviewController@edit')->name('admin.review.edit');
+Route::post('/admin/reviews/{id}', 'App\Http\Controllers\Admin\AdminReviewController@update')->name('admin.review.update');
+Route::get('/admin/reviews/del/{id}', 'App\Http\Controllers\Admin\AdminReviewController@delete')->name('admin.review.delete');
 
 Route::get('/admin/computers', 'App\Http\Controllers\Admin\AdminComputerController@index')->name('admin.computer.index');
 Route::get('/admin/computers/create', 'App\Http\Controllers\Admin\AdminComputerController@create')->name('admin.computer.create');
-Route::post('/admin/computers/save', 'App\Http\Controllers\Admin\AdminComputerController@save')->name('admin.computer.save');
 Route::get('/admin/computers/{id}', 'App\Http\Controllers\Admin\AdminComputerController@show')->name('admin.computer.show');
+Route::post('/admin/computers/save', 'App\Http\Controllers\Admin\AdminComputerController@save')->name('admin.computer.save');
 Route::post('/admin/computers/{id}', 'App\Http\Controllers\Admin\AdminComputerController@update')->name('admin.computer.update');
-//Route::delete('/admin/computers/{id}', 'App\Http\Controllers\Admin\AdminComputerController@delete')->name('admin.computer.delete');
 Route::get('/admin/computers/update/{id}', 'App\Http\Controllers\Admin\AdminComputerController@edit')->name('admin.computer.edit');
 Route::get('/admin/computers/del/{id}', 'App\Http\Controllers\Admin\AdminComputerController@delete')->name('admin.computer.delete');
 

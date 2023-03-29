@@ -5,7 +5,7 @@
     @foreach ($viewData["parts"] as $part) 
     <div class="col-md-4 col-lg-3 mb-2">
         <div class="card">
-        <img src="https://laravel.com/img/logotype.min.svg" class="card-img-top img-card">
+        <img src="{{ asset('/storage/'.$part->getPhoto()) }}" class="card-img-top img-card">
         <h5 class="card-title">
             {{ $part->getName() }}
         </h5>

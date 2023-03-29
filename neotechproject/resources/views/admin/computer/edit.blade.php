@@ -22,6 +22,7 @@
                         <div class="mb-3 text-center">
                             <img src="{{ asset('/storage/'.$viewData["computer"]->getPhoto()) }}" id="image-edit-computer">
                         </div>
+
                         <label for="name" class="text-gray-500 dark:text-gray-300"> {{ __('messages.admin.create.entername') }} </label>
                         <input type="text" class="form-control mb-3 text-gray-700" placeholder="" name="name" value="{{ $viewData["computer"]->getName() }}" />
                         
@@ -45,6 +46,7 @@
                         
                         <label for="keywords" class="text-gray-500 dark:text-gray-300"> {{ __('messages.admin.create.enterkey') }} </label>
                         <input type="text" class="form-control mb-3 text-gray-700" placeholder="" name="keywords" value="{{ $viewData["computer"]->getKeywords() }}" />
+
 
                         <div class="mb-3">
                             <label for="file" class="form-label"> File </label>
