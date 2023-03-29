@@ -20,7 +20,7 @@
                     <form method="POST" action="{{ route('admin.computer.edit', ['id'=> $viewData["computer"]->getId()]) }}" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3 text-center">
-                            <img src="{{ asset($viewData["computer"]->getPhoto()) }}" id="image-edit-computer">
+                            <img src="{{ asset('/storage/'.$viewData["computer"]->getPhoto()) }}" id="image-edit-computer">
                         </div>
                         <input type="text" class="form-control mb-3" placeholder="{{__('messages.admin.create.entername')}}" name="name" value="{{ $viewData["computer"]->getName() }}" />
                         <input type="number" class="form-control mb-3" placeholder="{{__('messages.admin.create.enterstock')}}" name="stock" value="{{ $viewData["computer"]->getStock() }}" />
