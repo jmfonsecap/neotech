@@ -28,7 +28,7 @@ class ComputerController extends Controller
         $viewData['subtitle'] = $computer['name'].' - Computer information';
         $viewData['computer'] = $computer;
         $viewData['computer_id'] = $id;
-        $viewData['reviews']=$reviews;
+        $viewData['reviews'] = $reviews;
 
         return view('computer.show')->with('viewData', $viewData);
     }

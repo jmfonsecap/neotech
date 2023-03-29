@@ -10,7 +10,6 @@ use Illuminate\View\View;
 
 class PartController extends Controller
 {
-    
     public function index(): View
     {
         $viewData = [];
@@ -33,7 +32,6 @@ class PartController extends Controller
 
         return view('part.show', $viewData);
     }
-
 
     public function create(): View
     {

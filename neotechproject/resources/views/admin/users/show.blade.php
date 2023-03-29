@@ -9,7 +9,6 @@
         </div>
         <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
             <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
-                <img class="h-full w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png" alt="User image">
                 <div class="p-5">
                     <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                         <a href="#"> {{ $user->getName() }} </a>
