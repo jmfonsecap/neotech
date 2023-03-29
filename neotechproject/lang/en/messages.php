@@ -34,6 +34,7 @@ return [
     'admin.parts.brand' => 'Brand',
     'admin.parts.stock' => 'Stock',
     'admin.parts.price' => 'Price',
+    'admin.parts.photo' => 'Enter photo:',
     'admin.parts.list' => 'Manage Parts',
     'admin.parts.create' => 'Create Part',
     'admin.parts.edit' => 'Edit Part',

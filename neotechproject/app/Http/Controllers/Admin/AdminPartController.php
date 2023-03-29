@@ -6,6 +6,7 @@ use App\Models\Part;
 use App\Models\Type;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\View\View;
 
 class AdminPartController extends Controller
@@ -44,15 +45,24 @@ class AdminPartController extends Controller
         $part = new Part();
         Part::validate($request);
         $part->setName($request->input('name'));
-        //$part->setPhoto($request->input('photo'));
         $part->setStock($request->input('stock'));
         $part->setBrand($request->input('brand'));
         $part->setType($request->input('type'));
         $part->setPrice($request->input('price'));
         $part->setDetails($request->input('details'));
         $part->save();
-
-        return view('admin.part.create')->with('status', 'created');
+        if ($request->hasFile('photo')) {
+            $imageName = $part->getId().".".$request->file('photo')->extension();
+            Storage::disk('public')->put(
+            $imageName,
+            file_get_contents($request->file('photo')->getRealPath())
+            );
+            $part->setPhoto($imageName);
+            $part->save();
+        }
+        $viewData = [];
+        $viewData['types'] = Type::all();
+        return view('admin.part.create')->with(['viewData' => $viewData, 'status'=> 'created']);
     }
 
     public function edit(string $id): View

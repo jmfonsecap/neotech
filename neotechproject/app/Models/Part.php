@@ -24,7 +24,7 @@ class Part extends Model
      * $this->computers - Computer[] - contains the associated computers
      */
 
-    protected $fillable = ['stock', 'name', 'brand', 'type', 'price', 'details'];
+    protected $fillable = ['stock', 'name', 'photo', 'brand', 'type', 'price', 'details'];
 
     public function getId(): int
     {
@@ -114,29 +114,29 @@ class Part extends Model
     }
 
     public function getTypeId(): int
-{
-return $this->attributes['part_id'];
-}
- 
-public function setTypeId(int $type_id): void
-{
-    $this->attributes['type_id'] = $type_id;
-}
+    {
+        return $this->attributes['part_id'];
+    }
+    
+    public function setTypeId(int $type_id): void
+    {
+        $this->attributes['type_id'] = $type_id;
+    }
 
-public function type(): BelongsTo
-{
-return $this->belongsTo(Type::class, 'id');
-}
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo(Type::class, 'id');
+    }
 
-public function getType(): string
-{
-return $this->type;
-}
+    public function getType(): string
+    {
+        return $this->type;
+    }
 
-public function setType($type): void
-{
-$this->type = $type;
-}
+    public function setType($type): void
+    {
+        $this->type = $type;
+    }
     //Relations
     public function items(): HasMany
     {
