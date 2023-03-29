@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Review extends Model
 {
+
   
 /* PRODUCT ATTRIBUTES
 
@@ -111,5 +112,6 @@ public function getLabels()
              'description' => 'required',
          ]);
      }
+
 
 }
