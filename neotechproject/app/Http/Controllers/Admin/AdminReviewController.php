@@ -59,6 +59,7 @@ class AdminReviewController extends Controller
         $viewData = [];
         $review = Review::findOrFail($id);
         $viewData['title'] = 'Review'.$review['id'].' - Neotech';
+        $viewData['review'] = $review;
 
         return view('admin.review.edit')->with('viewData', $viewData);
     }

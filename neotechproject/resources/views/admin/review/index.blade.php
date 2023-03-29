@@ -7,7 +7,15 @@
 
 
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        
+    @if(sizeof($viewData["reviews"])>0)
+            <tr>
+                @foreach($viewData["reviews"][0]->getLabels() as $label)
+                <th scope="col" class="px-6 py-3">
+                    {{ $label }}
+                </th>
+                @endforeach
+            </tr>
+            @endif
         <tbody>
             
             @foreach($viewData["reviews"] as $review)
@@ -19,7 +27,7 @@
                     {{ $review->getComputerId() }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ $review->user() }}
+                    {{ $review->getRating() }}
                 </td>
                 <td class="px-6 py-4">
                     {{ $review->getDescription() }}

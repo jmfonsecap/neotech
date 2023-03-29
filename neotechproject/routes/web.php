@@ -37,6 +37,13 @@ Route::post('/admin/parts/{id}', 'App\Http\Controllers\Admin\AdminPartController
 Route::get('/admin/parts/update/{id}', 'App\Http\Controllers\Admin\AdminPartController@edit')->name('admin.part.edit');
 Route::get('/admin/parts/del/{id}', 'App\Http\Controllers\Admin\AdminPartController@delete')->name('admin.part.delete');
 
+Route::get('/admin/reviews', 'App\Http\Controllers\Admin\AdminReviewController@index')->name('admin.review.index');
+Route::get('/admin/review/{id}', 'App\Http\Controllers\Admin\AdminReviewController@show')->name('admin.review.show');
+Route::post('/admin/review/save', 'App\Http\Controllers\Admin\AdminReviewController@save')->name('admin.review.save');
+Route::get('/admin/review/update/{id}', 'App\Http\Controllers\Admin\AdminReviewController@edit')->name('admin.review.edit');
+Route::post('/admin/reviews/{id}', 'App\Http\Controllers\Admin\AdminReviewController@update')->name('admin.review.update');
+Route::get('/admin/reviews/del/{id}', 'App\Http\Controllers\Admin\AdminReviewController@delete')->name('admin.review.delete');
+
 Route::get('/admin/computers', 'App\Http\Controllers\Admin\AdminComputerController@index')->name('admin.computer.index');
 Route::get('/admin/computers/create', 'App\Http\Controllers\Admin\AdminComputerController@create')->name('admin.computer.create');
 Route::get('/admin/computers/{id}', 'App\Http\Controllers\Admin\AdminComputerController@show')->name('admin.computer.show');
