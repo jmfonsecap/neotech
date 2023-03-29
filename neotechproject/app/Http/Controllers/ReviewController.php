@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Computer;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -48,13 +47,13 @@ public function edit(string $id): View
     return view('review.edit')->with('viewData', $viewData);
 }
 
-public function update(string $id, Request $request): View
+public function update(string $id, Request $request): RedirectResponse
 {
     $review = Review::findOrFail($id);
     $review->validate($request);
     //update
     Review::where('id', $id)->update($request->only(['rating', 'description']));
-    return view('review.show')->with('status', 'updated');
+    return redirect()->route('computer.show')->with('status', 'updated');
 }
 
 public function delete($id): RedirectResponse

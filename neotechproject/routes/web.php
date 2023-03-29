@@ -53,7 +53,8 @@ Route::get('/computers/create', 'App\Http\Controllers\ComputerController@create'
 Route::post('/computers/save', 'App\Http\Controllers\ComputerController@save')->name('computer.save');
 Route::get('/computers', 'App\Http\Controllers\ComputerController@index')->name('computer.index');
 Route::get('/computers/{id}/review', 'App\Http\Controllers\ReviewController@create')->name('review.create');
-Route::post('/computers/save', 'App\Http\Controllers\ReviewController@save')->name('review.save');
+Route::post('/computers/{id}/edit', 'App\Http\Controllers\ReviewController@edit')->name('review.edit');
+Route::post('/computers/{id}/save', 'App\Http\Controllers\ReviewController@save')->name('review.save');
 Route::get('/computers/{id}', 'App\Http\Controllers\ComputerController@show')->name('computer.show');
 Route::delete('/computers/{id}', 'App\Http\Controllers\ComputerController@delete')->name('computer.delete');
 
@@ -66,6 +67,9 @@ Route::post('/parts/save', 'App\Http\Controllers\PartController@save')->name('pa
 Route::get('/parts/{id}', 'App\Http\Controllers\PartController@show')->name('part.show');
 Route::delete('/part/{id}', 'App\Http\Controllers\PartController@delete')->name('part.delete');
 
+
+Route::get('/parts/{id}', 'App\Http\Controllers\PartController@show')->name('part.show');
+Route::delete('/part/{id}', 'App\Http\Controllers\PartController@delete')->name('part.delete');
 
 Auth::routes();
 
