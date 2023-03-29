@@ -23,9 +23,10 @@ class AdminComputerController extends Controller
     {
         $viewData = [];
         $computer = Computer::findOrFail($id);
-        $viewData['title'] = $computer['name'].' - Neotech';
-        $viewData['subtitle'] = $computer['name'].' - Computer information';
+        $viewData['title'] = $computer->getName().' - Neotech';
+        $viewData['subtitle'] = $computer->getName().' - Computer information';
         $viewData['computer'] = $computer;
+        $viewData['keywords'] = explode(',', $computer->getKeywords());
 
         return view('admin.computer.show')->with('viewData', $viewData);
     }
@@ -95,10 +96,11 @@ class AdminComputerController extends Controller
     {
         $viewData = [];
         $viewData['title'] = 'Computers dashboard';
-        $viewData['computers'] = Computer::all();
         Computer::findOrFail($id);
         Computer::where('id', $id)->delete();
+        $viewData['computers'] = Computer::all();
+        session()->flash('status', 'Computer successfully deleted.');
 
-        return back()->with('status', 'deleted')->with('viewData', $viewData);
+        return view('admin.computer.index')->with('viewData', $viewData);
     }
 }
