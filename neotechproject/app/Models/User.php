@@ -226,8 +226,18 @@ class User extends Authenticatable
     {
         $this->orders = $orders;
     }
-    /*public function reviews()
+    public function reviews()
     {
         return $this->hasMany(Review::class);
-    } */
+    } 
+
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function setReviews(Collection $reviews): void
+    {
+        $this->orders = $reviews;
+    }
 }
