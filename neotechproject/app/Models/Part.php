@@ -24,7 +24,7 @@ class Part extends Model
      * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
      * $this->computers - Computer[] - contains the associated computers
      */
-    protected $fillable = ['stock', 'name', 'brand', 'type', 'price', 'details'];
+    protected $fillable = ['stock', 'name', 'photo', 'brand', 'type', 'price', 'details'];
 
     public function getId(): int
     {

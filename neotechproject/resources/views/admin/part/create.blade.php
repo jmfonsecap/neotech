@@ -21,7 +21,7 @@
                     </div>
                     @endif
 
-                    <form method="POST" action="{{ route('admin.part.save') }}">
+                    <form method="POST" action="{{ route('admin.part.save') }}" enctype="multipart/form-data">
                         @csrf
                         <input type="text" class="form-control mb-2" placeholder="Enter name" name="name" value="{{ old('name') }}" />
                         <input type="number" class="form-control mb-2" placeholder="Enter stock" name="stock" value="{{ old('stock') }}" />
@@ -39,6 +39,19 @@
 
                         <input type="number" class="form-control mb-2" placeholder="Enter the price" name="price" value="{{ old('pricee') }}" />
                         <input type="text" class="form-control mb-2" placeholder="Enter details" name="details" value="{{ old('details') }}" />
+                        <div class="row">
+                        <div class="col">
+                        <div class="mb-3 row">
+                            <label class="col-lg-2 col-md-6 col-sm-12 col-form-label">{{ __('messages.admin.create.enterphoto') }}</label>
+                            <div class="col-lg-10 col-md-6 col-sm-12">
+                            <input class="form-control" type="file" name="photo">
+                        </div>
+                        </div>
+                        </div>
+                        <div class="col">
+                        &nbsp;
+                        </div>
+                        </div> 
                         <input type="submit" class="btn btn-primary" value="Send" />
                     </form>
                 </div>
