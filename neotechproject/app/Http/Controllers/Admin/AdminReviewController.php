@@ -76,9 +76,12 @@ class AdminReviewController extends Controller
 
     public function delete(string $id): View
     {
+        $viewData = [];
+        $viewData['title'] = 'Reviews dashboard';
         Review::findOrFail($id);
         Review::where('id', $id)->delete();
+        $viewData['reviews'] = Review::all();
 
-        return view('admin.review.index')->with('status', 'deleted');
+        return view('admin.review.index')->with('viewData', $viewData);
     }
 }
