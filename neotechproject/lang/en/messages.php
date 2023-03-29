@@ -63,6 +63,7 @@ return [
     'admin.types.list' => 'List Types',
     'admin.types.info' => 'Type  Information',
     'admin.types.edit' => 'Edit Type',
+    'admin.types.create' => 'Create Type',
     'admin.types.created' => 'The type was saved successfully!',
     'admin.reviews.list' => 'List Reviews',
     'admin.reviews' => 'Reviews',

@@ -63,7 +63,7 @@ class AdminTypeController extends Controller
         //update
         Type::where('id', $id)->update($request->only(['name']));
 
-        return view('admin.type.show')->with('status', 'updated');
+        return view('admin.type.update')->with('status', 'updated');
     }
 
     public function delete(string $id)
