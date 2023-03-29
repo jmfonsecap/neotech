@@ -36,6 +36,27 @@ class ReviewController extends Controller
     return view('review.save');
 }
 
+public function edit(string $id): View
+{
+    $viewData = [];
+    $review = Review::findOrFail($id);
+    $viewData['id'] = 'Review '.$review['id'].' - Neotech';
+    $viewData['rating'] = $review['rating'].'/5';
+    $viewData['description']=$review['descrption'];
+    $viewData['review'] = $review;
+
+    return view('review.edit')->with('viewData', $viewData);
+}
+
+public function update(string $id, Request $request): View
+{
+    $review = Review::findOrFail($id);
+    $review->validate($request);
+    //update
+    Review::where('id', $id)->update($request->only(['rating', 'description']));
+    return view('review.show')->with('status', 'updated');
+}
+
 public function delete($id): RedirectResponse
     {
         $review = Review::find($id);

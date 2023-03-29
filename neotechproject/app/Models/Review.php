@@ -53,9 +53,7 @@ public function setDescription(string $desc): void
 $this->attributes['description'] = $desc;
 }
 
-
-
-/*public function user(): BelongsTo
+public function user(): BelongsTo
 {
 return $this->belongsTo(User::class);
 }
@@ -69,7 +67,6 @@ public function setUser($user): void
 {
 $this->user = $user;
 }
- */
 
 public function getComputerId(): int
 {
