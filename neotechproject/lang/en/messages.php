@@ -26,6 +26,8 @@ return [
     'admin.yes' => 'Yes',
     'admin.no' => 'No',
     'admin.users' => 'Users',
+    'admin.users.notfound' => 'No registered users',
+    'admin.users.notfound.text' => 'Sorry, there are no registered users in the application at the moment.',
     'admin.users.list' => 'List Users',
     'admin.users.profile' => 'User profile',
     'admin.users.phoneconst' => '+57 ',
@@ -103,5 +105,5 @@ return [
     'admin.create.enterdetails' => 'Enter the details',
     'admin.create.isdiscount' => 'Is in discount?',
     'admin.send' => 'Send',
-    'admin.sales.text' => 'Manage the sales of Neotech, the state of stock, etc.',
+    'client.home' => 'Client home',
 ];
