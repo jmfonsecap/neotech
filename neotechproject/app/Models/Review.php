@@ -21,7 +21,7 @@ class Review extends Model
     * $this->attributes['user_id'] - int - contains the ID of the user who reviewed
     */
 
-    protected $fillable = ['rating', 'description', 'computer_id'];
+    protected $fillable = ['rating', 'description', 'computer_id','user_id'];
 
     public function getId(): int
     {
@@ -50,7 +50,7 @@ class Review extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id');
     }
 
     public function getUser(): User
@@ -61,6 +61,16 @@ class Review extends Model
     public function setUser($user): void
     {
         $this->user = $user;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->attributes['user_id'];
+    }
+
+    public function setUserId(int $user_id): void
+    {
+        $this->attributes['user_id'] = $user_id;
     }
 
     public function getComputerId(): int
@@ -93,6 +103,7 @@ class Review extends Model
         $colums = [
             'ID',
             'Computer reviewed (ID)',
+            'Reviewer ID',
             'Rating',
             'Description',
             'Actions',

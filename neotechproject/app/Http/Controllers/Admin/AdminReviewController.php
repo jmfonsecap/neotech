@@ -24,11 +24,13 @@ class AdminReviewController extends Controller
         $review = Review::findOrFail($id);
         $user = $review->user;
         $computerId = $review->getComputerId();
+        $userId = $review->getUserId();
         $viewData['title'] = $review['id'].' - Neotech';
         $viewData['subtitle'] = $review['rating'].'/5';
         $viewData['description'] = $review['description'];
         $viewData['user'] = $user;
         $viewData['computer_id'] = $computerId;
+        $viewData['user_id'] = $userId;
         $viewData['review'] = $review;
 
         return view('admin.review.show')->with('viewData', $viewData);

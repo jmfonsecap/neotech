@@ -27,6 +27,9 @@
                     {{ $review->getComputerId() }}
                 </td>
                 <td class="px-6 py-4">
+                    {{ $review->getUserId() }}
+                </td>
+                <td class="px-6 py-4">
                     {{ $review->getRating() }}
                 </td>
                 <td class="px-6 py-4">
