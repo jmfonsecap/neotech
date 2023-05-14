@@ -227,7 +227,7 @@ class User extends Authenticatable
         $this->orders = $orders;
     }
 
-    public function reviews()
+    public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
     }
