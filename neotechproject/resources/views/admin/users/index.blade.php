@@ -2,7 +2,7 @@
 @section('content')
 
 @if(sizeof($viewData["users"])>0)
-    <div class="relative overflow-x-auto pt-4">
+    <div class="w-full relative overflow-x-auto pt-4">
     <p class="font-bold text-2xl text-center text-gray-500 dark:text-gray-400">{{ __('messages.admin.user.table.title') }}</p>
     <hr class="border-1 border-gray-500 my-5">
 
