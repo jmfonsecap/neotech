@@ -89,7 +89,7 @@ class AdminComputerController extends Controller
         $viewData = [];
         //update
         Computer::where('id', $id)->update($request->only(['name', 'stock', 'brand', 'category',
-            'currentPrice', 'lastPrice', 'details']));
+            'currentPrice', 'lastPrice', 'details', 'keywords']));
         if ($request->hasFile('photo')) {
             $imageName = $computer->getId().'.'.$request->file('photo')->extension();
             Storage::disk('public')->put(
@@ -100,8 +100,8 @@ class AdminComputerController extends Controller
             $computer->save();
         }
         $viewData['computer'] = $computer;
-        $viewData['title'] = $computer->getName(). __('messages.admin.computers.info');
         $viewData['keywords'] = explode(',', $computer->getKeywords());
+        $viewData['title'] = $computer->getName(). __('messages.admin.computers.info');
         session()->flash('status', __('messages.admin.computers.updated'));
 
         return view('admin.computer.show')->with('viewData', $viewData);
