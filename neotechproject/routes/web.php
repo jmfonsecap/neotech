@@ -25,8 +25,8 @@ Route::get('/admin/types', 'App\Http\Controllers\Admin\AdminTypeController@index
 Route::get('/admin/types/create', 'App\Http\Controllers\Admin\AdminTypeController@create')->name('admin.type.create');
 Route::get('/admin/types/{id}', 'App\Http\Controllers\Admin\AdminTypeController@show')->name('admin.type.show');
 Route::post('/admin/types/save', 'App\Http\Controllers\Admin\AdminTypeController@save')->name('admin.type.save');
-Route::post('/admin/types/update/{id}', 'App\Http\Controllers\Admin\AdminTypeController@update')->name('admin.type.update');
-Route::post('/admin/types/{id}', 'App\Http\Controllers\Admin\AdminTypeController@edit')->name('admin.type.edit');
+Route::post('/admin/types/{id}', 'App\Http\Controllers\Admin\AdminTypeController@update')->name('admin.type.update');
+Route::get('/admin/types/update/{id}', 'App\Http\Controllers\Admin\AdminTypeController@edit')->name('admin.type.edit');
 Route::get('/admin/types/del/{id}', 'App\Http\Controllers\Admin\AdminTypeController@delete')->name('admin.type.delete');
 
 Route::get('/admin/parts', 'App\Http\Controllers\Admin\AdminPartController@index')->name('admin.part.index');

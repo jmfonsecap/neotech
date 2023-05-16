@@ -204,7 +204,6 @@ class Computer extends Model
         $request->validate([
             'name' => 'required',
             'stock' => 'required',
-            'photo' => 'required',
             'brand' => 'required',
             'category' => 'required',
             'keywords' => 'required',
@@ -212,6 +211,7 @@ class Computer extends Model
             'lastPrice',
             'details' => 'required',
             'discount',
+            'photo',
         ]);
     }
 }
