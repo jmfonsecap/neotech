@@ -74,9 +74,10 @@ class AdminPartController extends Controller
     {
         $viewData = [];
         $part = Part::findOrFail($id);
-        $viewData['title'] = $part['name'].' - Neotech';
-        $viewData['subtitle'] = $part['name'].' - Part information';
+        $types = Type::all();
+        $viewData['title'] = __('messages.admin.parts.edit');
         $viewData['part'] = $part;
+        $viewData['types'] = $types;
 
         return view('admin.part.edit')->with('viewData', $viewData);
     }
@@ -86,22 +87,36 @@ class AdminPartController extends Controller
         $part = Part::findOrFail($id);
         $part->validate($request);
         //update
-        Part::where('id', $id)->update($request->only(['name', 'photo', 'stock', 'brand', 'type',
+        Part::where('id', $id)->update($request->only(['name', 'stock', 'brand', 'type_id',
             'price', 'details']));
+        if ($request->hasFile('photo')) {
+            $imageName = $part->getId().'.'.$request->file('photo')->extension();
+            Storage::disk('public')->put(
+                $imageName,
+                file_get_contents($request->file('photo')->getRealPath())
+            );
+            $part->setPhoto($imageName);
+            $part->save();
+        }   
+        $viewData = [];
+        $viewData['title'] = __('messages.admin.parts.info');
+        $viewData['part'] = $part;
+        $type = $part->type;
+        $viewData['type_name'] = $type->getName();
+        session()->flash('status', __('messages.admin.parts.updated'));
 
-        return view('admin.part.show')->with('status', 'updated');
+        return view('admin.part.show')->with('viewData', $viewData);
     }
 
     public function delete(string $id): View
     {
         $viewData = [];
-        $viewData['title'] = 'Parts dashboard';
         Part::findOrFail($id);
         Part::where('id', $id)->delete();
         $viewData['parts'] = Part::all();
+        $viewData['title'] = __('messages.admin.part.table.title');
+        session()->flash('status', __('messages.admin.parts.deleted'));
 
         return view('admin.part.index')->with('viewData', $viewData);
-
-        return view('admin.part.index')->with('status', 'deleted');
     }
 }
