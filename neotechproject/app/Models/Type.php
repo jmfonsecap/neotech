@@ -15,6 +15,7 @@ class Type extends Model
      * $this->attributes['name'] - string - contains the type name
      * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
      * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
+     * $this->attributes['parts'] - Part[] - contains the parts associated to this type
      */
     protected $fillable = ['name'];
 

@@ -3,13 +3,12 @@
 
 <section class="bg-white dark:bg-gray-900">
   <div class="pt-3">
-    <h2 class="mb-4 text-2xl text-center tracking-tight font-bold text-gray-900 dark:text-gray-400"> {{ __('messages.admin.parts.info') }} </h2>
+    <h2 class="mb-4 text-2xl text-center tracking-tight font-bold text-gray-900 dark:text-gray-400"> {{ $viewData['title'] }} </h2>
     <hr class="border-1 border-gray-500">
   </div>
   <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
   <img src="{{ asset('/storage/'.$viewData["part"]->getPhoto()) }}" alt="" class="h-[350px] w-full object-cover sm:h-[350px] pb-3" />
     <h2 class="mb-2 text-xl font-semibold leading-none text-gray-900 md:text-2xl dark:text-white"> {{ $viewData['part']->getName() }} </h2>
-    <p class="mb-4 text-xl font-extrabold leading-none text-gray-900 md:text-2xl dark:text-white"> {{ $viewData['part']->getPrice() }} </p>
     <dl>
       <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"> {{ __('messages.admin.parts.details') }} </dt>
       <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"> {{ $viewData['part']->getDetails() }} </dd>
@@ -17,7 +16,7 @@
     <dl class="flex items-center space-x-6">
       <div>
         <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"> {{ __('messages.admin.parts.type') }} </dt>
-        <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"> {{ $viewData['part']->getType() }} </dd>
+        <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"> {{ $viewData['type_name'] }} </dd>
       </div>
       <div>
         <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"> {{ __('messages.admin.parts.brand') }} </dt>
@@ -31,7 +30,7 @@
       </div>
       <div>
         <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"> {{ __('messages.admin.parts.price') }} </dt>
-        <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"> {{ $viewData['part']->getPrice() }} </dd>
+        <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"> $ {{ $viewData['part']->getPrice() }} </dd>
       </div>
     </dl>
     <div class="flex items-center space-x-4">

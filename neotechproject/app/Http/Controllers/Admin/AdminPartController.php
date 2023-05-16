@@ -14,7 +14,7 @@ class AdminPartController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Parts dashboard';
+        $viewData['title'] = __('messages.admin.part.table.title');
         $viewData['parts'] = Part::all();
 
         return view('admin.part.index')->with('viewData', $viewData);
@@ -25,10 +25,9 @@ class AdminPartController extends Controller
         $viewData = [];
         $part = Part::findOrFail($id);
         $type = $part->type;
-        $viewData['title'] = $part['name'].' - Neotech';
-        $viewData['subtitle'] = $part['name'].' - Part information';
+        $viewData['title'] = __('messages.admin.parts.info');
         $viewData['part'] = $part;
-        $viewData['type'] = $type;
+        $viewData['type_name'] = $type->getName();
 
         return view('admin.part.show')->with('viewData', $viewData);
     }
@@ -36,10 +35,10 @@ class AdminPartController extends Controller
     public function create(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Create part';
+        $viewData['title'] = __('messages.admin.parts.create');
         $viewData['types'] = Type::all();
 
-        return view('admin.part.create')->with(['viewData' => $viewData, 'status' => 'created']);
+        return view('admin.part.create')->with('viewData', $viewData);
     }
 
     public function save(Request $request): View
@@ -49,7 +48,8 @@ class AdminPartController extends Controller
         $part->setName($request->input('name'));
         $part->setStock($request->input('stock'));
         $part->setBrand($request->input('brand'));
-        $part->setType($request->input('type'));
+        $type = Type::findOrFail($request['types']);
+        $part->setTypeId($type->getId());
         $part->setPrice($request->input('price'));
         $part->setDetails($request->input('details'));
         $part->save();
@@ -63,9 +63,11 @@ class AdminPartController extends Controller
             $part->save();
         }
         $viewData = [];
+        $viewData['title'] = __('messages.admin.parts.create');
         $viewData['types'] = Type::all();
+        session()->flash('status', __('messages.admin.parts.created'));
 
-        return view('admin.part.create')->with(['viewData' => $viewData, 'status' => 'created']);
+        return view('admin.part.create')->with('viewData', $viewData);
     }
 
     public function edit(string $id): View

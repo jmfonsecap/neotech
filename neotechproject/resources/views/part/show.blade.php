@@ -1,6 +1,4 @@
-@extends('layouts.app') 
-@section('title', $title) 
-@section('subtitle', $subtitle) 
+@extends('layouts.app')  
 @section('content')
 <div class="card mb-3">
   <div class="row g-0">

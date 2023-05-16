@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Type;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,6 +26,20 @@ class Part extends Model
      * $this->computers - Computer[] - contains the associated computers
      */
     protected $fillable = ['stock', 'name', 'photo', 'brand', 'type', 'price', 'details'];
+
+    public function getLabels()
+    {
+        $colums = [
+            'name',
+            'stock',
+            'brand',
+            'type',
+            'price',
+            'actions',
+        ];
+
+        return $colums;
+    }
 
     public function getId(): int
     {
@@ -115,7 +130,7 @@ class Part extends Model
 
     public function getTypeId(): int
     {
-        return $this->attributes['part_id'];
+        return $this->attributes['type_id'];
     }
 
     public function setTypeId(int $type_id): void
@@ -125,12 +140,12 @@ class Part extends Model
 
     public function type(): BelongsTo
     {
-        return $this->belongsTo(Type::class, 'id');
+        return $this->belongsTo(Type::class);
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return $this->type;
+        return $this->type; 
     }
 
     public function setType($type): void
@@ -161,7 +176,6 @@ class Part extends Model
             'stock' => 'required|numeric|gte:0',
             'photo' => 'required',
             'brand' => 'required',
-            'type' => 'required',
             'price' => 'required|numeric|gt:0',
             'details' => 'required',
         ]);
