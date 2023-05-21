@@ -15,19 +15,17 @@ class Review extends Model
     * $this->attributes['description'] - string - contains the review's description
     * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
     * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
-    *  $this->computer - Computer - contains the Computer that was reviewed
+    * $this->computer - Computer - contains the Computer that was reviewed
+    * $this->attributes['computer_id'] - int - contains the related computer's primary key (id)
+    * $this->user - User - contains the user who reviewed
+    * $this->attributes['user_id'] - int - contains the ID of the user who reviewed
     */
 
-    protected $fillable = ['rating', 'description', 'computer_id'];
+    protected $fillable = ['rating', 'description', 'computer_id', 'user_id'];
 
     public function getId(): int
     {
         return $this->attributes['id'];
-    }
-
-    public function setId(int $id): void
-    {
-        $this->attributes['id'] = $id;
     }
 
     public function getRating(): int
@@ -52,7 +50,7 @@ class Review extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id');
     }
 
     public function getUser(): User
@@ -63,6 +61,16 @@ class Review extends Model
     public function setUser($user): void
     {
         $this->user = $user;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->attributes['user_id'];
+    }
+
+    public function setUserId(int $user_id): void
+    {
+        $this->attributes['user_id'] = $user_id;
     }
 
     public function getComputerId(): int
@@ -95,6 +103,7 @@ class Review extends Model
         $colums = [
             'ID',
             'Computer reviewed (ID)',
+            'Reviewer ID',
             'Rating',
             'Description',
             'Actions',

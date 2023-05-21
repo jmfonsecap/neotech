@@ -24,7 +24,10 @@ class Computer extends Model
      * $this->attributes['details'] - string - contains the computer details
      * $this->attributes['discount'] - bool - defines if the computer is on discount or not
      * $this->attributes['items'] - Items[] - contains the computer items
+     * $this->attributes['parts'] - Part[] - contains the computer parts
      * $this->attributes['reviews'] - Review[] - contains the computer reviews
+     * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
+     * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
      *
      * @var array<int, string>
      */
@@ -62,17 +65,12 @@ class Computer extends Model
         return $this->attributes['id'];
     }
 
-    public function setId(int $id): void
-    {
-        $this->attributes['id'] = $id;
-    }
-
     public function getName(): string
     {
         return $this->attributes['name'];
     }
 
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->attributes['name'] = $name;
     }
@@ -82,7 +80,7 @@ class Computer extends Model
         return $this->attributes['stock'];
     }
 
-    public function setStock(int $stock)
+    public function setStock(int $stock): void
     {
         $this->attributes['stock'] = $stock;
     }
@@ -92,7 +90,7 @@ class Computer extends Model
         return $this->attributes['photo'];
     }
 
-    public function setPhoto(string $photo)
+    public function setPhoto(string $photo): void
     {
         $this->attributes['photo'] = $photo;
     }
@@ -102,7 +100,7 @@ class Computer extends Model
         return $this->attributes['brand'];
     }
 
-    public function setBrand(string $brand)
+    public function setBrand(string $brand): void
     {
         $this->attributes['brand'] = $brand;
     }
@@ -112,7 +110,7 @@ class Computer extends Model
         return $this->attributes['category'];
     }
 
-    public function setCategory(string $category)
+    public function setCategory(string $category): void
     {
         $this->attributes['category'] = $category;
     }
@@ -122,7 +120,7 @@ class Computer extends Model
         return $this->attributes['keywords'];
     }
 
-    public function setKeywords($keywords)
+    public function setKeywords($keywords): void
     {
         $this->attributes['keywords'] = $keywords;
     }
@@ -132,7 +130,7 @@ class Computer extends Model
         return $this->attributes['currentPrice'];
     }
 
-    public function setCurrentPrice(int $currentPrice)
+    public function setCurrentPrice(int $currentPrice): void
     {
         $this->attributes['currentPrice'] = $currentPrice;
     }
@@ -142,7 +140,7 @@ class Computer extends Model
         return $this->attributes['lastPrice'];
     }
 
-    public function setLastPrice(int $lastPrice)
+    public function setLastPrice(int $lastPrice): void
     {
         $this->attributes['lastPrice'] = $lastPrice;
     }
@@ -152,7 +150,7 @@ class Computer extends Model
         return $this->attributes['details'];
     }
 
-    public function setDetails(string $details)
+    public function setDetails(string $details): void
     {
         $this->attributes['details'] = $details;
     }
@@ -162,7 +160,7 @@ class Computer extends Model
         return $this->attributes['discount'];
     }
 
-    public function setDiscount(bool $discount)
+    public function setDiscount(bool $discount): void
     {
         $this->attributes['discount'] = $discount;
     }
@@ -197,6 +195,21 @@ class Computer extends Model
     public function setItems(Collection $items): void
     {
         $this->items = $items;
+    }
+
+    public function getCreated_at(): string
+    {
+        return $this->attributes['created_at'];
+    }
+
+    public function getUpdated_at(): string
+    {
+        return $this->attributes['updated_at'];
+    }
+
+    public function setUpdated_at(string $desc): void
+    {
+        $this->attributes['updated_at'] = $desc;
     }
 
     public static function validate($request)

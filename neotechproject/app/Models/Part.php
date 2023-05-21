@@ -24,6 +24,7 @@ class Part extends Model
      * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
      * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
      * $this->computers - Computer[] - contains the associated computers
+     * $this->attributes['computer_id'] - int-  contains the id of the asociated computer
      */
     protected $fillable = ['stock', 'name', 'photo', 'brand', 'type', 'price', 'details'];
 
@@ -111,11 +112,6 @@ class Part extends Model
     public function getCreated_at(): string
     {
         return $this->attributes['created_at'];
-    }
-
-    public function setCreated_at(string $desc): void
-    {
-        $this->attributes['created_at'] = $desc;
     }
 
     public function getUpdated_at(): string
