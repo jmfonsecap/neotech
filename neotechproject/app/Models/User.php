@@ -80,24 +80,34 @@ class User extends Authenticatable
         return $colums;
     }
 
-    public function getId()
+    public function getId(): int
     {
         return $this->attributes['id'];
     }
 
-    public function setId($id)
+    public function setId($id): void
     {
         $this->attributes['id'] = $id;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->attributes['name'];
     }
 
-    public function setName($name)
+    public function setName($name): void
     {
         $this->attributes['name'] = $name;
+    }
+
+    public function getRole(): string
+    {
+        return $this->attributes['role'];
+    }
+
+    public function setRole($role): void
+    {
+        $this->attributes['role'] = $role;
     }
 
     public function getImage()
@@ -105,107 +115,97 @@ class User extends Authenticatable
         return $this->attributes['image'];
     }
 
-    public function setImage($image)
+    public function setImage($image): void
     {
         $this->attributes['image'] = $image;
     }
 
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->attributes['email'];
     }
 
-    public function setEmail($email)
+    public function setEmail($email): void
     {
         $this->attributes['email'] = $email;
     }
 
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->attributes['password'];
     }
 
-    public function setPassword($password)
+    public function setPassword($password): void
     {
         $this->attributes['password'] = $password;
     }
 
-    public function getRole()
-    {
-        return $this->attributes['role'];
-    }
-
-    public function setRole($role)
-    {
-        $this->attributes['role'] = $role;
-    }
-
-    public function getPhone()
+    public function getPhone(): string
     {
         return $this->attributes['phone'];
     }
 
-    public function setPhone($phone)
+    public function setPhone($phone): void
     {
         $this->attributes['phone'] = $phone;
     }
 
-    public function getCreatedAt()
+    public function getCreatedAt(): string
     {
         return $this->attributes['created_at'];
     }
 
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt($createdAt): void
     {
         $this->attributes['created_at'] = $createdAt;
     }
 
-    public function getUpdatedAt()
+    public function getUpdatedAt(): string
     {
         return $this->attributes['updated_at'];
     }
 
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt($updatedAt): void
     {
         $this->attributes['updated_at'] = $updatedAt;
     }
 
-    public function getAddress()
+    public function getAddress(): string
     {
         return $this->attributes['address'];
     }
 
-    public function setAddress($address)
+    public function setAddress($address): void
     {
         $this->attributes['address'] = $address;
     }
 
-    public function getPostalCode()
+    public function getPostalCode(): string
     {
         return $this->attributes['postalCode'];
     }
 
-    public function setPostalCode($postalCode)
+    public function setPostalCode($postalCode): void
     {
         $this->attributes['postalCode'] = $postalCode;
     }
 
-    public function getCountry()
+    public function getCountry(): string
     {
         return $this->attributes['country'];
     }
 
-    public function setCountry($country)
+    public function setCountry($country): void
     {
         $this->attributes['country'] = $country;
     }
 
-    public function getPoints()
+    public function getPoints(): int
     {
         return $this->attributes['points'];
     }
 
-    public function setPoints($points)
+    public function setPoints($points): void
     {
         $this->attributes['points'] = $points;
     }
