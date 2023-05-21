@@ -79,7 +79,7 @@ class AdminTypeController extends Controller
         $viewData['types'] = Type::all();
         $type = Type::findOrFail($id);
         $parts = $type->getParts();
-        
+
         $parts->each(function ($part) {
             $part->delete();
         });

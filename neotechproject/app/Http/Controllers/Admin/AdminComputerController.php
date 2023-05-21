@@ -23,7 +23,7 @@ class AdminComputerController extends Controller
     {
         $viewData = [];
         $computer = Computer::findOrFail($id);
-        $viewData['title'] = $computer->getName(). __('messages.admin.computers.info');
+        $viewData['title'] = $computer->getName().__('messages.admin.computers.info');
         $viewData['computer'] = $computer;
         $viewData['keywords'] = explode(',', $computer->getKeywords());
 
@@ -66,7 +66,7 @@ class AdminComputerController extends Controller
             $computer->save();
         }
         $viewData = [];
-        $viewData["title"] = __('messages.admin.computers.create');
+        $viewData['title'] = __('messages.admin.computers.create');
         session()->flash('status', __('messages.admin.computers.created'));
 
         return view('admin.computer.create')->with('viewData', $viewData);
@@ -101,7 +101,7 @@ class AdminComputerController extends Controller
         }
         $viewData['computer'] = $computer;
         $viewData['keywords'] = explode(',', $computer->getKeywords());
-        $viewData['title'] = $computer->getName(). __('messages.admin.computers.info');
+        $viewData['title'] = $computer->getName().__('messages.admin.computers.info');
         session()->flash('status', __('messages.admin.computers.updated'));
 
         return view('admin.computer.show')->with('viewData', $viewData);

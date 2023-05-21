@@ -31,6 +31,23 @@
         <p class="card-text"> Price: {{ $viewData["computer"]->getCurrentPrice() }}</p>
         @endif
         <p class="card-text"> Details: {{ $viewData["computer"]->getDetails() }}</p>
+        <p class="card-text">
+        <form method="POST" action="{{ route('cart.add', ['id'=> $viewData['computer']->getId()]) }}">
+        <div class="row">
+        @csrf
+        <div class="col-auto">
+        <div class="input-group col-auto">
+        <div class="input-group-text">Quantity</div>
+        <input type="number" min="1" max="10" class="form-control quantity-input"
+        name="quantity" value="1">
+        </div>
+        </div>
+        <div class="col-auto">
+        <button class="btn bg-primary text-white" type="submit">Add to cart</button>
+        </div>
+        </div>
+        </form>
+        </p> 
         @foreach ($viewData['reviews'] as $review)
         <div class="col-md-4 col-lg-3 mb-2">
         <div class="card">

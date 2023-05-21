@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Type;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -40,6 +39,16 @@ class Part extends Model
         ];
 
         return $colums;
+    }
+
+    public static function sumPricesByQuantities($parts, $itemsInSession)
+    {
+        $total = 0;
+        foreach ($parts as $item) {
+            $total = $total + ($item->getPrice() * $itemsInSession[$item->getId()]);
+        }
+
+        return $total;
     }
 
     public function getId(): int
@@ -141,7 +150,7 @@ class Part extends Model
 
     public function getType(): Type
     {
-        return $this->type; 
+        return $this->type;
     }
 
     public function setType($type): void

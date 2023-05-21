@@ -60,6 +60,16 @@ class Computer extends Model
         return $colums;
     }
 
+    public static function sumPricesByQuantities($computers, $itemsInSession)
+    {
+        $total = 0;
+        foreach ($computers as $item) {
+            $total = $total + ($item->getPrice() * $itemsInSession[$item->getId()]);
+        }
+
+        return $total;
+    }
+
     public function getId(): int
     {
         return $this->attributes['id'];

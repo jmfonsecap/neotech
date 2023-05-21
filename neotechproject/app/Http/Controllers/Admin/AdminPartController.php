@@ -97,7 +97,7 @@ class AdminPartController extends Controller
             );
             $part->setPhoto($imageName);
             $part->save();
-        }   
+        }
         $viewData = [];
         $viewData['title'] = __('messages.admin.parts.info');
         $viewData['part'] = $part;
