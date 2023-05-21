@@ -98,7 +98,7 @@ class Part extends Model
     {
         return $this->attributes['created_at'];
     }
-    
+
     public function getUpdated_at(): string
     {
         return $this->attributes['updated_at'];

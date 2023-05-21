@@ -21,7 +21,7 @@ class Review extends Model
     * $this->attributes['user_id'] - int - contains the ID of the user who reviewed
     */
 
-    protected $fillable = ['rating', 'description', 'computer_id','user_id'];
+    protected $fillable = ['rating', 'description', 'computer_id', 'user_id'];
 
     public function getId(): int
     {

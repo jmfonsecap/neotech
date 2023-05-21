@@ -28,6 +28,7 @@ class Computer extends Model
      * $this->attributes['reviews'] - Review[] - contains the computer reviews
      * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
      * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
+     *
      * @var array<int, string>
      */
     protected $fillable = [
@@ -200,7 +201,7 @@ class Computer extends Model
     {
         return $this->attributes['created_at'];
     }
-    
+
     public function getUpdated_at(): string
     {
         return $this->attributes['updated_at'];

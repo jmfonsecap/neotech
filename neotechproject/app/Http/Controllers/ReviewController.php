@@ -14,6 +14,7 @@ class ReviewController extends Controller
         $viewData['title'] = 'Create review';
         $viewData['computer_id'] = $comp_id;
         session()->put('user_id', auth()->id());
+
         return view('review.create')->with('viewData', $viewData);
     }
 

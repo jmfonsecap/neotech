@@ -15,7 +15,7 @@ class Order extends Model
      * $this->attributes['paid'] - bool - says if the order'd been paid or not
      * $this->attributes['delivered'] - bool - says if the order'd been delivered or not
      * $this->user - User- contains the associated user
-     * $this->attributes['user_id'] - int - contains the user 
+     * $this->attributes['user_id'] - int - contains the user
      * $this->attributes['payMethod'] - string - contains the payment method
      * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
      * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
@@ -82,7 +82,7 @@ class Order extends Model
     {
         return $this->attributes['created_at'];
     }
-    
+
     public function getUpdated_at(): string
     {
         return $this->attributes['updated_at'];
