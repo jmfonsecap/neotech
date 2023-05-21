@@ -10,7 +10,7 @@ class CartController extends Controller
     public function index(Request $request)
     {
         $total = 0;
-        $ItemsInCart = [];
+        $itemsInCart = [];
         $itemsInSession = $request->session()->get('items');
         if ($itemsInSession) {
             $itemsInCart = Item::findMany(array_keys($itemsInSession));
@@ -34,10 +34,10 @@ class CartController extends Controller
         return redirect()->route('cart.index');
     }
 
-       public function delete(Request $request)
-       {
-           $request->session()->forget('items');
+    public function delete(Request $request)
+    {
+        $request->session()->forget('items');
 
-           return back();
-       }
+        return back();
+    }
 }

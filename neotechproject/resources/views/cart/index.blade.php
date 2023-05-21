@@ -4,7 +4,7 @@
 @section('content')
 <div class="card">
  <div class="card-header">
- Products in Cart
+ Items in Cart
  </div>
  <div class="card-body">
  <table class="table table-bordered table-striped text-center">
@@ -17,12 +17,12 @@
  </tr>
  </thead>
  <tbody>
- @foreach ($viewData["products"] as $product)
+ @foreach ($viewData["items"] as $item)
  <tr>
- <td>{{ $product->getId() }}</td>
- <td>{{ $product->getName() }}</td>
- <td>${{ $product->getPrice() }}</td>
- <td>{{ session('products')[$product->getId()] }}</td>
+ <td>{{ $item->getId() }}</td>
+ <td>{{ $item->getName() }}</td>
+ <td>${{ $item->getPrice() }}</td>
+ <td>{{ session('items')[$item->getId()] }}</td>
  </tr>
  @endforeach
  </tbody>
@@ -33,7 +33,7 @@
  <a class="btn bg-primary text-white mb-2">Purchase</a>
  <a href="{{ route('cart.delete') }}">
  <button class="btn btn-danger mb-2">
- Remove all products from Cart
+ Remove all items from Cart
  </button>
  </a>
  </div>

@@ -26,6 +26,16 @@ class Item extends Model
     protected $fillable = ['quantity', 'part_id', 'computer_id',
         'order_id'];
 
+    public static function sumPricesByQuantities($items, $itemsInSession)
+    {
+        $total = 0;
+        foreach ($items as $item) {
+            $total = $total + ($item->getPrice() * $itemsInSession[$item->getId()]);
+        }
+
+        return $total;
+    }
+
     public function getId(): int
     {
         return $this->attributes['id'];
