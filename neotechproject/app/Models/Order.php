@@ -78,6 +78,20 @@ class Order extends Model
         $this->items = $items;
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function getUser()
+    {
+        return $this->user;
+    }
+    public function setUser($user)
+    {
+        $this->user = $user; 
+    }
+
     public function getCreated_at(): string
     {
         return $this->attributes['created_at'];
@@ -91,5 +105,13 @@ class Order extends Model
     public function setUpdated_at(string $desc): void
     {
         $this->attributes['updated_at'] = $desc;
+    }
+
+    public static function validate($request)
+    {
+        $request->validate([
+        "totalToPay" => "required|numeric",
+        "user_id" => "required|exists:users,id",
+        ]);
     }
 }

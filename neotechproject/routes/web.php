@@ -74,7 +74,13 @@ Route::delete('/part/{id}', 'App\Http\Controllers\PartController@delete')->name(
 
 Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
 Route::get('/cart/delete', 'App\Http\Controllers\CartController@delete')->name('cart.delete');
-Route::post('/cart/add/{id}', 'App\Http\Controllers\CartController@add')->name('cart.add');
+Route::post('/cart/addComputer/{id}', 'App\Http\Controllers\CartController@addComputer')->name('cart.addComputer');
+Route::post('/cart/addPart/{id}', 'App\Http\Controllers\CartController@addPart')->name('cart.addPart');
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/cart/purchase', 'App\Http\Controllers\CartController@purchase')->name("cart.purchase");
+   }); 
 
 Auth::routes();
 

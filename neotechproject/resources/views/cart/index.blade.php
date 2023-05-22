@@ -18,24 +18,27 @@
  </thead>
  <tbody>
  @foreach ($viewData["items"] as $item)
- <tr>
- <td>{{ $item->getId() }}</td>
- <td>{{ $item->getName() }}</td>
- <td>${{ $item->getPrice() }}</td>
- <td>{{ session('items')[$item->getId()] }}</td>
- </tr>
- @endforeach
+    <tr>
+        <td>{{ $item->getId() }}</td>
+        <td>{{ $item->getName() }}</td>
+        <td>${{ $item->getPrice() }}</td>
+        <td>{{ $viewData["items"][$item->getId()] }}</td> <!-- Retrieve quantity correctly -->
+    </tr>
+@endforeach
+
  </tbody>
  </table>
  <div class="row">
  <div class="text-end">
  <a class="btn btn-outline-secondary mb-2"><b>Total to pay:</b> ${{ $viewData["total"] }}</a>
- <a class="btn bg-primary text-white mb-2">Purchase</a>
+ @if (count($viewData["products"]) > 0)
+ <a href="{{ route('cart.purchase') }}" class="btn bg-primary text-white mb-2">Purchase</a>
  <a href="{{ route('cart.delete') }}">
  <button class="btn btn-danger mb-2">
- Remove all items from Cart
+ Remove all products from Cart
  </button>
  </a>
+ @endif
  </div>
  </div>
  </div>

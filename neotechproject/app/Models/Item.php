@@ -141,4 +141,15 @@ class Item extends Model
     {
         $this->attributes['updated_at'] = $desc;
     }
+
+    public static function validate($request)
+    {
+        $request->validate([
+        "price" => "required|numeric|gt:0",
+        "quantity" => "required|numeric|gt:0",
+        "computer_id" => "exists:computers,id",
+        "part_id" => "exists:parts,id",
+        "order_id" => "required|exists:orders,id",
+        ]);
+    }
 }

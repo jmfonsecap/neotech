@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Item;
 
 class Part extends Model
 {
@@ -24,6 +25,7 @@ class Part extends Model
      * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
      * $this->computers - Computer[] - contains the associated computers
      * $this->attributes['computer_id'] - int-  contains the id of the asociated computer
+     * $this->items - Item[] - contains the associated items
      */
     protected $fillable = ['stock', 'name', 'photo', 'brand', 'type', 'price', 'details'];
 
