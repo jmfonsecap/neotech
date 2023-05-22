@@ -17,7 +17,7 @@
  </tr>
  </thead>
  <tbody>
- @foreach ($viewData["items"] as $item)
+ @foreach ($viewData["computers"] as $item)
     <tr>
         <td>{{ $item->getId() }}</td>
         <td>{{ $item->getName() }}</td>
@@ -31,7 +31,7 @@
  <div class="row">
  <div class="text-end">
  <a class="btn btn-outline-secondary mb-2"><b>Total to pay:</b> ${{ $viewData["total"] }}</a>
- @if (count($viewData["products"]) > 0)
+ @if (count($viewData["computers"]) > 0)
  <a href="{{ route('cart.purchase') }}" class="btn bg-primary text-white mb-2">Purchase</a>
  <a href="{{ route('cart.delete') }}">
  <button class="btn btn-danger mb-2">

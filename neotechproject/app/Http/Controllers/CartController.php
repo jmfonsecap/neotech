@@ -13,18 +13,21 @@ class CartController extends Controller
     $itemsInCart = [];
     $computersInSession = $request->session()->get('computers');
     echo(json_encode($computersInSession));
-    if ($computersInSession) {
-        $itemIds = array_keys($computersInSession);
-        echo(json_encode($itemIds));
-        $itemsInCart = Item::findMany(array_keys($computersInSession));
+    echo("Gono");
+    $partsInSession = $request->session()->get('parts');
+    echo(json_encode($partsInSession));
+    if ($partsInSession) {
+        $itemIds = array_keys($partsInSession);
+        $itemsInCart = Item::findMany(array_keys($partsInSession));
         echo($itemsInCart);
-        $total = Item::sumPricesByQuantities($itemsInCart, $computersInSession);
+        $total = Item::sumPricesByQuantities($itemsInCart, $partsInSession);
     }
     $viewData = [];
     $viewData['title'] = 'Cart - Online Store';
     $viewData['subtitle'] = 'Shopping Cart';
     $viewData['total'] = $total;
-    $viewData['items'] = $itemsInCart;
+    $viewData['computers'] = $itemsInCart;
+    $viewData['parts'] = $itemsInCart;
 
     return view('cart.index')->with('viewData', $viewData);
 }
@@ -44,7 +47,6 @@ class CartController extends Controller
     {
         $parts = $request->session()->get('parts', []);
         echo("Add method: ");
-        echo(json_encode($parts));
         $parts[$id] = $request->input('quantity');
         $request->session()->put('parts', $parts);
 

@@ -32,7 +32,7 @@
         @endif
         <p class="card-text"> Details: {{ $viewData["computer"]->getDetails() }}</p>
         <p class="card-text">
-        <form method="POST" action="{{ route('cart.addComputer', ['id'=> $viewData["computer"]->getId()]) }}">
+        <form method="POST" action="{{ route('cart.add', ['id'=> $viewData["computer"]->getId()]) }}">
         <div class="row">
         @csrf
         <div class="col-auto">
