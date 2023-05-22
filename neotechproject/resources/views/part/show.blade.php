@@ -27,7 +27,7 @@
         <form action="{{ route('part.delete', $part->getId()) }}" method="POST"> @csrf @method('DELETE') <button type="submit" class="btn btn-danger">Delete</button>
         </form>
         <p class="card-text">
-        <form method="POST" action="{{ route('cart.add', ['id'=> $part->getId()]) }}">
+        <form method="POST" action="{{ route('cart.add', ['id'=> $part->getId(), 'type'=>"part"]) }}">
         <div class="row">
         @csrf
         <div class="col-auto">

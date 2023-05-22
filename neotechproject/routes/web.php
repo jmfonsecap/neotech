@@ -72,10 +72,9 @@ Route::post('/parts/save', 'App\Http\Controllers\PartController@save')->name('pa
 Route::get('/parts/{id}', 'App\Http\Controllers\PartController@show')->name('part.show');
 Route::delete('/part/{id}', 'App\Http\Controllers\PartController@delete')->name('part.delete');
 
+Route::post('/cart/add/{id}/{type}', 'App\Http\Controllers\CartController@add')->name('cart.add');
 Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
 Route::get('/cart/delete', 'App\Http\Controllers\CartController@delete')->name('cart.delete');
-Route::post('/cart/addComputer/{id}', 'App\Http\Controllers\CartController@addComputer')->name('cart.add');
-Route::post('/cart/addPart/{id}', 'App\Http\Controllers\CartController@addPart')->name('cart.add');
 
 
 Route::middleware('auth')->group(function () {
