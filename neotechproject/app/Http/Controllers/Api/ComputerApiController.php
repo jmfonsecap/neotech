@@ -11,13 +11,14 @@ class ComputerApiController extends Controller
 {
     public function index(): JsonResponse
     {
-        $computers = ComputerResource::collection(Computer::all());
-        return response()->json($computers, 200);
+        $computers = Computer::where('discount', '>', 0)->get();
+        $collect = ComputerResource::collection($computers);    
+        return response()->json($collect, 200);
     }
 
     public function show(string $id): JsonResponse
     {
-        $product = new ComputerResource(Computer::findOrFail($id));
-        return response()->json($product, 200);
+        $computer = new ComputerResource(Computer::findOrFail($id));
+        return response()->json($computer, 200);
     }
 }
