@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
-use App\Models\Product;
+use App\Models\Part;
+use App\Models\Computer;
 use Illuminate\Http\Request;
 class CartController extends Controller
 {
@@ -10,25 +11,31 @@ class CartController extends Controller
  $productsInCart = [];
  $productsInSession = $request->session()->get("products");
  $partsInCart = [];
+ $partsInSession = [];
  $computersInCart=[];
+ $computersInSession=[];
  echo(json_encode($productsInSession));
  foreach ($productsInSession as $product) {
-     echo(json_encode($product));
      if ($product['type'] == 'part') {
-         $partsInCart[] = $product;
+         $partsInSession[] = $product;
      } else if ($product['type'] == 'computer'){
-        $computersInCart[] = $product;
+        $computersInSession[] = $product;
      }
  }
- echo("Partes: ");
+ echo(" Partes: ");
  echo(json_encode($partsInCart));
- echo("Comps: ");
+ echo(" Comps: ");
  echo(json_encode($computersInCart));
 
- //if ($productsInSession) {
- //$productsInCart = Product::findMany(array_keys($productsInSession));
- //$total = Product::sumPricesByQuantities($productsInCart, $productsInSession);
- //}
+ if ($partsInSession) {
+   $partsInCart = Part::findMany(array_keys($partsInSession));
+   $total += Part::sumPricesByQuantities($partsInCart, $partsInSession);
+   } else if($computersInSession){
+    $computersInCart = Computer::findMany(array_keys($computersInSession));
+    $total += Computer::sumPricesByQuantities($computersInCart, $computersInSession);
+   }
+   echo(' Total: ');
+   echo(json_encode($total));
  $viewData = [];
  $viewData["title"] = "Cart - Online Store";
  $viewData["subtitle"] = "Shopping Cart";
