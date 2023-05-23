@@ -5,9 +5,11 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Computer extends Model
+class Computer extends Model implements Searchable
 {
     /**
      * The attributes that are mass assignable.
@@ -211,7 +213,16 @@ class Computer extends Model
     {
         $this->attributes['updated_at'] = $desc;
     }
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('computer.show', $this->id);
 
+        return new SearchResult(
+            $this,
+            $this->name,
+            $url
+        );
+    }
     public static function validate($request)
     {
         $request->validate([

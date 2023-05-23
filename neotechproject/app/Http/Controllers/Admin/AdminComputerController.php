@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Computer;
 use Illuminate\Contracts\View\View;
+use App\Interfaces\ImageStorage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class AdminComputerController extends Controller
 {
@@ -56,15 +56,11 @@ class AdminComputerController extends Controller
         $computer->setKeywords($keywords);
 
         $computer->save();
-        if ($request->hasFile('photo')) {
-            $imageName = $computer->getId().'.'.$request->file('photo')->extension();
-            Storage::disk('public')->put(
-                $imageName,
-                file_get_contents($request->file('photo')->getRealPath())
-            );
-            $computer->setPhoto($imageName);
-            $computer->save();
-        }
+        $imageName = substr(sha1(mt_rand()),17,6).'-computer.'.$request->file('photo')->extension();
+        $storeInterface = app(ImageStorage::class);
+        $storeInterface->store($request, $imageName);
+        $computer->setPhoto($imageName);
+        $computer->save();
         $viewData = [];
         $viewData["title"] = __('messages.admin.computers.create');
         session()->flash('status', __('messages.admin.computers.created'));
@@ -90,15 +86,11 @@ class AdminComputerController extends Controller
         //update
         Computer::where('id', $id)->update($request->only(['name', 'stock', 'brand', 'category',
             'currentPrice', 'lastPrice', 'details', 'keywords']));
-        if ($request->hasFile('photo')) {
-            $imageName = $computer->getId().'.'.$request->file('photo')->extension();
-            Storage::disk('public')->put(
-                $imageName,
-                file_get_contents($request->file('photo')->getRealPath())
-            );
-            $computer->setPhoto($imageName);
-            $computer->save();
-        }
+        $imageName = $imageName = $computer->getPhoto();
+        $storeInterface = app(ImageStorage::class);
+        $storeInterface->store($request, $imageName);
+        $computer->setPhoto($imageName);
+        $computer->save();
         $viewData['computer'] = $computer;
         $viewData['keywords'] = explode(',', $computer->getKeywords());
         $viewData['title'] = $computer->getName(). __('messages.admin.computers.info');

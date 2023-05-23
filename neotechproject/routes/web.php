@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
-
+Route::post('/search', 'App\Http\Controllers\HomeController@search')->name('search');
 // Admin routes
 Route::middleware('admin')->group(function () { 
 Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.home.index');
