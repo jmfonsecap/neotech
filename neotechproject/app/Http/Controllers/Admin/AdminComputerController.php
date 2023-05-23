@@ -86,11 +86,11 @@ class AdminComputerController extends Controller
         //update
         Computer::where('id', $id)->update($request->only(['name', 'stock', 'brand', 'category',
             'currentPrice', 'lastPrice', 'details', 'keywords']));
-            $imageName = $imageName = $computer->getPhoto();
-            $storeInterface = app(ImageStorage::class);
-            $storeInterface->store($request, $imageName);
-            $computer->setPhoto($imageName);
-            $computer->save();
+        $imageName = $imageName = $computer->getPhoto();
+        $storeInterface = app(ImageStorage::class);
+        $storeInterface->store($request, $imageName);
+        $computer->setPhoto($imageName);
+        $computer->save();
         $viewData['computer'] = $computer;
         $viewData['keywords'] = explode(',', $computer->getKeywords());
         $viewData['title'] = $computer->getName(). __('messages.admin.computers.info');

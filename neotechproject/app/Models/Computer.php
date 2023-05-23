@@ -213,7 +213,6 @@ class Computer extends Model implements Searchable
     {
         $this->attributes['updated_at'] = $desc;
     }
-
     public function getSearchResult(): SearchResult
     {
         $url = route('computer.show', $this->id);
@@ -224,8 +223,6 @@ class Computer extends Model implements Searchable
             $url
         );
     }
-
-
     public static function validate($request)
     {
         $request->validate([
