@@ -215,7 +215,7 @@ class Computer extends Model implements Searchable
     }
     public function getSearchResult(): SearchResult
     {
-        $url = route('computer.show', $this->id);
+        $url = route('user.computer.show', $this->id);
 
         return new SearchResult(
             $this,

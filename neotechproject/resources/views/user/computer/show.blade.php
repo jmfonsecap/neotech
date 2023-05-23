@@ -55,7 +55,7 @@
         @endif
         <div class="row">
             <div class="col">
-                <form autocomplete="off" method="POST" action="{{ route('review.save', ['id' => $viewData['computer_id']]) }}">
+                <form autocomplete="off" method="POST" action="{{ route('user.review.save', ['id' => $viewData['computer_id']]) }}">
                     @csrf
                     <label class="font-weight-bold">{{ __('messages.user.computer.ratings') }}</label>
                     <br>

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('user.home.index');
 Route::post('/search', 'App\Http\Controllers\HomeController@search')->name('search');
 // Admin routes
 Route::middleware('admin')->group(function () { 
@@ -55,22 +55,24 @@ Route::get('/admin/computers/del/{id}', 'App\Http\Controllers\Admin\AdminCompute
 });
 
 // Client routes
-Route::get('/computers/create', 'App\Http\Controllers\ComputerController@create')->name('computer.create');
-Route::post('/computers/save', 'App\Http\Controllers\ComputerController@save')->name('computer.save');
-Route::get('/computers', 'App\Http\Controllers\ComputerController@index')->name('computer.index');
-Route::get('/computers/{id}/review', 'App\Http\Controllers\ReviewController@create')->name('review.create');
-Route::post('/computers/{id}/edit', 'App\Http\Controllers\ReviewController@edit')->name('review.edit');
-Route::post('/computers/{id}/save', 'App\Http\Controllers\ReviewController@save')->name('review.save');
-Route::get('/computers/{id}', 'App\Http\Controllers\ComputerController@show')->name('computer.show');
-Route::delete('/computers/{id}', 'App\Http\Controllers\ComputerController@delete')->name('computer.delete');
+Route::get('/custom', 'App\Http\Controllers\User\CustomComputerController@create')->name('user.custom.create');
+
+Route::get('/computers/create', 'App\Http\Controllers\User\ComputerController@create')->name('user.computer.create');
+Route::post('/computers/save', 'App\Http\Controllers\User\ComputerController@save')->name('user.computer.save');
+Route::get('/computers', 'App\Http\Controllers\User\ComputerController@index')->name('user.computer.index');
+Route::get('/computers/{id}/review', 'App\Http\Controllers\User\ReviewController@create')->name('user.review.create');
+Route::post('/computers/{id}/edit', 'App\Http\Controllers\User\ReviewController@edit')->name('user.review.edit');
+Route::post('/computers/{id}/save', 'App\Http\Controllers\User\ReviewController@save')->name('user.review.save');
+Route::get('/computers/{id}', 'App\Http\Controllers\User\ComputerController@show')->name('user.computer.show');
+Route::delete('/computers/{id}', 'App\Http\Controllers\User\ComputerController@delete')->name('user.computer.delete');
 
 //Route::post('/computers/1/save', 'App\Http\Controllers\ReviewController@save')->name('review.save');
 
-Route::get('/parts/list', 'App\Http\Controllers\PartController@index')->name('part.index');
-Route::get('/parts/create', 'App\Http\Controllers\PartController@create')->name('part.create');
-Route::post('/parts/save', 'App\Http\Controllers\PartController@save')->name('part.save');
-Route::get('/parts/{id}', 'App\Http\Controllers\PartController@show')->name('part.show');
-Route::delete('/part/{id}', 'App\Http\Controllers\PartController@delete')->name('part.delete');
+Route::get('/parts/list', 'App\Http\Controllers\User\PartController@index')->name('user.part.index');
+Route::get('/parts/create', 'App\Http\Controllers\User\PartController@create')->name('user.part.create');
+Route::post('/parts/save', 'App\Http\Controllers\User\PartController@save')->name('user.part.save');
+Route::get('/parts/{id}', 'App\Http\Controllers\User\PartController@show')->name('user.part.show');
+Route::delete('/part/{id}', 'App\Http\Controllers\User\PartController@delete')->name('user.part.delete');
 
 Auth::routes();
 

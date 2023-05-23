@@ -13,7 +13,7 @@
                 <h3 class="text-lg font-medium text-white">{{ $part->getName() }}</h3>
             </div>
             <div class="p-2 bg-black">
-                <a href="{{ route('part.show', ['id' => $part->getId()]) }}" class="inline-block px-4 py-2 text-sm font-medium leading-5 text-white bg-black">
+                <a href="{{ route('user.part.show', ['id' => $part->getId()]) }}" class="inline-block px-4 py-2 text-sm font-medium leading-5 text-white bg-black">
                     {{ __('messages.user.part.about') }}
                 </a>
             </div>

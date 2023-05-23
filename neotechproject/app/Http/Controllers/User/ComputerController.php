@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\Computer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class ComputerController extends Controller
         $viewData['subtitle'] = __('user.computers.subtitle');
         $viewData['computers'] = Computer::all();
 
-        return view('computer.index')->with('viewData', $viewData);
+        return view('user.computer.index')->with('viewData', $viewData);
     }
 
     public function show(string $id): View
@@ -30,7 +31,7 @@ class ComputerController extends Controller
         $viewData['computer_id'] = $id;
         $viewData['reviews'] = $reviews;
 
-        return view('computer.show')->with('viewData', $viewData);
+        return view('user.computer.show')->with('viewData', $viewData);
     }
 
     public function create(): View
@@ -38,7 +39,7 @@ class ComputerController extends Controller
         $viewData = []; //to be sent to the view
         $viewData['title'] = 'Create computer';
 
-        return view('computer.create')->with('viewData', $viewData);
+        return view('user.computer.create')->with('viewData', $viewData);
     }
 
     public function save(Request $request): View
@@ -61,7 +62,7 @@ class ComputerController extends Controller
 
         $computer->save();
 
-        return view('computer.save');
+        return view('user.computer.save');
     }
 
     public function delete($id): RedirectResponse
@@ -69,6 +70,6 @@ class ComputerController extends Controller
         $computer = Computer::find($id);
         $computer->delete();
 
-        return redirect()->route('computer.index')->with('success', 'Computer deleted successfully');
+        return redirect()->route('user.computer.index')->with('success', 'Computer deleted successfully');
     }
 }

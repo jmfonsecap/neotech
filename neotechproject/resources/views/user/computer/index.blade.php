@@ -13,7 +13,7 @@
                 <h3 class="text-lg font-medium text-white">{{ $computer->getName() }}</h3>
             </div>
             <div class="p-2 bg-black"> <!-- Replaced the bg-primary class with bg-black -->
-                <a href="{{ route('computer.show', ['id' => $computer->getId()]) }}" class="inline-block px-4 py-2 text-sm font-medium leading-5 text-white bg-black rounded-lg"> <!-- Replaced the bg-primary class with bg-black -->
+                <a href="{{ route('user.computer.show', ['id' => $computer->getId()]) }}" class="inline-block px-4 py-2 text-sm font-medium leading-5 text-white bg-black rounded-lg"> <!-- Replaced the bg-primary class with bg-black -->
                 {{ __('messages.user.computer.viewDetails') }}
                 </a>
             </div>
