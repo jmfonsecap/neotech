@@ -37,10 +37,12 @@
         <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"> {{ __('messages.admin.computers.stock') }} </dt>
         <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"> {{ $viewData['computer']->getStock() }} </dd>
       </div>
+      @if($viewData['computer']->getDiscount()==1)
       <div>
         <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"> {{ __('messages.admin.computers.lastprice') }} </dt>
         <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"> $ {{ $viewData['computer']->getLastPrice() }} </dd>
       </div>
+      @endif
     </dl>
     <dl class="flex items-center space-x-6">
       <div>

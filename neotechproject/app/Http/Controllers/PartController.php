@@ -13,8 +13,8 @@ class PartController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Parts - Online Store';
-        $viewData['subtitle'] = 'List of parts';
+        $viewData['title'] = __('user.parts.title');
+        $viewData['subtitle'] = __('user.parts.subtitle');
         $viewData['parts'] = Part::all();
 
         return view('part.index')->with('viewData', $viewData);
@@ -22,23 +22,23 @@ class PartController extends Controller
 
     public function show(string $id): View
     {
+        $viewData = [];
         $part = Part::findOrFail($id);
         $type = $part->type;
-        $viewData = [];
-        $viewData['title'] = $part->getName($id).' - Online Store';
-        $viewData['subtitle'] = $part->getName($id).' - Product information';
+        $viewData['title'] = __('messages.admin.parts.info');
         $viewData['part'] = $part;
-        $viewData['type'] = $type;
+        $viewData['type_name'] = $type->getName();
 
-        return view('part.show', $viewData);
+        return view('part.show')->with('viewData', $viewData);
     }
+
 
     public function create(): View
     {
         $viewData = [];
 
         $viewData['types'] = Type::all();
-        $viewData['title'] = 'Create part';
+        $viewData['title'] = __('admin.parts.create');
 
         return view('part.create')->with('viewData', $viewData)->with('types', Type::all());
     }

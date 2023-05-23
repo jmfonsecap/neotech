@@ -12,7 +12,7 @@ class AdminReviewController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Reviews dashboard';
+        $viewData['title'] =  __('admin.reviews.dashboard');
         $viewData['reviews'] = Review::all();
 
         return view('admin.review.index')->with('viewData', $viewData);
@@ -79,7 +79,7 @@ class AdminReviewController extends Controller
     public function delete(string $id): View
     {
         $viewData = [];
-        $viewData['title'] = 'Reviews dashboard';
+        $viewData['title'] = __('admin.reviews.dashboard');
         Review::findOrFail($id);
         Review::where('id', $id)->delete();
         $viewData['reviews'] = Review::all();

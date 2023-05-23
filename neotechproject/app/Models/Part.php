@@ -5,11 +5,13 @@ namespace App\Models;
 use App\Models\CustomComputer;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Part extends Model
+class Part extends Model implements Searchable
 {
     /**
      * PART ATTRIBUTES
@@ -180,6 +182,17 @@ class Part extends Model
     public function setItems(Collection $items): void
     {
         $this->items = $items;
+    }
+
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('part.show', $this->id);
+
+        return new SearchResult(
+            $this,
+            $this->name,
+            $url
+         );
     }
 
     public static function validate($request)

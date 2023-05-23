@@ -7,6 +7,7 @@ use App\Models\Part;
 use App\Models\Type;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use App\Interfaces\ImageStorage;
 use Illuminate\Support\Facades\Storage;
 
 class AdminPartController extends Controller
@@ -53,15 +54,11 @@ class AdminPartController extends Controller
         $part->setPrice($request->input('price'));
         $part->setDetails($request->input('details'));
         $part->save();
-        if ($request->hasFile('photo')) {
-            $imageName = $part->getId().'.'.$request->file('photo')->extension();
-            Storage::disk('public')->put(
-                $imageName,
-                file_get_contents($request->file('photo')->getRealPath())
-            );
-            $part->setPhoto($imageName);
-            $part->save();
-        }
+        $imageName = substr(sha1(mt_rand()),17,6).'-part.'.$request->file('photo')->extension();
+        $storeInterface = app(ImageStorage::class);
+        $storeInterface->store($request, $imageName);
+        $part->setPhoto($imageName);
+        $part->save();
         $viewData = [];
         $viewData['title'] = __('messages.admin.parts.create');
         $viewData['types'] = Type::all();
@@ -89,15 +86,11 @@ class AdminPartController extends Controller
         //update
         Part::where('id', $id)->update($request->only(['name', 'stock', 'brand', 'type_id',
             'price', 'details']));
-        if ($request->hasFile('photo')) {
-            $imageName = $part->getId().'.'.$request->file('photo')->extension();
-            Storage::disk('public')->put(
-                $imageName,
-                file_get_contents($request->file('photo')->getRealPath())
-            );
-            $part->setPhoto($imageName);
-            $part->save();
-        }   
+        $imageName = $part->getName();
+        $storeInterface = app(ImageStorage::class);
+        $storeInterface->store($request, $imageName);
+        $part->setPhoto($imageName);
+        $part->save();
         $viewData = [];
         $viewData['title'] = __('messages.admin.parts.info');
         $viewData['part'] = $part;
