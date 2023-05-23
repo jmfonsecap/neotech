@@ -14,7 +14,8 @@ class CarApiController extends Controller
 
         $url = 'http://sebastianpg.pro/api/cars';
         $json = Http::get($url);
+        $cars = $json->json();
 
-        return view('user.rickandmorty.index')->with('data', $json);
+        return view('user.api.index')->with('cars', $cars);
     }
 }

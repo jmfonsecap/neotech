@@ -15,7 +15,7 @@ class CustomComputerController extends Controller
     {
         $viewData = [];
         $viewData['title'] = __('messages.admin.computer.table.title');
-        $viewData['types'] = Type::all();
+        $viewData['types'] = Type::whereHas('parts')->where('is_base',true)->get();
 
         return view('user.custom.create')->with('viewData', $viewData);
     }

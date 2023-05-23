@@ -57,6 +57,8 @@ Route::get('/admin/computers/del/{id}', 'App\Http\Controllers\Admin\AdminCompute
 // Client routes
 Route::get('/custom', 'App\Http\Controllers\User\CustomComputerController@create')->name('user.custom.create');
 
+Route::get('/api/cars', 'App\Http\Controllers\User\CarApiController@index')->name('user.api.index');
+
 Route::get('/computers/create', 'App\Http\Controllers\User\ComputerController@create')->name('user.computer.create');
 Route::post('/computers/save', 'App\Http\Controllers\User\ComputerController@save')->name('user.computer.save');
 Route::get('/computers', 'App\Http\Controllers\User\ComputerController@index')->name('user.computer.index');

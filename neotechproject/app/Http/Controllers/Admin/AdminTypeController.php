@@ -40,6 +40,7 @@ class AdminTypeController extends Controller
         $type = new Type();
         Type::validate($request);
         $type->setName($request->input('name'));
+        $type->setIsBase($request->input('is_base'));
         $type->save();
         $viewData = [];
         $viewData['title'] = __('messages.admin.types.create');
@@ -63,7 +64,7 @@ class AdminTypeController extends Controller
         $type = Type::findOrFail($id);
         $type->validate($request);
         //update
-        Type::where('id', $id)->update($request->only(['name']));
+        Type::where('id', $id)->update($request->only(['name','is_base']));
         $viewData = [];
         $viewData['title'] = __('messages.admin.type.table.title');
         $types = Type::all();

@@ -74,6 +74,7 @@ return [
     'admin.parts.deleted' => 'The part was deleted successfully!',
     'admin.types' => 'Types',
     'admin.types.list' => 'Manage Types',
+    'admin.types.base' => 'Is a base type?',
     'admin.types.name' => 'Type Name',
     'admin.types.info' => 'Type  Information',
     'admin.types.edit' => 'Edit Type',
