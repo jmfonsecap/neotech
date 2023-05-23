@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Type;
+use App\Models\CustomComputer;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Part extends Model
@@ -150,6 +151,22 @@ class Part extends Model
     }
 
     //Relations
+
+    public function customComputers(): BelongsToMany
+    {
+        return $this->belongsToMany(CustomComputer::class)->withTimestamps();
+    }
+
+    public function getCustomComputers(): Collection
+    {
+        return $this->custom_computers;
+    }
+
+    public function setCustomComputers(Collection $customComputers): void
+    {
+        $this->custom_computers = $customComputers;
+    }
+
     public function items(): HasMany
     {
         return $this->hasMany(Item::class);
