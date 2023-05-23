@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="card">
-    <div class="card-header"><b>{{ $searchResults->count() }} results found for "{{ request('query') }}"</b></div>
+    <div class="card-header"><b>{{ $searchResults->count() }} {{ __('messages.user.search.results') }}"{{ request('query') }}"</b></div>
 
     <div class="card-body">
 

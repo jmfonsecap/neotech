@@ -57,27 +57,25 @@
             <div class="col">
                 <form autocomplete="off" method="POST" action="{{ route('review.save', ['id' => $viewData['computer_id']]) }}">
                     @csrf
-                    <div class="form-group mt-1">
-                        <label class="font-weight-bold">{{ __('messages.user.computer.ratings') }}</label>
-                        <br>
-                        <div class="rate">
-                            <label for="star5" title="text">5</label>
-                            <input type="radio" id="star5" class="rate" name="rating" value="5" />
-                            <label for="star4" title="text">4</label>
-                            <input type="radio" id="star4" class="rate" name="rating" value="4" />
-                            <label for="star3" title="text">3</label>
-                            <input type="radio" id="star3" class="rate" name="rating" value="3" />
-                            <label for="star2" title="text">2</label>
-                            <input type="radio" id="star2" class="rate" name="rating" value="2" />
-                            <label for="star1" title="text">1</label>
-                            <input type="radio" id="star1" class="rate" name="rating" value="1" />
-                        </div>
+                    <label class="font-weight-bold">{{ __('messages.user.computer.ratings') }}</label>
+                    <br>
+                    <div class="rate">
+                      <input type="radio" id="star5" class="rate" name="rating" value="5" />
+                      <label for="star5" title="text">5</label>
+                      <input type="radio" id="star4" class="rate" name="rating" value="4" checked />
+                      <label for="star4" title="text">4</label>
+                      <input type="radio" id="star3" class="rate" name="rating" value="3" />
+                      <label for="star3" title="text">3</label>
+                      <input type="radio" id="star2" class="rate" name="rating" value="2" />
+                      <label for="star2" title="text">2</label>
+                      <input type="radio" id="star1" class="rate" name="rating" value="1" />
+                      <label for="star1" title="text">1</label>
                     </div>
                     <div class="form-group mt-4">
-                      <br> <br>
+                    <br> <br>
                       <label class="font-weight-bold">{{ __('messages.user.computer.comments') }}</label>
                       <br>
-                      <textarea class="form-control" style="width: 100%;" placeholder="{{ __('messages.user.review.enterdescription') }}" name="description" rows="6" maxlength="200">{{ old('description') }}</textarea>
+                      <textarea name="description" maxlength="200" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="{{ __('messages.admin.create.enterdetails') }}">{{ old('description') }}</textarea>
                     </div>
                     <div class="mt-3 text-right">
                         <button class="btn btn-sm py-2 px-3 btn-info">{{ __('messages.user.send') }}</button>

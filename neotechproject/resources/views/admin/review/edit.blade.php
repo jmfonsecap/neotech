@@ -25,7 +25,7 @@
                             <label for="file" class="form-label"> File </label>
                             <input class="form-control" type="file" name="file" id="file">
                         </div>
-                        <input type="submit" class="btn btn-primary mt-2" value="{{ __('messages.admin.update') }}" />
+                        <input type="submit" class="btn btn-primary mt-2" value="Update" />
                     </form>
                 </div>
             </div>

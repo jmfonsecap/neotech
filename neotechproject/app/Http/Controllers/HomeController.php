@@ -30,7 +30,7 @@ class HomeController extends Controller
 
         return view('home.index')->with('viewData', $viewData);
     }
-    public function search(Request $request)
+    public function search(Request $request):View
     {
         $computers = Computer::all();
         $parts= Part::all();

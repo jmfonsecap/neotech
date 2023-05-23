@@ -9,23 +9,15 @@ use Illuminate\Http\RedirectResponse;
 
 class ReviewController extends Controller
 {
-    public function create(string $id): View
-    {
-        $viewData = [];
-        $viewData['title'] = 'Create review';
-        $viewData['computer_id'] = $id;
-
-        return view('review.create')->with('viewData', $viewData);
-    }
 
     public function save(Request $request, string $computerId): RedirectResponse
     {
         Review::validate($request);
 
         $rev = new Review();
-
+        session()->put('user_id', auth()->id());
         $rev->setComputerId($computerId);
-
+        $rev->setUserId(session()->get('user_id'));
         $rev->setRating($request->input('rating'));
         $rev->setDescription($request->input('description'));
 

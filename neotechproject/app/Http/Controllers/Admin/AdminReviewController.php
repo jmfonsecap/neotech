@@ -7,13 +7,12 @@ use App\Models\Review;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
-
 class AdminReviewController extends Controller
 {
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Reviews dashboard';
+        $viewData['title'] =  __('admin.reviews.dashboard');
         $viewData['reviews'] = Review::all();
 
         return view('admin.review.index')->with('viewData', $viewData);
@@ -25,11 +24,13 @@ class AdminReviewController extends Controller
         $review = Review::findOrFail($id);
         $user = $review->user;
         $computerId = $review->getComputerId();
+        $userId = $review->getUserId();
         $viewData['title'] = $review['id'].' - Neotech';
         $viewData['subtitle'] = $review['rating'].'/5';
         $viewData['description'] = $review['description'];
         $viewData['user'] = $user;
         $viewData['computer_id'] = $computerId;
+        $viewData['user_id'] = $userId;
         $viewData['review'] = $review;
 
         return view('admin.review.show')->with('viewData', $viewData);
@@ -78,7 +79,7 @@ class AdminReviewController extends Controller
     public function delete(string $id): View
     {
         $viewData = [];
-        $viewData['title'] = 'Reviews dashboard';
+        $viewData['title'] = __('admin.reviews.dashboard');
         Review::findOrFail($id);
         Review::where('id', $id)->delete();
         $viewData['reviews'] = Review::all();

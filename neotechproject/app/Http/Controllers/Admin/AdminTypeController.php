@@ -12,7 +12,7 @@ class AdminTypeController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Computers dashboard';
+        $viewData['title'] = __('messages.admin.type.table.title');
         $viewData['types'] = Type::all();
 
         return view('admin.type.index')->with('viewData', $viewData);
@@ -22,7 +22,6 @@ class AdminTypeController extends Controller
     {
         $viewData = [];
         $type = Type::findOrFail($id);
-        $viewData['title'] = $type['name'].' - Neotech';
         $viewData['type'] = $type;
 
         return view('admin.type.show')->with('viewData', $viewData);
@@ -31,7 +30,7 @@ class AdminTypeController extends Controller
     public function create(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Create type';
+        $viewData['title'] = __('messages.admin.types.create');
 
         return view('admin.type.create')->with('viewData', $viewData);
     }
@@ -42,15 +41,18 @@ class AdminTypeController extends Controller
         Type::validate($request);
         $type->setName($request->input('name'));
         $type->save();
+        $viewData = [];
+        $viewData['title'] = __('messages.admin.types.create');
+        session()->flash('status', __('messages.admin.types.created'));
 
-        return view('admin.type.create')->with('status', 'created');
+        return view('admin.type.create')->with('viewData', $viewData);
     }
 
     public function edit(string $id): View
     {
         $viewData = [];
         $type = Type::findOrFail($id);
-        $viewData['title'] = $type['name'].' - Neotech';
+        $viewData['title'] = __('messages.admin.types.edit');
         $viewData['type'] = $type;
 
         return view('admin.type.edit')->with('viewData', $viewData);
@@ -62,18 +64,30 @@ class AdminTypeController extends Controller
         $type->validate($request);
         //update
         Type::where('id', $id)->update($request->only(['name']));
+        $viewData = [];
+        $viewData['title'] = __('messages.admin.type.table.title');
+        $types = Type::all();
+        $viewData['types'] = $types;
+        session()->flash('status', __('messages.admin.types.updated'));
 
-        return view('admin.type.update')->with('status', 'updated');
+        return view('admin.type.index')->with('viewData', $viewData);
     }
 
     public function delete(string $id)
     {
         $viewData = [];
-        $viewData['title'] = 'Types dashboard';
         $viewData['types'] = Type::all();
-        Type::findOrFail($id);
-        Type::where('id', $id)->delete();
+        $type = Type::findOrFail($id);
+        $parts = $type->getParts();
+        
+        $parts->each(function ($part) {
+            $part->delete();
+        });
+        $type->delete();
+        $viewData['types'] = Type::all();
+        $viewData['title'] = __('messages.admin.type.table.title');
+        session()->flash('status', __('messages.admin.types.deleted'));
 
-        return back()->with('status', 'deleted')->with('viewData', $viewData);
+        return view('admin.type.index')->with('viewData', $viewData);
     }
 }

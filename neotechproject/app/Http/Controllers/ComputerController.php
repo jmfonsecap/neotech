@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Computer;
-use App\Interfaces\ImageStorage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -13,10 +12,9 @@ class ComputerController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Computers - Online Store';
-        $viewData['subtitle'] = 'List of Computers';
+        $viewData['title'] = __('user.computers.title');
+        $viewData['subtitle'] = __('user.computers.subtitle');
         $viewData['computers'] = Computer::all();
-        
 
         return view('computer.index')->with('viewData', $viewData);
     }
@@ -27,7 +25,7 @@ class ComputerController extends Controller
         $computer = Computer::findOrFail($id);
         $reviews = $computer->reviews;
         $viewData['title'] = $computer['name'].' - Neotech';
-        $viewData['subtitle'] = $computer['name'].' - Computer information';
+        $viewData['subtitle'] = $computer['name'].__('user.computers.information');
         $viewData['computer'] = $computer;
         $viewData['computer_id'] = $id;
         $viewData['reviews'] = $reviews;

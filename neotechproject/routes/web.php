@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
 Route::post('/search', 'App\Http\Controllers\HomeController@search')->name('search');
 // Admin routes
+Route::middleware('admin')->group(function () { 
 Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.home.index');
 Route::get('/admin/users', 'App\Http\Controllers\Admin\AdminUserController@index')->name('admin.users.index');
 Route::get('/admin/users/{id}', 'App\Http\Controllers\Admin\AdminUserController@show')->name('admin.users.show');
@@ -25,8 +26,8 @@ Route::get('/admin/types', 'App\Http\Controllers\Admin\AdminTypeController@index
 Route::get('/admin/types/create', 'App\Http\Controllers\Admin\AdminTypeController@create')->name('admin.type.create');
 Route::get('/admin/types/{id}', 'App\Http\Controllers\Admin\AdminTypeController@show')->name('admin.type.show');
 Route::post('/admin/types/save', 'App\Http\Controllers\Admin\AdminTypeController@save')->name('admin.type.save');
-Route::post('/admin/types/update/{id}', 'App\Http\Controllers\Admin\AdminTypeController@update')->name('admin.type.update');
-Route::post('/admin/types/{id}', 'App\Http\Controllers\Admin\AdminTypeController@edit')->name('admin.type.edit');
+Route::post('/admin/types/{id}', 'App\Http\Controllers\Admin\AdminTypeController@update')->name('admin.type.update');
+Route::get('/admin/types/update/{id}', 'App\Http\Controllers\Admin\AdminTypeController@edit')->name('admin.type.edit');
 Route::get('/admin/types/del/{id}', 'App\Http\Controllers\Admin\AdminTypeController@delete')->name('admin.type.delete');
 
 Route::get('/admin/parts', 'App\Http\Controllers\Admin\AdminPartController@index')->name('admin.part.index');
@@ -51,6 +52,7 @@ Route::post('/admin/computers/save', 'App\Http\Controllers\Admin\AdminComputerCo
 Route::post('/admin/computers/{id}', 'App\Http\Controllers\Admin\AdminComputerController@update')->name('admin.computer.update');
 Route::get('/admin/computers/update/{id}', 'App\Http\Controllers\Admin\AdminComputerController@edit')->name('admin.computer.edit');
 Route::get('/admin/computers/del/{id}', 'App\Http\Controllers\Admin\AdminComputerController@delete')->name('admin.computer.delete');
+});
 
 // Client routes
 Route::get('/computers/create', 'App\Http\Controllers\ComputerController@create')->name('computer.create');
