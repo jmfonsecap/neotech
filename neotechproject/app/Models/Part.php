@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Type;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Searchable\Searchable;
@@ -25,8 +26,23 @@ class Part extends Model implements Searchable
      * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
      * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
      * $this->computers - Computer[] - contains the associated computers
+     * $this->attributes['computer_id'] - int-  contains the id of the asociated computer
      */
     protected $fillable = ['stock', 'name', 'photo', 'brand', 'type', 'price', 'details'];
+
+    public function getLabels()
+    {
+        $colums = [
+            'name',
+            'stock',
+            'brand',
+            'type',
+            'price',
+            'actions',
+        ];
+
+        return $colums;
+    }
 
     public function getId(): int
     {
@@ -100,11 +116,6 @@ class Part extends Model implements Searchable
         return $this->attributes['created_at'];
     }
 
-    public function setCreated_at(string $desc): void
-    {
-        $this->attributes['created_at'] = $desc;
-    }
-
     public function getUpdated_at(): string
     {
         return $this->attributes['updated_at'];
@@ -117,7 +128,7 @@ class Part extends Model implements Searchable
 
     public function getTypeId(): int
     {
-        return $this->attributes['part_id'];
+        return $this->attributes['type_id'];
     }
 
     public function setTypeId(int $type_id): void
@@ -127,7 +138,7 @@ class Part extends Model implements Searchable
 
     public function type(): BelongsTo
     {
-        return $this->belongsTo(Type::class, 'id');
+        return $this->belongsTo(Type::class);
     }
 
     public function getSearchResult(): SearchResult
@@ -140,9 +151,10 @@ class Part extends Model implements Searchable
             $url
          );
     }
-    public function getType(): string
+
+    public function getType(): Type
     {
-        return $this->type;
+        return $this->type; 
     }
 
     public function setType($type): void
@@ -173,7 +185,6 @@ class Part extends Model implements Searchable
             'stock' => 'required|numeric|gte:0',
             'photo' => 'required',
             'brand' => 'required',
-            'type' => 'required',
             'price' => 'required|numeric|gt:0',
             'details' => 'required',
         ]);

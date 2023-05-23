@@ -1,7 +1,7 @@
 @extends('layouts.admin') 
 @section('content')
     
-<div class="relative overflow-x-auto pt-4">
+<div class="w-full relative overflow-x-auto pt-4">
 <p class="font-bold text-2xl text-center text-gray-500 dark:text-gray-400">{{ __('messages.admin.review.table.title') }}</p>
   <hr class="border-1 border-gray-500 my-5">
 
@@ -25,6 +25,9 @@
                 </th>
                 <td class="px-6 py-4">
                     {{ $review->getComputerId() }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ $review->getUserId() }}
                 </td>
                 <td class="px-6 py-4">
                     {{ $review->getRating() }}

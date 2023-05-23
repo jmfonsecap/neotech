@@ -11,7 +11,7 @@ class AdminUserController extends Controller
     public function index()
     {
         $viewData = [];
-        $viewData['title'] = 'Users dashboard';
+        $viewData['title'] = __('messages.admin.user.table.title');
         $viewData['users'] = User::all();
 
         return view('admin.users.index')->with('viewData', $viewData);

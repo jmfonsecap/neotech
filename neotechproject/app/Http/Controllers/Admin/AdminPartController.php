@@ -15,7 +15,7 @@ class AdminPartController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Parts dashboard';
+        $viewData['title'] = __('messages.admin.part.table.title');
         $viewData['parts'] = Part::all();
 
         return view('admin.part.index')->with('viewData', $viewData);
@@ -26,10 +26,9 @@ class AdminPartController extends Controller
         $viewData = [];
         $part = Part::findOrFail($id);
         $type = $part->type;
-        $viewData['title'] = $part['name'].' - Neotech';
-        $viewData['subtitle'] = $part['name'].' - Part information';
+        $viewData['title'] = __('messages.admin.parts.info');
         $viewData['part'] = $part;
-        $viewData['type'] = $type;
+        $viewData['type_name'] = $type->getName();
 
         return view('admin.part.show')->with('viewData', $viewData);
     }
@@ -37,10 +36,10 @@ class AdminPartController extends Controller
     public function create(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Create part';
+        $viewData['title'] = __('messages.admin.parts.create');
         $viewData['types'] = Type::all();
 
-        return view('admin.part.create')->with(['viewData' => $viewData, 'status' => 'created']);
+        return view('admin.part.create')->with('viewData', $viewData);
     }
 
     public function save(Request $request): View
@@ -50,7 +49,8 @@ class AdminPartController extends Controller
         $part->setName($request->input('name'));
         $part->setStock($request->input('stock'));
         $part->setBrand($request->input('brand'));
-        $part->setType($request->input('type'));
+        $type = Type::findOrFail($request['types']);
+        $part->setTypeId($type->getId());
         $part->setPrice($request->input('price'));
         $part->setDetails($request->input('details'));
         $part->save();
@@ -60,18 +60,21 @@ class AdminPartController extends Controller
         $part->setPhoto($imageName);
         $part->save();
         $viewData = [];
+        $viewData['title'] = __('messages.admin.parts.create');
         $viewData['types'] = Type::all();
+        session()->flash('status', __('messages.admin.parts.created'));
 
-        return view('admin.part.create')->with(['viewData' => $viewData, 'status' => 'created']);
+        return view('admin.part.create')->with('viewData', $viewData);
     }
 
     public function edit(string $id): View
     {
         $viewData = [];
         $part = Part::findOrFail($id);
-        $viewData['title'] = $part['name'].' - Neotech';
-        $viewData['subtitle'] = $part['name'].' - Part information';
+        $types = Type::all();
+        $viewData['title'] = __('messages.admin.parts.edit');
         $viewData['part'] = $part;
+        $viewData['types'] = $types;
 
         return view('admin.part.edit')->with('viewData', $viewData);
     }
@@ -81,22 +84,36 @@ class AdminPartController extends Controller
         $part = Part::findOrFail($id);
         $part->validate($request);
         //update
-        Part::where('id', $id)->update($request->only(['name', 'photo', 'stock', 'brand', 'type',
+        Part::where('id', $id)->update($request->only(['name', 'stock', 'brand', 'type_id',
             'price', 'details']));
+        if ($request->hasFile('photo')) {
+            $imageName = $part->getId().'.'.$request->file('photo')->extension();
+            Storage::disk('public')->put(
+                $imageName,
+                file_get_contents($request->file('photo')->getRealPath())
+            );
+            $part->setPhoto($imageName);
+            $part->save();
+        }   
+        $viewData = [];
+        $viewData['title'] = __('messages.admin.parts.info');
+        $viewData['part'] = $part;
+        $type = $part->type;
+        $viewData['type_name'] = $type->getName();
+        session()->flash('status', __('messages.admin.parts.updated'));
 
-        return view('admin.part.show')->with('status', 'updated');
+        return view('admin.part.show')->with('viewData', $viewData);
     }
 
     public function delete(string $id): View
     {
         $viewData = [];
-        $viewData['title'] = 'Parts dashboard';
         Part::findOrFail($id);
         Part::where('id', $id)->delete();
         $viewData['parts'] = Part::all();
+        $viewData['title'] = __('messages.admin.part.table.title');
+        session()->flash('status', __('messages.admin.parts.deleted'));
 
         return view('admin.part.index')->with('viewData', $viewData);
-
-        return view('admin.part.index')->with('status', 'deleted');
     }
 }

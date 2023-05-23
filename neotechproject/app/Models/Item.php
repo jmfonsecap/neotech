@@ -15,8 +15,13 @@ class Item extends Model
      * $this->attributes['id'] - int - contains the item primary key (id)
      * $this->attributes['quantity'] - int - contains the quantity of the item
      * $this->part - Part - contains the associated part
+     * $this->attributes['part_id'] - int - contains the part id
      * $this->computer - Computer - contains the associated computer
+     * $this->attributes['computer_id'] - int - contains the computer id
      * $this->order - Order- contains the associated order
+     * $this->attributes['order_id'] - int - contains the order id
+     * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
+     * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
      */
     protected $fillable = ['quantity', 'part_id', 'computer_id',
         'order_id'];
@@ -24,11 +29,6 @@ class Item extends Model
     public function getId(): int
     {
         return $this->attributes['id'];
-    }
-
-    public function setId(int $id): void
-    {
-        $this->attributes['id'] = $id;
     }
 
     public function getQuantity(): int
@@ -115,5 +115,20 @@ class Item extends Model
     public function setOrder($order): void
     {
         $this->order = $order;
+    }
+
+    public function getCreated_at(): string
+    {
+        return $this->attributes['created_at'];
+    }
+
+    public function getUpdated_at(): string
+    {
+        return $this->attributes['updated_at'];
+    }
+
+    public function setUpdated_at(string $desc): void
+    {
+        $this->attributes['updated_at'] = $desc;
     }
 }

@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 @section('content')
 
-<div class="relative overflow-x-auto pt-4">
-    <p class="font-bold text-2xl text-center text-gray-500 dark:text-gray-400">{{ __('messages.admin.computer.table.title') }}</p>
+<div class="w-full relative overflow-x-auto pt-4">
+    <p class="font-bold text-2xl text-center text-gray-500 dark:text-gray-400"> {{ $viewData["title"] }} </p>
     <hr class="border-1 border-gray-500 my-5">
 
     @if(session('status'))
