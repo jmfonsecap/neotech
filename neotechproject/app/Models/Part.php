@@ -186,7 +186,7 @@ class Part extends Model implements Searchable
 
     public function getSearchResult(): SearchResult
     {
-        $url = route('part.show', $this->id);
+        $url = route('user.part.show', $this->id);
 
         return new SearchResult(
             $this,

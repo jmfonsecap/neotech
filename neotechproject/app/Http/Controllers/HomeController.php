@@ -28,7 +28,7 @@ class HomeController extends Controller
             $viewData['sizeOfComputerArray'] = count($computersInDiscount);
         }
 
-        return view('home.index')->with('viewData', $viewData);
+        return view('user.home.index')->with('viewData', $viewData);
     }
     public function search(Request $request):View
     {

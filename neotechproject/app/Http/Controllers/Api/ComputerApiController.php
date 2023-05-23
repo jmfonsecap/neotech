@@ -15,10 +15,4 @@ class ComputerApiController extends Controller
         $collect = ComputerResource::collection($computers);    
         return response()->json($collect, 200);
     }
-
-    public function show(string $id): JsonResponse
-    {
-        $computer = new ComputerResource(Computer::findOrFail($id));
-        return response()->json($computer, 200);
-    }
 }

@@ -19,4 +19,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/computers', 'App\Http\Controllers\Api\ComputerApiController@index')->name('api.computer.index');
-Route::get('/computers/{id}', 'App\Http\Controllers\Api\ComputerApiController@show')->name('api.computer.show');

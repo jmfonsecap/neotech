@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Computer;
@@ -17,6 +17,6 @@ class CustomComputerController extends Controller
         $viewData['title'] = __('messages.admin.computer.table.title');
         $viewData['types'] = Type::all();
 
-        return view('custom.create')->with('viewData', $viewData);
+        return view('user.custom.create')->with('viewData', $viewData);
     }
 }

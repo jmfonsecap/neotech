@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\Part;
 use App\Models\Type;
 use Illuminate\Http\RedirectResponse;
@@ -17,7 +18,7 @@ class PartController extends Controller
         $viewData['subtitle'] = __('user.parts.subtitle');
         $viewData['parts'] = Part::all();
 
-        return view('part.index')->with('viewData', $viewData);
+        return view('user.part.index')->with('viewData', $viewData);
     }
 
     public function show(string $id): View
@@ -29,7 +30,7 @@ class PartController extends Controller
         $viewData['part'] = $part;
         $viewData['type_name'] = $type->getName();
 
-        return view('part.show')->with('viewData', $viewData);
+        return view('user.part.show')->with('viewData', $viewData);
     }
 
 
@@ -40,7 +41,7 @@ class PartController extends Controller
         $viewData['types'] = Type::all();
         $viewData['title'] = __('admin.parts.create');
 
-        return view('part.create')->with('viewData', $viewData)->with('types', Type::all());
+        return view('user.part.create')->with('viewData', $viewData)->with('types', Type::all());
     }
 
     public function save(Request $request): View
@@ -57,7 +58,7 @@ class PartController extends Controller
 
         $part->save();
 
-        return view('part.save');
+        return view('user.part.save');
     }
 
     public function delete($id): RedirectResponse
@@ -65,6 +66,6 @@ class PartController extends Controller
         $part = Part::find($id);
         $part->delete();
 
-        return redirect()->route('part.index')->with('success', 'Part deleted successfully');
+        return redirect()->route('user.part.index')->with('success', 'Part deleted successfully');
     }
 }

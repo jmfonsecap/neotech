@@ -12,12 +12,13 @@ class ComputerResource extends JsonResource
         $currPrice = $this->getCurrentPrice();
         $lastPrice = $this->getLastPrice();
         $discount = number_format(100-($currPrice*100)/$lastPrice, 2);
+        $img_url = url('storage/' . $this->getPhoto());
 
         return [
             'id' => $this->getId(),
             'name' => $this->getName(),
             'stock' => $this->getStock(),
-            'image_url' => $this->getPhoto(),
+            'image_url' => $img_url,
             'brand' => $this->getBrand(),
             'price_cop' => $this->getCurrentPrice(),
             'category' => $this->getCategory(),
