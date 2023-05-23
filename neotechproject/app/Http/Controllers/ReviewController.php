@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class ReviewController extends Controller
 {
@@ -17,7 +18,7 @@ class ReviewController extends Controller
         return view('review.create')->with('viewData', $viewData);
     }
 
-    public function save(Request $request, string $computerId): View
+    public function save(Request $request, string $computerId): RedirectResponse
     {
         Review::validate($request);
 
@@ -30,6 +31,6 @@ class ReviewController extends Controller
 
         $rev->save();
 
-        return view('review.save');
+        return back()->with('success', 'Review saved successfully.');
     }
 }

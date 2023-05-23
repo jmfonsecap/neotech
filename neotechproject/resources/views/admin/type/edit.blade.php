@@ -22,7 +22,7 @@
                     @csrf
                         <input type="text" class="form-control mb-3" placeholder="{{__('messages.admin.create.entername')}}" name="name" value="{{ $viewData["type"]->getName() }}" />
                         
-                        <input type="submit" class="btn btn-primary mt-2" value="Update" />
+                        <input type="submit" class="btn btn-primary mt-2" value="{{ __('messages.admin.update') }}" />
                     </form>
                 </div>
             </div>

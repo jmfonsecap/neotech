@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Part extends Model
+class Part extends Model implements Searchable
 {
     /**
      * PART ATTRIBUTES
@@ -128,6 +130,16 @@ class Part extends Model
         return $this->belongsTo(Type::class, 'id');
     }
 
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('part.show', $this->id);
+
+        return new SearchResult(
+            $this,
+            $this->name,
+            $url
+         );
+    }
     public function getType(): string
     {
         return $this->type;

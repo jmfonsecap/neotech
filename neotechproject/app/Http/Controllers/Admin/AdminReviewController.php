@@ -7,6 +7,7 @@ use App\Models\Review;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
+
 class AdminReviewController extends Controller
 {
     public function index(): View

@@ -39,7 +39,7 @@
                         <input type="number" class="form-control mb-2" placeholder="{{ __('messages.admin.create.entercurrprice') }}" name="currentPrice" value="{{ old('currentPrice') }}" />
                         <input type="number" class="form-control mb-2" placeholder="{{ __('messages.admin.create.enterlastprice') }}" name="lastPrice" value="{{ old('lastPrice') }}" />
                         <input type="text" class="form-control mb-2" placeholder="{{ __('messages.admin.create.enterdetails') }}" name="details" value="{{ old('details') }}" />
-                        Is in discount?
+                        {{ __('messages.admin.create.isdiscount') }}
                         <input type="checkbox" name="discount" placeholder="{{ __('messages.admin.create.isdiscount') }}" class="switch-input" value="1" {{ old('discount') ? 'checked="checked"' : '' }} />
                         <div class="row">
                         <div class="col">

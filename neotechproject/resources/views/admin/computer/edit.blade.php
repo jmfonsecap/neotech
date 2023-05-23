@@ -49,10 +49,10 @@
 
 
                         <div class="mb-3">
-                            <label for="file" class="form-label"> File </label>
+                            <label for="file" class="form-label">{{ __('messages.admin.create.file') }} </label>
                             <input class="form-control" type="file" name="photo" id="file">
                         </div>
-                        <input type="submit" class="btn btn-primary mt-2" value="Update" />
+                        <input type="submit" class="btn btn-primary mt-2" value="{{ __('messages.admin.update') }}" />
                     </form>
                 </div>
             </div>

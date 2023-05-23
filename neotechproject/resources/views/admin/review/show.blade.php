@@ -7,7 +7,6 @@
     <hr class="border-1 border-gray-500">
   </div>
   <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-    <img src="https://images.unsplash.com/photo-1592921870789-04563d55041c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" alt="" class="h-[350px] w-full object-cover sm:h-[350px] pb-3" />
     <h2 class="mb-2 text-xl font-semibold leading-none text-gray-900 md:text-2xl dark:text-white"> {{ $viewData['review']->getId() }} </h2>
     <dl>
       <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"> {{ __('messages.admin.reviews.description') }} </dt>

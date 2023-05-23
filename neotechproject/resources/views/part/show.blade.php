@@ -1,34 +1,21 @@
-@extends('layouts.app') 
-@section('title', $title) 
-@section('subtitle', $subtitle) 
+@extends('layouts.app')
+@section('title', $title)
+@section('subtitle', $subtitle)
 @section('content')
-<div class="card mb-3">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="https://laravel.com/img/logotype.min.svg" class="img-fluid rounded-start">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">
-          {{ $part->getName() }}
-        </h5>
-        <p class="card-text"> In stock: {{ $part->getStock() }}
-        </p>
-        <p class="card-text"> Brand: {{ $part->getBrand() }}
-        </p>
-        <p class="card-text"> Type: {{ $part->getType() }}
-        </p>
-        <p class="card-text"> Price: {{ $part->getPrice() }}
-        </p>
-        <p class="card-text"> Details: {{ $part->getDetails() }}
-        </p>
-        <p class="card-text"> Creation date: {{ $part->getCreated_at() }}
-        </p>
-        <p class="card-text"> Last update: {{ $part->getUpdated_at() }}
-        </p>
-        <form action="{{ route('part.delete', $part->getId()) }}" method="POST"> @csrf @method('DELETE') <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
+<section class="bg-white dark:bg-gray-900">
+  <div class="py-6 px-4 mx-auto max-w-4xl lg:py-10 flex">
+    <div class="w-3/5">
+      <div class="part-image">
+        <img src="{{ asset('/storage/'.$part->getPhoto()) }}" alt="Part Image" class="w-full">
       </div>
     </div>
-  </div> 
-</div> @endsection
+    <div class="w-2/5">
+      <h2 class="mb-2 text-xl font-semibold leading-none text-gray-900 md:text-2xl dark:text-white">{{ $part->getBrand() }} {{ $part->getName() }}</h2>
+      <p class="mb-2 text-lg font-semibold leading-none text-gray-900 md:text-base dark:text-white">{{ __('messages.user.price') }} <span class="text-sm font-light text-gray-500 sm:mb-5 dark:text-gray-400">{{ $part->getPrice() }}</span></p>
+      <p class="mb-2 text-lg font-semibold leading-none text-gray-900 md:text-base dark:text-white">{{ __('messages.user.parts.type') }} {{ $part->getType() }}</p>
+      <p class="mb-2 font-semibold leading-none text-gray-900 md:text-base dark:text-white">{{ __('messages.user.parts.details') }}</p>
+      <p class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">{{ $part->getDetails() }}</p>
+    </div>
+  </div>
+</section>
+@endsection

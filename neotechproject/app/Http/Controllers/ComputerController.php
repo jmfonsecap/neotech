@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Computer;
+use App\Interfaces\ImageStorage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -15,6 +16,7 @@ class ComputerController extends Controller
         $viewData['title'] = 'Computers - Online Store';
         $viewData['subtitle'] = 'List of Computers';
         $viewData['computers'] = Computer::all();
+        
 
         return view('computer.index')->with('viewData', $viewData);
     }

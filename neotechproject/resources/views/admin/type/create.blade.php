@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Add Type</div>
+                <div class="card-header"> {{ __('messages.admin.types.create') }}</div>
                 <div class="card-body">
                     @if($errors->any())
                     <ul id="errors" class="alert alert-danger list-unstyled">
@@ -23,9 +23,9 @@
 
                     <form method="POST" action="{{ route('admin.type.save') }}">
                         @csrf
-                        <input type="text" class="form-control mb-2" placeholder="Enter name" name="name" value="{{ old('name') }}" />
+                        <input type="text" class="form-control mb-2" placeholder="{{ __('messages.admin.create.entername') }}" name="name" value="{{ old('name') }}" />
                         
-                        <input type="submit" class="btn btn-primary" value="Send" />
+                        <input type="submit" class="btn btn-primary" value="{{ __('messages.admin.send') }}" />
                     </form>
                 </div>
             </div>

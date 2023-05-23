@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Part;
 use App\Models\Type;
 use Illuminate\Contracts\View\View;
+use App\Interfaces\ImageStorage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+
 
 class AdminPartController extends Controller
 {
@@ -53,15 +54,11 @@ class AdminPartController extends Controller
         $part->setPrice($request->input('price'));
         $part->setDetails($request->input('details'));
         $part->save();
-        if ($request->hasFile('photo')) {
-            $imageName = $part->getId().'.'.$request->file('photo')->extension();
-            Storage::disk('public')->put(
-                $imageName,
-                file_get_contents($request->file('photo')->getRealPath())
-            );
-            $part->setPhoto($imageName);
-            $part->save();
-        }
+        $imageName = $part->getId().'.'.$request->file('photo')->extension();
+        $storeInterface = app(ImageStorage::class);
+        $storeInterface->store($request, $imageName);
+        $part->setPhoto($imageName);
+        $part->save();
         $viewData = [];
         $viewData['types'] = Type::all();
 

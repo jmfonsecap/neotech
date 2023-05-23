@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Computer;
 use Illuminate\View\View;
+use App\Models\Part;
+use Illuminate\Http\Request;
+use Spatie\Searchable\Search;
 
 class HomeController extends Controller
 {
@@ -27,4 +30,18 @@ class HomeController extends Controller
 
         return view('home.index')->with('viewData', $viewData);
     }
+    public function search(Request $request)
+    {
+        $computers = Computer::all();
+        $parts= Part::all();
+        $viewData['computers']= $computers;
+        $viewData['parts']= $parts;
+        $searchResults = (new Search())
+            ->registerModel(Computer::class, 'name')
+            ->registerModel(Part::class, 'name')
+            ->perform($request->input('query'));
+
+        return view('search', compact('searchResults'))->with('viewData', $viewData);
+    }
+
 }
