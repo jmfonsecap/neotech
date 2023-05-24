@@ -125,7 +125,7 @@ return [
     'admin.uploadfile' => 'Upload file',
     'admin.created' => 'created',
     'client.home' => 'Client home',
-    'user.price' => 'Price:',
+    'user.price' => 'Price COP:',
     'user.computer.before'=> 'Before:',
     'user.computer.now'=> 'Now:',
     'user.computer.details' => 'Details',
@@ -153,5 +153,13 @@ return [
     'user.next' => 'Next',
     'user.previous' => 'Previous',
     'user.search' => 'Search',
-    'user.search.results' => 'result(s) found for'
+    'user.search.results' => 'result(s) found for',
+    'user.car.about' => 'Car Details',
+    'user.car.brand' => 'Car Brand:',
+    'user.car.color' => 'Color: ',
+    'user.car.year' => 'Year: ',
+    'user.car.kilometers' => 'Kilometers: ',
+    'user.car.transtype' => 'Transmission Type: ',
+    'user.car.type' => 'Type: ',
+    'user.car.new' => 'Is new?:',
 ];
