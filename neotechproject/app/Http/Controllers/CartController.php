@@ -14,6 +14,7 @@ class CartController extends Controller
  $partsInSession = [];
  $computersInCart=[];
  $computersInSession=[];
+ 
  foreach ($productsInSession as $product) {
      if ($product['type'] == 'part') {
          $partsInSession[] = $product;
@@ -29,10 +30,11 @@ class CartController extends Controller
         foreach ($partsInSession as $partInSession){
             if ($partInSession['id']==$partId){
             $quantity= $partInSession["quantity"];
-            $computersInCart[$partId][0]["quantity"]=$quantity;
+            $partsInCart[$partId][0]["quantity"]=$quantity;
         }
         }
     }
+    echo(json_encode($partsInCart));
     $total += Part::sumPricesByQuantities($partsInCart, $partsInSession);
 } else if ($computersInSession) {
     $computerIds = array_column($computersInSession, 'id');
