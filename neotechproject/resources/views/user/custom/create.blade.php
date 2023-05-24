@@ -21,7 +21,7 @@
             @endforeach
         </ul>
         @endif
-        <form method="POST" action="{{ route('admin.part.save') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('user.custom.save') }}" enctype="multipart/form-data">
             @csrf
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                 <div class="sm:col-span-2">
@@ -31,7 +31,7 @@
                 @foreach($viewData["types"] as $type)
                     <div class="sm:col-span-2">
                         <label for="types" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> {{ $type->getName() }} </label>
-                        <select id="types" name="types" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <select id="parts" name="parts[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             @foreach($type->getParts() as $part)
                                 <option value="{{ $part->getId() }}"> {{ $part->getName() }} </option>
                             @endforeach

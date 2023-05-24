@@ -13,6 +13,7 @@ class Type extends Model
 
      * $this->attributes['id'] - int - contains the type primary key (id)
      * $this->attributes['name'] - string - contains the type name
+     * $this->attributes['is_base'] - boolean - if the type is a base type or not
      * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
      * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
      * $this->attributes['parts'] - Part[] - contains the parts associated to this type
@@ -32,6 +33,16 @@ class Type extends Model
     public function setName(string $desc): void
     {
         $this->attributes['name'] = $desc;
+    }
+
+    public function getIsBase(): bool
+    {
+        return $this->attributes['is_base'];
+    }
+
+    public function setIsBase(bool $isbase): void
+    {
+        $this->attributes['is_base'] = $isbase;
     }
 
     //It was necessary to use the underscore because setCreatedAt is an Eloquent
