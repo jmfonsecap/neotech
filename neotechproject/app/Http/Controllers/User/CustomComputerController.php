@@ -17,7 +17,8 @@ class CustomComputerController extends Controller
     public function create(): View
     {
         $viewData = [];
-        $viewData['title'] = __('messages.admin.computer.table.title');
+        $viewData['title'] = __('messages.user.custom.create');
+        $viewData['subtitle'] = __('messages.user.custom.sub');
         $viewData['types'] = Type::whereHas('parts')->where('is_base',true)->get();
 
         return view('user.custom.create')->with('viewData', $viewData);
@@ -43,7 +44,8 @@ class CustomComputerController extends Controller
         $custom->setPrice($price);
         $custom->save();
         $viewData = [];
-        $viewData['title'] = __('messages.admin.computer.table.title');
+        $viewData['title'] = __('messages.user.custom.create');
+        $viewData['subtitle'] = __('messages.user.custom.sub');
         $viewData['types'] = Type::whereHas('parts')->where('is_base',true)->get();
 
         return view('user.custom.create')->with('viewData', $viewData);
