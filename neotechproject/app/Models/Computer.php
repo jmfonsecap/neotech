@@ -61,6 +61,28 @@ class Computer extends Model
         return $colums;
     }
 
+    public static function sumPricesByQuantities($computers, $computersInSession)
+{
+    $total = 0;
+    foreach ($computers as $computerId => $computerArray) {
+        $quantity = 0;
+
+        foreach ($computersInSession as $sessionComputer) {
+            if ($sessionComputer['id'] == $computerId) {
+                $quantity = $sessionComputer['quantity'];
+                break;
+            }
+        }
+
+        $computer = $computerArray[0];
+        $total += $computer['currentPrice'] * $quantity;
+    }
+    return $total;
+}
+
+
+
+
     public function getId(): int
     {
         return $this->attributes['id'];

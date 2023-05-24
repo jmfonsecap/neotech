@@ -43,15 +43,24 @@ class Part extends Model
         return $colums;
     }
 
-    public static function sumPricesByQuantities($parts, $itemsInSession)
-    {
-        $total = 0;
-        foreach ($parts as $item) {
-            $total = $total + ($item->getPrice() * $itemsInSession[$item->getId()]);
+    public static function sumPricesByQuantities($parts, $partsInSession)
+{
+    $total = 0;
+    foreach ($parts as $partId => $partArray) {
+        $quantity = 0;
+
+        foreach ($partsInSession as $sessionPart) {
+            if ($sessionPart['id'] == $partId) {
+                $quantity = $sessionPart['quantity'];
+                break;
+            }
         }
 
-        return $total;
+        $part = $partArray[0];
+        $total += $part['price'] * $quantity;
     }
+    return $total;
+}
 
     public function getId(): int
     {

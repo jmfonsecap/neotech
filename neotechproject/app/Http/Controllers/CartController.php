@@ -14,7 +14,6 @@ class CartController extends Controller
  $partsInSession = [];
  $computersInCart=[];
  $computersInSession=[];
- echo(json_encode($productsInSession));
  foreach ($productsInSession as $product) {
      if ($product['type'] == 'part') {
          $partsInSession[] = $product;
@@ -22,25 +21,40 @@ class CartController extends Controller
         $computersInSession[] = $product;
      }
  }
- echo(" Partes: ");
- echo(json_encode($partsInCart));
- echo(" Comps: ");
- echo(json_encode($computersInCart));
 
  if ($partsInSession) {
-   $partsInCart = Part::findMany(array_keys($partsInSession));
-   $total += Part::sumPricesByQuantities($partsInCart, $partsInSession);
-   } else if($computersInSession){
-    $computersInCart = Computer::findMany(array_keys($computersInSession));
+    $partIds = array_column($partsInSession, 'id');
+    foreach ($partIds as $partId){
+        $partsInCart[$partId]= Part::findMany($partIds);
+        foreach ($partsInSession as $partInSession){
+            if ($partInSession['id']==$partId){
+            $quantity= $partInSession["quantity"];
+            $computersInCart[$partId][0]["quantity"]=$quantity;
+        }
+        }
+    }
+    $total += Part::sumPricesByQuantities($partsInCart, $partsInSession);
+} else if ($computersInSession) {
+    $computerIds = array_column($computersInSession, 'id');
+    foreach ($computerIds as $computerId){
+        $computersInCart[$computerId]= Computer::findMany($computerId);
+        foreach ($computersInSession as $computerInSession){
+            if ($computerInSession['id']==$computerId){
+            $quantity= $computerInSession["quantity"];
+            $computersInCart[$computerId][0]["quantity"]=$quantity;
+        }
+        }
+    }
     $total += Computer::sumPricesByQuantities($computersInCart, $computersInSession);
-   }
-   echo(' Total: ');
-   echo(json_encode($total));
+}
+ echo("222222");
  $viewData = [];
  $viewData["title"] = "Cart - Online Store";
  $viewData["subtitle"] = "Shopping Cart";
  $viewData["total"] = $total;
- $viewData["computers"] = $productsInCart;
+ $viewData["computers"] = $computersInCart;
+ $viewData["parts"] = $partsInCart;
+ echo("333333");
  return view('cart.index')->with("viewData", $viewData);
  }
 
