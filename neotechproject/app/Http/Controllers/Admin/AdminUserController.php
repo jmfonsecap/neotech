@@ -13,6 +13,14 @@ class AdminUserController extends Controller
         $viewData = [];
         $viewData['title'] = __('messages.admin.user.table.title');
         $viewData['users'] = User::all();
+        $viewData['labels'] = [
+            __('messages.admin.label.name'),
+            __('messages.admin.label.email'),
+            __('messages.admin.label.role'),
+            __('messages.admin.label.phone'),
+            __('messages.admin.label.country'),
+            __('messages.admin.label.actions'),
+        ];
 
         return view('admin.users.index')->with('viewData', $viewData);
     }

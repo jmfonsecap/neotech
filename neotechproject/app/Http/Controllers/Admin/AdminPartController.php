@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Interfaces\ImageStorage;
 use Illuminate\Support\Facades\Storage;
 
+
 class AdminPartController extends Controller
 {
     public function index(): View
@@ -17,6 +18,14 @@ class AdminPartController extends Controller
         $viewData = [];
         $viewData['title'] = __('messages.admin.part.table.title');
         $viewData['parts'] = Part::all();
+        $viewData['labels'] = [
+            __('messages.admin.label.name'),
+            __('messages.admin.label.stock'),
+            __('messages.admin.label.brand'),
+            __('messages.admin.label.type'),
+            __('messages.admin.label.price'),
+            __('messages.admin.label.actions'),
+        ];
 
         return view('admin.part.index')->with('viewData', $viewData);
     }
@@ -108,6 +117,14 @@ class AdminPartController extends Controller
         Part::where('id', $id)->delete();
         $viewData['parts'] = Part::all();
         $viewData['title'] = __('messages.admin.part.table.title');
+        $viewData['labels'] = [
+            __('messages.admin.label.name'),
+            __('messages.admin.label.stock'),
+            __('messages.admin.label.brand'),
+            __('messages.admin.label.type'),
+            __('messages.admin.label.price'),
+            __('messages.admin.label.actions'),
+        ];
         session()->flash('status', __('messages.admin.parts.deleted'));
 
         return view('admin.part.index')->with('viewData', $viewData);

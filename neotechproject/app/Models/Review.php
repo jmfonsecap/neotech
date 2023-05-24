@@ -98,25 +98,11 @@ class Review extends Model
         $this->computer_id = $computer;
     }
 
-    public function getLabels()
+    public static function validate($request)
     {
-        $colums = [
-            'ID',
-            'Computer reviewed (ID)',
-            'Reviewer ID',
-            'Rating',
-            'Description',
-            'Actions',
-        ];
-
-        return $colums;
+        $request->validate([
+            'rating' => 'required|numeric|gte:0|lte:5',
+            'description' => 'required',
+        ]);
     }
-
-         public static function validate($request)
-         {
-             $request->validate([
-                 'rating' => 'required|numeric|gte:0|lte:5',
-                 'description' => 'required',
-             ]);
-         }
 }

@@ -48,20 +48,6 @@ class Computer extends Model implements Searchable
         'reviews',
     ];
 
-    public function getLabels()
-    {
-        $colums = [
-            'name',
-            'stock',
-            'brand',
-            'category',
-            'price',
-            'actions',
-        ];
-
-        return $colums;
-    }
-
     public function getId(): int
     {
         return $this->attributes['id'];

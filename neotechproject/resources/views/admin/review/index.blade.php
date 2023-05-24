@@ -7,15 +7,17 @@
 
 
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    @if(sizeof($viewData["reviews"])>0)
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            @if(sizeof($viewData["reviews"])>0)
             <tr>
-                @foreach($viewData["reviews"][0]->getLabels() as $label)
+                @foreach($viewData['labels'] as $label)
                 <th scope="col" class="px-6 py-3">
                     {{ $label }}
                 </th>
                 @endforeach
             </tr>
             @endif
+        </thead>
         <tbody>
             
             @foreach($viewData["reviews"] as $review)
@@ -34,21 +36,6 @@
                 </td>
                 <td class="px-6 py-4">
                     {{ $review->getDescription() }}
-                </td>
-                <td class="px-6 py-4">
-                <button class="py-2 text-xs text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
-                    <a href="{{ route('admin.review.show', ['id' => $review->getId()]) }}">
-                    {{ __('messages.admin.show') }}
-                    </a>
-                </button>
-
-                </td>
-                <td class="px-6 py-4">
-                <button type="button" class="py-2 text-xs text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800">
-                    <a href="{{ route('admin.review.edit', ['id' => $review->getId()]) }}">
-                        {{ __('messages.admin.edit') }}
-                    </a>    
-                </button>
                 </td>
                 <td class="px-6 py-4">
                 <button type="button" class="py-2 text-xs text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">

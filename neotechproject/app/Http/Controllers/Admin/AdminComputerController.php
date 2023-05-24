@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use App\Interfaces\ImageStorage;
 use Illuminate\Http\Request;
 
+
 class AdminComputerController extends Controller
 {
     public function index(): View
@@ -15,6 +16,14 @@ class AdminComputerController extends Controller
         $viewData = [];
         $viewData['title'] = __('messages.admin.computer.table.title');
         $viewData['computers'] = Computer::all();
+        $viewData['labels'] = [
+            __('messages.admin.label.name'),
+            __('messages.admin.label.stock'),
+            __('messages.admin.label.brand'),
+            __('messages.admin.label.category'),
+            __('messages.admin.label.price'),
+            __('messages.admin.label.actions'),
+        ];
 
         return view('admin.computer.index')->with('viewData', $viewData);
     }
@@ -106,6 +115,14 @@ class AdminComputerController extends Controller
         Computer::findOrFail($id);
         Computer::where('id', $id)->delete();
         $viewData['computers'] = Computer::all();
+        $viewData['labels'] = [
+            __('messages.admin.label.name'),
+            __('messages.admin.label.stock'),
+            __('messages.admin.label.brand'),
+            __('messages.admin.label.category'),
+            __('messages.admin.label.price'),
+            __('messages.admin.label.actions'),
+        ];
         session()->flash('status', __('messages.admin.computers.deleted'));
 
         return view('admin.computer.index')->with('viewData', $viewData);

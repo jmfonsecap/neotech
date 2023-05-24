@@ -64,7 +64,8 @@ Route::get('/api/cars/{id}', 'App\Http\Controllers\User\CarApiController@show')-
 
 
 // Client routes
-Route::get('/custom', 'App\Http\Controllers\User\CustomComputerController@create')->name('user.custom.create');
+Route::get('/custom', 'App\Http\Controllers\User\CustomComputerController@index')->name('user.custom.index');
+Route::get('/custom/create', 'App\Http\Controllers\User\CustomComputerController@create')->name('user.custom.create');
 Route::post('/custom/save', 'App\Http\Controllers\User\CustomComputerController@save')->name('user.custom.save');
 
 Route::get('/computers/create', 'App\Http\Controllers\User\ComputerController@create')->name('user.computer.create');

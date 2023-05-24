@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Storage;
 
 class CustomComputerController extends Controller
 {
+    public function index(): View
+    {
+        $user = Auth::user();
+        $viewData = [];
+        $viewData['title'] = $user->name . __('messages.user.custom.computer');
+        $viewData['customs'] = CustomComputer::where('user_id', $user->id)->get();
+
+        return view('user.custom.index')->with('viewData', $viewData);
+    }
+
     public function create(): View
     {
         $viewData = [];
