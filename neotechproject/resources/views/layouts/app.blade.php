@@ -16,7 +16,7 @@
             <div class="flex flex-wrap justify-between items-left mx-auto max-w-screen-xl">
 
                 <a href="{{route('user.home.index')}}" class="flex items-center">
-                    <img src="https://raw.githubusercontent.com/jmfonsecap/neotech/main/NEOTECH%20LOGO.png" class="mr-3 h-6 sm:h-9" alt="Neotech Logo" />
+                    <img src="https://github.com/jmfonsecap/neotech/blob/main/NEOTECH%20LOGO.png?raw=true" class="mr-3 h-6 sm:h-9" alt="Neotech Logo" />
                 </a>
                 <div class="flex items-center lg:order-2">
                     @guest
