@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/css/app.css','resources/js/app.js'])
+    <link rel="icon" href="https://raw.githubusercontent.com/jmfonsecap/neotech/main/favicon.ico" type="image/x-icon">
     <title> {{ __('messages.app.title') }} </title>
 </head>
 
@@ -121,23 +122,20 @@
                     </li>
                     <li>
 
-                    <a href="{{ route('user.home.index') }}" class="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                    <svg class="flex-shrink-0 w-6 h-6 text-gray-400 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <a href="{{ route('user.home.index') }}" class="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                            <svg class="flex-shrink-0 w-6 h-6 text-gray-400 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"></path>
                             </svg>
                             <span class="flex-1 ml-3 text-left whitespace-nowrap"> {{ __('messages.client.home') }} </span>
-                        
-                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
-                        </button>
+                            </button>
                     </li>
-                    
+
                 </ul>
                 <div class="text-center">
                     <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"><a href="#" class="hover:underline"> {{ __('messages.admin.creators') }} </a>.</span>
-                </div>
-                <div class="text-center">
-                    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"> {{ __('messages.admin.rights') }} </span>
                 </div>
                 <div class="text-center pt-12">
                     <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"> {{ __('messages.admin.year') }} </span>
@@ -151,6 +149,17 @@
                             <a href="{{ route('admin.home.index') }}" class="flex items-center">
                                 <img src="https://raw.githubusercontent.com/jmfonsecap/neotech/main/NEOTECH%20LOGO.png" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
                             </a>
+                            <ul class="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
+                                <li>
+                                    <a href="{{route('language.locale', ['locale' => 'en'])}}" class="px-3 text-sm text-gray-500 sm:text-center dark:text-gray-400">{{ __('messages.user.language.en') }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('language.locale', ['locale' => 'es'])}}" class="px-3 text-sm text-gray-500 sm:text-center dark:text-gray-400">{{ __('messages.user.language.es') }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('language.locale', ['locale' => 'fr'])}}" class="px-3 text-sm text-gray-500 sm:text-center dark:text-gray-400">{{ __('messages.user.language.fr') }}</a>
+                                </li>
+                            </ul>
                             <div class="flex items-center lg:order-2">
                                 @guest
                                 <a href="{{ route('login') }}" class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">{{ __('messages.auth.login') }}</a>

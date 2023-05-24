@@ -107,6 +107,24 @@ return [
     | localized telephone numbers, street address information and more.
     |
     */
+    
+
+    /*
+    |--------------------------------------------------------------------------
+    | Supported Locales
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify the locales that are supported by your application.
+    |
+    */
+
+    'available_locales' => [
+        'English' => 'en', // English
+        'Spanish' => 'es', // Spanish
+        'French' => 'fr',
+    ],
+
+
 
     'faker_locale' => 'en_US',
 

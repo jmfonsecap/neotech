@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('user.home.index');
 Route::post('/search', 'App\Http\Controllers\HomeController@search')->name('search');
+
+// Language route
+Route::get('/language/{locale}', 'App\Http\Controllers\LanguageController@locale')->name('language.locale');
+
 // Admin routes
 Route::middleware('admin')->group(function () { 
 Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.home.index');
@@ -54,12 +58,14 @@ Route::get('/admin/computers/update/{id}', 'App\Http\Controllers\Admin\AdminComp
 Route::get('/admin/computers/del/{id}', 'App\Http\Controllers\Admin\AdminComputerController@delete')->name('admin.computer.delete');
 });
 
+// Api routes
+Route::get('/api/cars', 'App\Http\Controllers\User\CarApiController@index')->name('user.api.index');
+Route::get('/api/cars/{id}', 'App\Http\Controllers\User\CarApiController@show')->name('user.api.show');
+
+
 // Client routes
 Route::get('/custom', 'App\Http\Controllers\User\CustomComputerController@create')->name('user.custom.create');
 Route::post('/custom/save', 'App\Http\Controllers\User\CustomComputerController@save')->name('user.custom.save');
-
-Route::get('/api/cars', 'App\Http\Controllers\User\CarApiController@index')->name('user.api.index');
-Route::get('/api/cars/{id}', 'App\Http\Controllers\User\CarApiController@show')->name('user.api.show');
 
 Route::get('/computers/create', 'App\Http\Controllers\User\ComputerController@create')->name('user.computer.create');
 Route::post('/computers/save', 'App\Http\Controllers\User\ComputerController@save')->name('user.computer.save');
