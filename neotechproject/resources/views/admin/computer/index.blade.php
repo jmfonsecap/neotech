@@ -17,7 +17,7 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             @if(sizeof($viewData["computers"])>0)
             <tr>
-                @foreach($viewData["computers"][0]->getLabels() as $label)
+                @foreach($viewData["labels"] as $label)
                 <th scope="col" class="px-6 py-3">
                     {{ $label }}
                 </th>

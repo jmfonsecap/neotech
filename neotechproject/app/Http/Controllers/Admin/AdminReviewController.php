@@ -7,6 +7,8 @@ use App\Models\Review;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
+
+
 class AdminReviewController extends Controller
 {
     public function index(): View
@@ -14,6 +16,14 @@ class AdminReviewController extends Controller
         $viewData = [];
         $viewData['title'] =  __('admin.reviews.dashboard');
         $viewData['reviews'] = Review::all();
+        $viewData['labels'] = [
+            __('messages.admin.label.id'),
+            __('messages.admin.label.reviewed'),
+            __('messages.admin.label.reviewer'),
+            __('messages.admin.label.rating'),
+            __('messages.admin.label.description'),
+            __('messages.admin.label.actions'),
+        ];
 
         return view('admin.review.index')->with('viewData', $viewData);
     }
@@ -49,7 +59,6 @@ class AdminReviewController extends Controller
         $review = new Review();
         Review::validate($request);
         $review->setRating($request->input('rating'));
-        //$review->setPhoto($request->input('photo'));
         $review->setDescription($request->input('description'));
         $review->save();
 
@@ -83,6 +92,14 @@ class AdminReviewController extends Controller
         Review::findOrFail($id);
         Review::where('id', $id)->delete();
         $viewData['reviews'] = Review::all();
+        $viewData['labels'] = [
+            __('messages.admin.label.id'),
+            __('messages.admin.label.reviewed'),
+            __('messages.admin.label.reviewer'),
+            __('messages.admin.label.rating'),
+            __('messages.admin.label.description'),
+            __('messages.admin.label.actions'),
+        ];
 
         return view('admin.review.index')->with('viewData', $viewData);
     }

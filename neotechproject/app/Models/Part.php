@@ -31,20 +31,6 @@ class Part extends Model implements Searchable
      */
     protected $fillable = ['stock', 'name', 'photo', 'brand', 'type', 'price', 'details'];
 
-    public function getLabels()
-    {
-        $colums = [
-            'name',
-            'stock',
-            'brand',
-            'type',
-            'price',
-            'actions',
-        ];
-
-        return $colums;
-    }
-
     public function getId(): int
     {
         return $this->attributes['id'];

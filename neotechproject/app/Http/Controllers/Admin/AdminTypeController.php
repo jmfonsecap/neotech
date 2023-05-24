@@ -14,6 +14,10 @@ class AdminTypeController extends Controller
         $viewData = [];
         $viewData['title'] = __('messages.admin.type.table.title');
         $viewData['types'] = Type::all();
+        $viewData['labels'] = [
+            __('messages.admin.label.name'),
+            __('messages.admin.label.actions'),
+        ];
 
         return view('admin.type.index')->with('viewData', $viewData);
     }
@@ -69,6 +73,11 @@ class AdminTypeController extends Controller
         $viewData['title'] = __('messages.admin.type.table.title');
         $types = Type::all();
         $viewData['types'] = $types;
+        $viewData['labels'] = [
+            __('messages.admin.label.name'),
+            __('messages.admin.label.actions'),
+        ];
+        
         session()->flash('status', __('messages.admin.types.updated'));
 
         return view('admin.type.index')->with('viewData', $viewData);
@@ -87,6 +96,11 @@ class AdminTypeController extends Controller
         $type->delete();
         $viewData['types'] = Type::all();
         $viewData['title'] = __('messages.admin.type.table.title');
+        $viewData['labels'] = [
+            __('messages.admin.label.name'),
+            __('messages.admin.label.actions'),
+        ];
+        
         session()->flash('status', __('messages.admin.types.deleted'));
 
         return view('admin.type.index')->with('viewData', $viewData);
