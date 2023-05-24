@@ -25,6 +25,7 @@ class HomeController extends Controller
         } else {
             $viewData['computersAreInDiscount'] = true;
             $viewData['computersInDiscount'] = $computersInDiscount;
+            $viewData['computers'] =$computers;
             $viewData['sizeOfComputerArray'] = count($computersInDiscount);
         }
 
