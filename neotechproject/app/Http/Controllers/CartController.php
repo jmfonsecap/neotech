@@ -63,10 +63,6 @@ class CartController extends Controller
         $viewData['products'] = $productsInSession;
         $viewData['computers']=$computersInCart;
         $viewData['parts']=$partsInCart;
-        echo(json_encode($computersInCart));
-        echo(json_encode($partsInCart));
-        echo(json_encode($computersInCart));
-        echo(json_encode($partsInCart));
 
         return view('cart.index')->with('viewData', $viewData);
     }
@@ -101,7 +97,6 @@ class CartController extends Controller
    
            if ($productsInSession) {
                $userId = Auth::user()->getId();
-               echo(json_encode($userId));
                $order = new Order();
                $order->setUserId($userId);
                $order->setTotal(0);
@@ -130,7 +125,6 @@ class CartController extends Controller
                         }
                     }
                 }
-                echo json_encode($partsInCart);
                 $total += Part::sumPricesByQuantities($partsInCart, $partsInSession);
             } elseif ($computersInSession) {
                 $quantity=0;
