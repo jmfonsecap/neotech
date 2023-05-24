@@ -148,6 +148,7 @@ return [
     'client.home' => 'Client home',
     'user.custom.name' => 'Custom Computer Name',
     'user.custom.create' => 'Build your own Computer',
+    'user.custom.computer' => ' Custom PCs',
     'user.custom.sub' => 'You must choose a part of each base type to build your computer',
     'user.topcomputers' => 'TOP COMPUTERS',
     'user.price' => 'Price COP:',
