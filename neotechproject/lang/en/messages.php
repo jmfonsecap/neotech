@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'purpose' => 'Neotech is a project born from what was learned in the subject Special Topics in Software Engineering (TEIS).',
     'auth.create.acount' => 'Create your account',
     'auth.sign' => 'Sign in to your account',
     'auth.create.email' => 'Your email',
@@ -29,6 +30,9 @@ return [
     'admin.dash.home' => 'Home',
     'admin.yes' => 'Yes',
     'admin.no' => 'No',
+    'user.language.en' => 'English',
+    'user.language.es' => 'Spanish',
+    'user.language.fr' => 'French',
     'admin.users' => 'Users',
     'admin.users.notfound' => 'No registered users',
     'admin.users.notfound.text' => 'Sorry, there are no registered users in the application at the moment.',
@@ -125,6 +129,10 @@ return [
     'admin.uploadfile' => 'Upload file',
     'admin.created' => 'created',
     'client.home' => 'Client home',
+    'user.custom.name' => 'Custom Computer Name',
+    'user.custom.create' => 'Build your own Computer',
+    'user.custom.sub' => 'You must choose a part of each base type to build your computer',
+    'user.topcomputers' => 'TOP COMPUTERS',
     'user.price' => 'Price COP:',
     'user.computer.before'=> 'Before:',
     'user.computer.now'=> 'Now:',

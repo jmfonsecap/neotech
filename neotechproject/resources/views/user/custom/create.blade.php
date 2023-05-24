@@ -13,7 +13,8 @@
             </div>
         </div>
         @endif
-        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white"> {{ $viewData["title"] }} </h2>
+        <h1 class="mb-4 text-xl font-bold text-gray-900 dark:text-white"> {{ $viewData['title'] }} </h1>
+        <p class="mb-4 text-l italic text-gray-900 dark:text-white">{{ $viewData['subtitle'] }}</p>
         @if($errors->any())
         <ul id="errors" class="alert alert-danger list-unstyled">
             @foreach($errors->all() as $error)
@@ -25,7 +26,7 @@
             @csrf
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                 <div class="sm:col-span-2">
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> {{ __('messages.admin.parts.name') }} </label>
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> {{ __('messages.user.custom.name') }} </label>
                     <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="{{ __('messages.admin.create.entername') }}" required="">
                 </div>
                 @foreach($viewData["types"] as $type)

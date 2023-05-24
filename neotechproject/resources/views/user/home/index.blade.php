@@ -57,20 +57,24 @@
     </div>
     <div class="grid grid-cols-2 gap-4">
       <div class="h-48 md:h-72">
+      <a href="{{ route('user.api.index') }}">
         <div class="relative h-full overflow-hidden rounded-lg">
         <img src="https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2019/08/bigdiscountcars-1566222131.jpg" class="absolute block w-full h-full object-cover" alt="...">
         </div>
+      </a>
       </div>
       <div class="h-48 md:h-72">
-        <div class="relative h-full overflow-hidden rounded-lg">
-            <img src="https://www.ant-pc.com/assets/2022-theme/images/Banner-6.webp" class="absolute block w-full h-full object-cover" alt="...">
-        </div>
+      <a href="{{ route('user.custom.create') }}">
+    <div class="relative h-full overflow-hidden rounded-lg">
+        <img src="https://www.ant-pc.com/assets/2022-theme/images/Banner-6.webp" class="absolute block w-full h-full object-cover" alt="...">
+    </div>
+</a>
       </div>
     </div>
 
     <div class="grid grid-cols-4 gap-4">
       <div class="col-span-4 text-center mb-4">
-        <h2 class="text-2xl font-bold">TOP COMPUTERS</h2>
+        <h2 class="text-2xl font-bold">{{ __('messages.user.topcomputers') }}</h2>
       </div>
 
       @for($i = 0; $i < 4; $i++)
