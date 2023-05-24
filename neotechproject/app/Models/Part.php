@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Item;
 
 class Part extends Model
 {
@@ -44,23 +43,24 @@ class Part extends Model
     }
 
     public static function sumPricesByQuantities($parts, $partsInSession)
-{
-    $total = 0;
-    foreach ($parts as $partId => $partArray) {
-        $quantity = 0;
+    {
+        $total = 0;
+        foreach ($parts as $partId => $partArray) {
+            $quantity = 0;
 
-        foreach ($partsInSession as $sessionPart) {
-            if ($sessionPart['id'] == $partId) {
-                $quantity = $sessionPart['quantity'];
-                break;
+            foreach ($partsInSession as $sessionPart) {
+                if ($sessionPart['id'] == $partId) {
+                    $quantity = $sessionPart['quantity'];
+                    break;
+                }
             }
+
+            $part = $partArray[0];
+            $total += $part['price'] * $quantity;
         }
 
-        $part = $partArray[0];
-        $total += $part['price'] * $quantity;
+        return $total;
     }
-    return $total;
-}
 
     public function getId(): int
     {

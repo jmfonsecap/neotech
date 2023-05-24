@@ -42,7 +42,7 @@ class Order extends Model
         $this->attributes['totalToPay'] = $total;
     }
 
-    public function getPaid(): bool
+    public function getPaid(): string
     {
         return $this->attributes['paid'];
     }
@@ -52,7 +52,7 @@ class Order extends Model
         $this->attributes['paid'] = $paid;
     }
 
-    public function getDelivered(): bool
+    public function getDelivered(): string
     {
         return $this->attributes['delivered'];
     }
@@ -60,6 +60,16 @@ class Order extends Model
     public function setDelivered(string $delivered): void
     {
         $this->attributes['delivered'] = $delivered;
+    }
+
+    public function getPaymentMethod(): string
+    {
+        return $this->attributes['payMethod'];
+    }
+
+    public function setPaymentMethod(string $method): void
+    {
+        $this->attributes['payMethod'] = $method;
     }
 
     //Relations
@@ -83,13 +93,14 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getUser()
+    public function getUserId()
     {
         return $this->user;
     }
-    public function setUser($user)
+
+    public function setUserId($user_id)
     {
-        $this->user = $user; 
+        $this->user()->associate($user_id);
     }
 
     public function getCreated_at(): string
@@ -110,8 +121,8 @@ class Order extends Model
     public static function validate($request)
     {
         $request->validate([
-        "totalToPay" => "required|numeric",
-        "user_id" => "required|exists:users,id",
+            'totalToPay' => 'required|numeric',
+            'user_id' => 'required|exists:users,id',
         ]);
     }
 }

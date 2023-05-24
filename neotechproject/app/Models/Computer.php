@@ -6,7 +6,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Item;
 
 class Computer extends Model
 {
@@ -62,26 +61,24 @@ class Computer extends Model
     }
 
     public static function sumPricesByQuantities($computers, $computersInSession)
-{
-    $total = 0;
-    foreach ($computers as $computerId => $computerArray) {
-        $quantity = 0;
+    {
+        $total = 0;
+        foreach ($computers as $computerId => $computerArray) {
+            $quantity = 0;
 
-        foreach ($computersInSession as $sessionComputer) {
-            if ($sessionComputer['id'] == $computerId) {
-                $quantity = $sessionComputer['quantity'];
-                break;
+            foreach ($computersInSession as $sessionComputer) {
+                if ($sessionComputer['id'] == $computerId) {
+                    $quantity = $sessionComputer['quantity'];
+                    break;
+                }
             }
+
+            $computer = $computerArray[0];
+            $total += $computer['currentPrice'] * $quantity;
         }
 
-        $computer = $computerArray[0];
-        $total += $computer['currentPrice'] * $quantity;
+        return $total;
     }
-    return $total;
-}
-
-
-
 
     public function getId(): int
     {

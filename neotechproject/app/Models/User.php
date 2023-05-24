@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Order;
 
 class User extends Authenticatable
 {
@@ -30,7 +29,7 @@ class User extends Authenticatable
      * $this->attributes['postalCode'] - string - contains the user postal code
      * $this->attributes['country'] - string - contains the user country
      * $this->attributes['points'] - int - contains the user points
-     * $this->orders - Order[] - contains the associated orders 
+     * $this->orders - Order[] - contains the associated orders
      * $this->attributes['created_at'] - timestamp - contains the user creation date
      * $this->attributes['updated_at'] - timestamp - contains the user update date
      *

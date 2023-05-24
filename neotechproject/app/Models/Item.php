@@ -20,11 +20,12 @@ class Item extends Model
      * $this->attributes['computer_id'] - int - contains the computer id
      * $this->order - Order- contains the associated order
      * $this->attributes['order_id'] - int - contains the order id
+     * $this->attributes['price'] - int - contains the total price of the item
      * $this->attributes['created_at'] - string (timestamp in the DB) - contains the date when the part was created
      * $this->attributes['updated_at'] - string (timestamp in the DB) - contains the last date when the part was modified
      */
     protected $fillable = ['quantity', 'part_id', 'computer_id',
-        'order_id'];
+        'order_id', 'price'];
 
     public static function sumPricesByQuantities($items, $itemsInSession)
     {
@@ -39,6 +40,16 @@ class Item extends Model
     public function getId(): int
     {
         return $this->attributes['id'];
+    }
+
+    public function getPrice(): int
+    {
+        return $this->attributes['price'];
+    }
+
+    public function setPrice(int $price): void
+    {
+        $this->attributes['price'] = $price;
     }
 
     public function getQuantity(): int
@@ -145,11 +156,11 @@ class Item extends Model
     public static function validate($request)
     {
         $request->validate([
-        "price" => "required|numeric|gt:0",
-        "quantity" => "required|numeric|gt:0",
-        "computer_id" => "exists:computers,id",
-        "part_id" => "exists:parts,id",
-        "order_id" => "required|exists:orders,id",
+            'price' => 'required|numeric|gt:0',
+            'quantity' => 'required|numeric|gt:0',
+            'computer_id' => 'exists:computers,id',
+            'part_id' => 'exists:parts,id',
+            'order_id' => 'required|exists:orders,id',
         ]);
     }
 }
